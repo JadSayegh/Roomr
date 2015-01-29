@@ -54,38 +54,38 @@ The Roomr Team
 #send an email from activation@roomr.com
 function email($to, $subject, $message){
 
-$fromName = "The Roomr Team";
-$fromEmail = "jad.r.sayeg@gmail.com";
-    
-$mail      = new PHPMailer();
-$mail->isSMTP();
-$mail->Host     = 'smtp.gmail.com' ;
+    $fromName = "The Roomr Team";
+    $fromEmail = "theroomrteam@gmail.com";
 
-#TODO: set up email server to avoid using personal gmail
-$mail->Username = "jad.r.sayegh@gmail.com";
-$mail->Password = "wrongPassword"; #not my password muahaha   
-    
-$mail->From     = $fromEmail;
-$mail->FromName = $fromName;
-$mail->AddAddress($to);
+    $mail      = new PHPMailer();
+    $mail->isSMTP();
+    $mail->Host     = 'smtp.gmail.com' ;
 
-$mail->SMTPAuth   = true;
-$mail->SMTPSecure = "tls";
-$mail-> Port = 587;
- 
-$mail->Subject  = $subject;
-$mail->Body     = $message;
+    #TODO: set up email server to avoid using personal gmail
+    $mail->Username = "theroomrteam@gmail.com";
+    $mail->Password = "roomrteam";
 
-if(!$mail->Send()) {
+    $mail->From     = $fromEmail;
+    $mail->FromName = $fromName;
+    $mail->AddAddress($to);
 
-echo 'Message was not sent.';
+    $mail->SMTPAuth   = true;
+    $mail->SMTPSecure = "tls";
+    $mail-> Port = 587;
 
-echo 'Mailer error: ' . $mail->ErrorInfo;
+    $mail->Subject  = $subject;
+    $mail->Body     = $message;
 
-} else {
+    if(!$mail->Send()) {
 
-echo 'Message has been sent.';
+        echo 'Message was not sent.';
 
-}
+        echo 'Mailer error: ' . $mail->ErrorInfo;
+
+    } else {
+
+        echo 'Message has been sent.';
+
+    }
 }
 ?>
