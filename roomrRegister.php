@@ -5,12 +5,39 @@ require("dbConnect.php");
 	
 
 	$username = ($_POST['username']);
-	$address = ($_POST['email']);
+	$email = ($_POST['email']);
 	$password = ($_POST['password']);
 	
 	
 	
-	function validatePostData($username, $address, $password){
+
+	
+	if($usernameLength> 16 || $usernameLength < 6) 
+        
+	
+
+	if(checkUnique($db, $username, $email)){
+			$sql = "INSERT into users (username, email, password, login) VALUES ('$username', '$email', '$password', 0)";
+			if(!$result = $db->query($sql)){
+				die('There was an error running the query [' . $db->error . ']');
+			}
+			else{
+				session_start();
+				$_SESSION['username'] = $username;
+				$_SESSION['email'] = $email;
+				$_SESSION['login'] = "1";
+				echo "success";
+			}
+			
+	}
+	else{
+			echo "USER OR EMAIL ALREADY EXISTS";
+	}
+	
+	$db->close();
+
+
+function validatePostData($username, $email, $password){
 		
 		if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,16}$/', $password)) {
 			echo 'the password does not meet the requirements!';
@@ -23,12 +50,11 @@ require("dbConnect.php");
 			echo 'the email does not meet the requirements!';
 		}
 	
-	}
-	
-	if($usernameLength> 16 || $usernameLength < 6) 
-	function checkExistance($database, $user, $address){
+}
+
+function checkUnique($database, $user, $email){
 		
-		$sql = "SELECT * FROM users WHERE username = '$user' OR email = '$address' ";
+		$sql = "SELECT * FROM users WHERE username = '$user' OR email = '$email' ";
 		$result = $database->query($sql);
 		
 		if($result->num_rows == 0){
@@ -38,25 +64,6 @@ require("dbConnect.php");
 			return false;
 		}
 
-	}
-
-	if(checkExistance($db, $username, $address)){
-			$sql = "INSERT into users (username, email, password, login) VALUES ('$username', '$address', '$password', 0)";
-			if(!$result = $db->query($sql)){
-				die('There was an error running the query [' . $db->error . ']');
-			}
-			else{
-				session_start();
-				$_SESSION['username'] = $username;
-				$_SESSION['email'] = $address;
-				$_SESSION['login'] = "1";
-				echo "success";
-			}
-			
-	}
-	else{
-			echo "USER OR EMAIL ALREADY EXISTS";
-	}
-	
-	$db->close();
+}
 ?>
+
