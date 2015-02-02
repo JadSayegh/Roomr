@@ -8,14 +8,6 @@ require("dbConnect.php");
 	$email = ($_POST['email']);
 	$password = ($_POST['password']);
 	
-	
-	
-
-	
-	if($usernameLength> 16 || $usernameLength < 6) 
-        
-	
-
 	if(checkUnique($db, $username, $email)){
 			$sql = "INSERT into users (username, email, password, login) VALUES ('$username', '$email', '$password', 0)";
 			if(!$result = $db->query($sql)){

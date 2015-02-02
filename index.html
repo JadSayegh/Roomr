@@ -201,7 +201,7 @@
 	</div>
 	  
 
-  <!--LOGIN FORM -->
+   <!--LOGIN FORM -->
   <div class = "module2">
 	<form name = "login" class="form-horizontal" >
 	 
@@ -232,7 +232,8 @@
 		  <!-- Button -->
 		  <div class="controls">
 		  <br>
-			<button class="btn btn-success" onclick = "login()">Login</button>
+			<button class="btn btn-success" onclick = "roomrLogin()">Login</button>
+			<div id = "loginWarning"></div>
 		  </div>
 		</div>
 	 
@@ -329,39 +330,38 @@
 			else return true;
 		}
 	
-		function login(){
+		function roomrLogin(){
 		
-			var username = $('#loginEmail').val();
+			var username = $('#loginUsername').val();
 			var password = $('#loginPassword').val();
 			loginFlag = true;
 			console.log(username, password);
 			
 			$.ajax({
 				
-                type: "POST",
-                url: 'roomrLogin.php',
-				data: { 
-						username :  username,
-						password : password	
-						
-					},
-				success: function(datum)
-							{	
-								
-								console.log(datum);					
-								if(datum.trim() == "pass") {
-									console.log("woo");
-									//window.location.replace("");
-								}
-								
-								else {
-									loginFlag = false;
-								//	$('#loginForm').trigger("reset");
-									console.log("FAILURE");
-									
-								}
-							}
-				});
+               		type: "POST",
+               		url: 'roomrLogin.php',
+			dataType : 'text',
+			data: { 
+				username : username,
+				password : password						
+				},
+			success: function(datum){	
+							
+					console.log(datum);					
+					if(datum.trim() == "pass") {
+						console.log("woo");
+						//window.location.replace("");
+						//$("#loginWarning").remove();
+					}
+					else {
+						loginFlag = false;
+					//	$('#loginForm').trigger("reset");
+						$("#loginWarning").append("<div class = 'warning'> User does not exist or password is invalid </div>");
+						console.log("FAILURE");
+						}
+					}
+			});
 		
 		}
 		
@@ -392,14 +392,14 @@
 					success: function(data)
 								{	
 														
-									if(data == "success"){
+									if(data.trim() == "success"){
 										console.log("woo");
 										$( document ).ready(function(){
-											//window.location.replace("roomrHome.html");
+											window.location.replace("roomrHome.html");
 										});
 									}
 									else {
-										console.log("FAILED TO LOG IN");
+										console.log("FAILED SIGN Up");
 									}
 								}
 				
