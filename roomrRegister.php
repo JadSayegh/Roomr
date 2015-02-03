@@ -1,15 +1,19 @@
 <?php
 
 require("dbConnect.php");
-
+include("emailActivation.php");
 	
 
 	$username = ($_POST['username']);
 	$email = ($_POST['email']);
 	$password = ($_POST['password']);
+
+    $email_code = md5($username + microtime());
 	
 	if(checkUnique($db, $username, $email)){
-			$sql = "INSERT into users (username, email, password, login) VALUES ('$username', '$email', '$password', 0)";
+        
+            #TODO: add activation and email_code to DB
+			$sql = "INSERT into users (username, email, password, login, email_code, activated) VALUES ('$username', '$email', '$password', 0, $email_code, 0)";
 			if(!$result = $db->query($sql)){
 				die('There was an error running the query [' . $db->error . ']');
 			}
@@ -18,7 +22,11 @@ require("dbConnect.php");
 				$_SESSION['username'] = $username;
 				$_SESSION['email'] = $email;
 				$_SESSION['login'] = "1";
+                $_SESSION['activated'] = "0";
 				echo "success";
+                
+                sendActivationEmail($username, $email, $email_code);
+                
 			}
 			
 	}
