@@ -7,10 +7,11 @@ require("dbConnect.php");
 	$password = ($_POST['password']);
 
 function checkExistance($database, $user, $password){
-	
+	   
 		$sql = "SELECT * FROM users WHERE username = '$user' AND password = '$password'";
 		$result = $database->query($sql);
-		if ($result->num_rows == 0){
+		#TODO: check for null results
+        if ($result->num_rows == 0){
 			return false;
 		}
 		else{		
