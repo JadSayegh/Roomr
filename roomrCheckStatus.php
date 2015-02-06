@@ -22,10 +22,14 @@ function userExists($database, $user){
 	
 	
 	if(userExists($db, $username)){
-		$sql = "SELECT activated FROM users WHERE username = '$user'";
-		$result = $database->query($sql);
+		$sql = "SELECT activated FROM users WHERE username = '$username'";
+		$result = $db->query($sql);
 		if($result == true){
-			echo "activated";
+			$activateValue = $result->fetch_row();
+			if($activateValue[0] == 1){
+				echo "activated";
+			}
+			else echo "not activated";
 		}
 		else{
 			echo "not activated";
@@ -34,5 +38,5 @@ function userExists($database, $user){
 	else{
 		echo "USER DOES NOT EXIST";
 	}
-	
+	$db->close();
 ?>

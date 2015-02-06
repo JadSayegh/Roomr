@@ -92,14 +92,14 @@
 	.module {
 	  			
 		   position: absolute; 
-		   top: 10%; 
+		   top: 15%; 
 		   left: 20%;
 		   width: 200px
 		   			  
 	}
 	.module2{
 		position: absolute; 
-		   top: 10%; 
+		   top: 15%; 
 		   left: 45%;
 	
 	}
@@ -161,7 +161,7 @@
 		  <label class="control-label"  >Username</label>
 		  <div class="controls" id = "warnUsername">
 			<input type="text" id="registerUsername" name="registerUsername" placeholder="" class="input-xlarge">
-			<p class="help-block">Username can contain any letters or numbers, without spaces</p>
+			<p class="help-block">Username can contain only letters or numbers, and must be at least 8 characters</p>
 		  </div>
 		</div>
 	 
@@ -179,7 +179,7 @@
 		  <label class="control-label" >Password</label>
 		  <div class="controls" id = "warnPassword">
 			<input type="password" id="registerPassword" name="registerPassword" placeholder="" class="input-xlarge">
-			<p class="help-block">Password should be at least 4 characters</p>
+			<p class="help-block">Password should be at least 8 characters and must contain one number</p>
 		  </div>
 		</div>
 	 
@@ -281,7 +281,7 @@
 				//please enter valid email
 				return false;
 			}
-			else if(!email.indexOf("@")){
+			else if(email.indexOf("@") == -1){
 				$("#warnEmail").append("<div class = 'warning'> please enter valid email </div>");
 			 //please enter valid email
 			 return false;
@@ -351,7 +351,7 @@
 					console.log(datum);					
 					if(datum.trim() == "pass") {
 						console.log("woo");
-						//window.location.replace("");
+						window.location.replace("roomrHome.html");
 						//$("#loginWarning").remove();
 					}
 					else {
@@ -365,10 +365,7 @@
 		
 		}
 		
-		function signUp(){
-		
-			
-			
+		function signUp(){			
 		
 			if( formValidation()){
 			
@@ -392,14 +389,15 @@
 					success: function(data)
 								{	
 														
-									if(data.trim() == "success"){
+									if(data.indexOf("success") != -1){
 										console.log("woo");
 										$( document ).ready(function(){
 											window.location.replace("roomrHome.html");
 										});
 									}
 									else {
-										console.log("FAILED SIGN Up");
+										window.alert("one or more fields are invalid, or username/email already in use.Please try again");
+										console.log("FAILED SIGN UP");
 									}
 								}
 				

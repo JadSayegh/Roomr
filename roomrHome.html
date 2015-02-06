@@ -11,26 +11,47 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<!--Google fonts-->
 	<link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
-	
-	</head>
-	<body onload = "checkStatus()">
-	
-	</body>
+	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<style type = "text/css">
+	.module {
+	  			
+		   position: absolute; 
+		   top: 10%; 
+		   left: 20%;
+		   width: 200px
+		   			  
+	}
+	</style>
 	<script type = "text/javascript">
-	function checkStatus(){
+		var username;
+		$.ajax({
+			url : "getSessionUsername.php",
+			
+			type : "GET",
+			success: function(data){
+						console.log(data);
+						username = data;
+						checkStatus();
+					}	
+		});
 		
+		function checkStatus(){
+		
+	
+		console.log(username);
 		$.ajax({
 		
 			type: "POST",
                 url: 'roomrCheckStatus.php',
 				data: { 
-						username :  username,
-						
-						
-					},
+						username :  username
+						},
 				success: function(data){
-						if(data == "activated"){
-							displayProfile();
+						if(data.trim() == "activated"){
+							displayProfilePage();
 							
 						}
 						else{
@@ -43,5 +64,40 @@
 		});
 	
 	}
+	
+	function displayActivationPage(){
+	
+		$(document.body).append("<br> <br> <legend class = 'module'> please activate your account through the link sent to you by email </legend>");
+	}
+	function displayProfilePage(){
+		$(document.body).append("<br> <br> <legend class = 'module'> here's your profile </legend>");
+	}
 	</script>
+	</head>
+	
+	
+
+	<body>
+	 <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">Roomr</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+	
+	</body>
+	
 	

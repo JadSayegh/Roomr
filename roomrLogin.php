@@ -27,8 +27,10 @@ function checkExistance($database, $user, $password){
 			}
 			else{
 				session_start();
+				$sql = "SELECT email FROM users WHERE username = '$username'";
+				$email = $db->query($sql);
 				$_SESSION['username'] = $username;
-			//	$_SESSION['email'] = $email;
+				$_SESSION['email'] = $email;
 				$_SESSION['login'] = "1";
 				echo "pass";
 			}
