@@ -250,10 +250,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="jquery.cookie.js"></script>
+	
     <script type="text/javascript">
 	
 		
+		loginCounter = 0;
 		loginFlag = true;
+		
+	
 		function formValidation(){
 		
 			var username = $('#registerUsername').val();
@@ -331,38 +336,51 @@
 		}
 	
 		function roomrLogin(){
-		
-			var username = $('#loginUsername').val();
-			var password = $('#loginPassword').val();
-			loginFlag = true;
-			console.log(username, password);
-			
-			$.ajax({
-				
-               		type: "POST",
-               		url: 'roomrLogin.php',
-			dataType : 'text',
-			data: { 
-				username : username,
-				password : password						
-				},
-			success: function(datum){	
-							
-					console.log(datum);					
-					if(datum.trim() == "pass") {
-						console.log("woo");
-						window.location.replace("roomrHome.html");
-						//$("#loginWarning").remove();
-					}
-					else {
-						loginFlag = false;
-					//	$('#loginForm').trigger("reset");
-						$("#loginWarning").append("<div class = 'warning'> User does not exist or password is invalid </div>");
-						console.log("FAILURE");
-						}
-					}
-			});
-		
+			loginCounter++;
+			if($.cookie("blocked") == null){
+				if(loginCounter<5 ){
+					var username = $('#loginUsername').val();
+					var password = $('#loginPassword').val();
+					loginFlag = true;
+					console.log(username, password);
+					
+					$.ajax({
+						
+							type: "POST",
+							url: 'roomrLogin.php',
+					dataType : 'text',
+					data: { 
+						username : username,
+						password : password						
+						},
+					success: function(datum){	
+									
+							console.log(datum);					
+							if(datum.trim() == "pass") {
+								console.log("woo");
+								window.location.replace("roomrHome.html");
+								//$("#loginWarning").remove();
+							}
+							else {
+								loginFlag = false;
+							//	$('#loginForm').trigger("reset");
+								$("#loginWarning").append("<div class = 'warning'> User does not exist or password is invalid </div>");
+								console.log("FAILURE");
+								}
+							}
+					});
+				} else{
+					
+					var date = new Date();
+					date.setTime(date.getTime() + (60 * 1000));
+					$.cookie("blocked", 1, {expires :date});
+					$("#loginWarning").append("<div class = 'warning'> You entered wrong user info too many times! please wait 60 seconds </div>");
+					loginCounter = 0;
+					
+				}
+			} else{
+					$("#loginWarning").append("<div class = 'warning'> Please wait </div>");
+			}
 		}
 		
 		function signUp(){			

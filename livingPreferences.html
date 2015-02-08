@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+<html lang="en" class="full">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Roomr</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<!--Google fonts-->
+	<link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      /* Special class on .container surrounding .navbar, used for positioning it into place. */
+      .navbar-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        margin-top: 20px;
+      }
+	 .warning{
+				
+				
+		
+	 }  
+      /* Flip around the padding for proper display in narrow viewports */
+      .navbar-wrapper .container {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .navbar-wrapper .navbar {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .navbar-content
+      {
+          width:320px;
+          padding: 15px;
+          padding-bottom:0px;
+      }
+      .navbar-content:before, .navbar-content:after
+      {
+          display: table;
+          content: "";
+          line-height: 0;
+      }
+      .navbar-nav.navbar-right:last-child {
+      margin-right: 15px !important;
+      }
+      .navbar-footer 
+      {
+          background-color:#DDD;
+      }
+      .navbar-footer-content { padding:15px 15px 15px 15px; }
+
+      .dropdown-menu {
+      padding: 0px;
+      overflow: hidden;
+      }
+
+      .modal-dialog {
+          width: 300px;
+      }
+      .modal-footer {
+          height: 70px;
+          margin: 0;
+      }
+      .modal-footer .btn {
+          font-weight: bold;
+      }
+      .modal-footer .progress {
+          display: none;
+          height: 32px;
+          margin: 0;
+      }
+      .input-group-addon {
+          color: #fff;
+          background: #3276B1;
+      }
+		
+	html {
+			
+			height : 100%;
+			
+			
+	}
+		
+	.module {
+	  			
+		   position: absolute; 
+		   top: 10%; 
+		   left: 5%;
+		   width: 400px
+		   			  
+	}
+	.module2{
+		position: absolute; 
+		   top: 10%; 
+		   left: 50%;
+		   width: 400px
+	}
+	
+	.module3{
+		position: absolute; 
+		   top: 500px; 
+		   left: 5%;
+		   width: 1100px
+	}
+	
+	input[type=checkbox] {
+		width: 30px;
+	}
+
+		.top h2 {
+		  color: white;
+		  margin: 0;
+		  padding: 20px;
+		}
+
+		.lr h2, .lr h4 {
+		  text-algin = center;
+		  font-family: 'Helvetica', sans-serif;
+			
+		  color: white;
+		  text-shadow: -1px 0 light grey, 0 1px light grey, 1px 0 light grey, 0 -1px light grey;
+		}
+	
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">Roomr - Living Preferences</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+         		  
+		  <ul class="nav navbar-nav navbar-right">
+									
+									  <button type="button" class="btn btn-warning navbar-btn" onclick = "editProfile()"><span class="glyphicon glyphicon-edit"></span> Edit Profile</button>
+									  <button type="button" class="btn btn-danger navbar-btn" onclick = "signOut()"><span class="glyphicon glyphicon-off"></span> Sign Out</button>
+															
+				</ul>
+		 
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+	
+	
+	<!--LIVING PREFERENCES: First Column -->
+     
+	<div class = "module">
+	<form name = "living preferences" class="form-horizontal" >
+		
+		<div id="legend">
+		  <legend class="">Neighbourhood</legend>
+		</div>	  
+
+		<select class="form-control" name="neighbourhood" id="neighbourhood">
+		  <option value="0">Select location</option>
+		  <option value="1">Ahuntsic-Cartierville</option>
+		  <option value="2">Anjou</option>
+		  <option value="3">Bois-Franc</option>
+		  <option value="4">Chinatown</option>
+		  <option value="5">Côte-des-Neiges</option>
+		  <option value="6">Gay Village</option>
+		  <option value="7">Goose Village</option>
+		  <option value="8">Griffintown</option>
+		  <option value="9">Hochelaga-Maisonneuve</option>
+		  <option value="10">Jacques-Bizard</option>
+		  <option value="11">La Petite-Patrie</option>
+		  <option value="12">Lachine</option>
+		  <option value="13">LaSalle</option>
+		  <option value="14">Le Plateau-Mont-Royal</option>
+		  <option value="15">Le Sud-Ouest</option>
+		  <option value="16">Little Burgundy</option>
+		  <option value="17">Little Portugal</option>
+		  <option value="18">Mercier</option>
+		  <option value="19">Mile End</option>
+		  <option value="20">Milton-Parc</option>
+		  <option value="21">Montréal-Nord</option>
+		  <option value="22">Notre-Dame-de-Grâce</option>
+		  <option value="23">Old Montreal</option>
+		  <option value="24">Outremont</option>
+		  <option value="25">Pierrefonds</option>
+		  <option value="26">Pointe-aux-Trembles</option>
+		  <option value="27">Pointe-Saint-Charles</option>
+		  <option value="28">Rivière-des-Prairies</option>
+		  <option value="29">Rosemont</option>
+		  <option value="30">Roxboro</option>
+		  <option value="31">Saint-Henri</option>
+		  <option value="32">Saint-Laurent</option>
+		  <option value="33">Saint-Léonard</option>
+		  <option value="34">Sainte-Geneviève</option>
+		  <option value="35">Verdun</option>
+		  <option value="36">Ville-Émard</option>
+		  <option value="37">Ville-Marie/Downtown</option>
+		  <option value="38">Ville-Saint-Paul</option>
+		  <option value="39">Villeray–Saint-Michel–Parc-Extension</option>
+		</select>
+		<br />
+
+		<div id="legend">
+		  <legend class="">Rent Price Range</legend>
+		</div>
+
+		<select class="form-control" name="rentPriceRange" id="rentPriceRange">
+		  <option value="0">Select price range</option>
+  		  <option value="1">Less than 400</option>
+  		  <option value="2">400 - 549</option>
+  		  <option value="3">550 - 699</option>
+  		  <option value="4">700 - 849</option>
+  		  <option value="5">850 - 999</option>
+  		  <option value="6">1000 - 1149</option>
+  		  <option value="7">more than 1150</option>
+		</select>
+		<br />
+
+		<div id="legend">
+		  <legend class="">Total Number of Desired Roommates</legend>
+		</div>
+
+		<select class="form-control" name="roommates" id="roommates">
+		  <option value="0">Select number of roommates</option>
+  		  <option value="1">1</option>
+  		  <option value="2">2</option>
+  		  <option value="3">3</option>
+  		  <option value="4">4</option>
+  		  <option value="5">5</option>
+  		  <option value="6">6+</option>
+		</select>
+
+	 </form>
+
+	</div>
+	</div>
+	  
+
+  <!--LIVING PREFERENCES: Second Column -->
+  <div class = "module2">
+	<form name = "living preferences" class="form-horizontal" >
+
+	 	<div id="legend">
+		  <legend class="">Looking for a House or an Apartment</legend>
+		</div>
+		<div>
+		<label class="radio-inline">
+ 		 <input type="radio" name="ha" id="ha" 			value="1"> House
+		</label>
+		<label class="radio-inline">
+ 		 <input type="radio" name="ha" id="ha" 			value="2"> Apartment
+		</label>
+		</div>
+		<br />
+
+		<div id="legend">
+		  <legend class="">Pet Friendly</legend>
+		</div>
+		
+		<div>
+		<label class="radio-inline">
+ 		 <input type="radio" name="pf1" id="pf1" 			value="1"> Yes
+		</label>
+		<label class="radio-inline">
+  		<input type="radio" name="pf1" id="pf1" 			value="2"> No
+	 	</label>
+		<label class="radio-inline">
+  		<input type="radio" name="pf1" id="pf1" 			value="3"> Dogs Only
+	 	</label>
+		<label class="radio-inline">
+ 		 <input type="radio" name="pf1" id="pf1" 			value="4"> Cats Only
+		</label>
+		</div>
+		<br />
+		
+	  
+		<div id="legend">
+		  <legend class="">Party</legend>
+		</div>
+
+		<div>
+		<label class="radio-inline">
+ 		 <input type="radio" name="p2" id="p2" 			value="1"> Yes
+		</label>
+		<label class="radio-inline">
+ 		 <input type="radio" name="p2" id="p2" 			value="2"> No
+		</label>
+		</div>
+		<br />
+
+	 	<div id="legend">
+		  <legend class="">Smoking Friendly</legend>
+		</div>
+
+		<div>
+		<label class="radio-inline">
+ 		 <input type="radio" name="sf" id="sf" 			value="1"> Yes
+		</label>
+		<label class="radio-inline">
+ 		 <input type="radio" name="sf" id="sf" 			value="2"> No
+		</label>
+		</div>
+
+	  
+	 </form>
+		<div class="control-group">
+		  <!-- Button -->
+		  <div class="controls">
+		  <br>
+                <!--<input id="testbutton" type="button" value="Test" />   -->
+		<input type="button" id="saveButton" class="btn btn-primary" onclick="saveLP()" value="Save"/>		  </div>
+		</div>
+	 
+  </div>
+  
+	<div class = "module3">
+		<div id="legend">
+		  <legend class="">Interests</legend>
+		</div>
+
+		<div>
+		<input type="checkbox" name="intr" value="1"> Animals
+		<input type="checkbox" name="intr" value="2"> Bird Watching
+		<input type="checkbox" name="intr" value="3"> Birds
+	 	<input type="checkbox" name="intr" value="4"> Cats
+		<input type="checkbox" name="intr" value="5"> Dogs
+		<input type="checkbox" name="intr" value="6"> Exotic Pets
+		<input type="checkbox" name="intr" value="7"> Fish
+		<input type="checkbox" name="intr" value="8"> Pets
+		<input type="checkbox" name="intr" value="9"> Agriculture
+		<input type="checkbox" name="intr" value="10"> Camping
+		<input type="checkbox" name="intr" value="11"> Climbing
+		<input type="checkbox" name="intr" value="12"> Environment
+		<input type="checkbox" name="intr" value="13"> Forestry
+		<input type="checkbox" name="intr" value="14"> Hiking
+		<input type="checkbox" name="intr" value="15"> Nature
+		<input type="checkbox" name="intr" value="16"> Outdoors
+		<input type="checkbox" name="intr" value="17"> Scouting
+		<input type="checkbox" name="intr" value="18"> Survivalist
+		<input type="checkbox" name="intr" value="19"> Advertising
+		<input type="checkbox" name="intr" value="20"> Architecture
+		</div>
+		<br />
+
+		<div class="control-group">
+		  <!-- Button -->
+		  <div class="controls">
+		  <br>
+                <!--<input id="testbutton" type="button" value="Test" />   -->
+		<input type="button" id="saveInterestButton" class="btn btn-primary" onclick="saveIn()" value="Save"/>		  </div>
+		</div>
+	</div>
+  
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+	function signOut(){
+		
+		$.ajax({
+		
+			type: "POST",
+                url: 'roomrLogout.php',
+				
+				success: function(data){
+						if(data.trim() == "success"){
+							window.location.replace("index.html");
+							
+						}
+						else{
+							window.alert("Logout failed, please try again");
+						}
+				
+				}
+		
+		
+		});
+	
+	
+	}
+	function saveLP(){
+			var rentPriceRange = document.getElementById("rentPriceRange").options[document.getElementById("rentPriceRange").selectedIndex].value;
+			var neighbourhood = document.getElementById("neighbourhood").options[document.getElementById("neighbourhood").selectedIndex].value;
+			var roommates = document.getElementById("roommates").options[document.getElementById("roommates").selectedIndex].value;
+	
+			var radios1 = document.getElementsByName("ha");
+			for (var i = 0, length = radios1.length; i < length; i++) {
+				if (radios1[i].checked) {
+					// do whatever you want with the checked radio
+					var houseApartment = radios1[i].value;
+
+					// only one radio can be logically checked, don't check the rest
+					break;
+				}
+			}
+
+			var radios2 = document.getElementsByName("pf1");
+			for (var i = 0, length = radios2.length; i < length; i++) {
+				if (radios2[i].checked) {
+					// do whatever you want with the checked radio
+					var petFriendly = radios2[i].value;
+
+					// only one radio can be logically checked, don't check the rest
+					break;
+				}
+			}
+			
+			var radios3 = document.getElementsByName("p2");
+			for (var i = 0, length = radios3.length; i < length; i++) {
+				if (radios3[i].checked) {
+					// do whatever you want with the checked radio
+					var party = radios3[i].value;
+
+					// only one radio can be logically checked, don't check the rest
+					break;
+				}
+			}
+			
+			var radios4 = document.getElementsByName("sf");
+			for (var i = 0, length = radios4.length; i < length; i++) {
+				if (radios4[i].checked) {
+					// do whatever you want with the checked radio
+					var smokingFriendly = radios4[i].value;
+
+					// only one radio can be logically checked, don't check the rest
+					break;
+				}
+			}
+			
+			if (window.XMLHttpRequest)
+			  {// code for IE7+, Firefox, Chrome, Opera, Safari
+			  xmlhttp_finish_signup=new XMLHttpRequest();
+			  }
+			else
+			  {// code for IE6, IE5
+			  xmlhttp_finish_signup=new ActiveXObject("Microsoft.XMLHTTP");
+			  }
+			xmlhttp_finish_signup.onreadystatechange=function()
+			  {
+			  if (xmlhttp_finish_signup.readyState==4 && xmlhttp_finish_signup.status==200)
+				{
+				if (xmlhttp_finish_signup.responseText=="ok"){
+				document.getElementById("saveButton").value = "Saved";
+				}
+				else {
+				document.getElementById("saveButton").value = "Not Saved";
+				}
+				}
+			  }
+			xmlhttp_finish_signup.open("GET","savelivingpreference.php?houseApartment="+houseApartment+"&petFriendly="+petFriendly+"&party="+party+"&smokingFriendly="+smokingFriendly+"&rentPriceRange="+rentPriceRange+"&neighbourhood="+neighbourhood+"&roommates="+roommates,true);
+			xmlhttp_finish_signup.send();
+		}
+		
+		function saveIn(){
+			var interests = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,];
+		
+			var checkbox = document.getElementsByName("intr");
+			for (var i = 0, length = checkbox.length; i < length; i++) {
+				if (checkbox[i].checked) {
+					// do whatever you want with the checked radio
+					interests[i] = checkbox[i].value;
+				}
+			}
+
+			if (window.XMLHttpRequest)
+			  {// code for IE7+, Firefox, Chrome, Opera, Safari
+			  xmlhttp_finish_signup=new XMLHttpRequest();
+			  }
+			else
+			  {// code for IE6, IE5
+			  xmlhttp_finish_signup=new ActiveXObject("Microsoft.XMLHTTP");
+			  }
+			xmlhttp_finish_signup.onreadystatechange=function()
+			  {
+			  if (xmlhttp_finish_signup.readyState==4 && xmlhttp_finish_signup.status==200)
+				{
+				if (xmlhttp_finish_signup.responseText=="ok"){
+				document.getElementById("saveInterestButton").value = "Saved";
+				}
+				else {
+				document.getElementById("saveInterestButton").value = "Not Saved";
+				}
+				}
+			  }
+			  
+			var jsonString = JSON.stringify(interests);
+			xmlhttp_finish_signup.open("GET","saveinterests.php?interests="+jsonString, true);
+			xmlhttp_finish_signup.send();
+		}
+	
+
+    </script>
+  </body>
+</html>
+
