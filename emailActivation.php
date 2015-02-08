@@ -10,7 +10,7 @@ function sendActivationEmail($username, $email, $email_code){
     $subject = 'Roomr account activation';
     
     #TODO: change below for different environment
-    $activationLink  = "http://localhost:8888/activate.php?email=".$email."&email_code=".$email_code;
+    $activationLink  = "http://localhost/Roomr/activate.php?email=".$email."&email_code=".$email_code;
         
     $message = $username.",\n\n".
         "Thank you for joining the Roomr community!\n".
