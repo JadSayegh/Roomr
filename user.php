@@ -14,7 +14,7 @@ function activate_user($email, $email_code){
 #tests: 1) email exists 2) email doesnt exist
 function email_exists($email, $database){
     #TODO: stub
-    echo $email;
+    
     $sql = "SELECT email FROM users WHERE email = '$email'";
     if(!$result = $database->query($sql)){
         die('There was an error running the query [' . $database->error . ']');
@@ -25,7 +25,7 @@ function email_exists($email, $database){
     
     }
     
-    echo "\nEmail exists\n";
+    
     return true;
 }
 

@@ -16,7 +16,9 @@ if(isset($_GET['email'], $_GET['email_code'])){
         $sql  = "UPDATE users SET activated = 1 WHERE email = '$email' AND email_code = '$email_code'";  
 		
 		if($result = $db->query($sql)){
-			echo 'Activation was successful';
+			echo '<h2> Activation was successful <h2>';
+			echo '<h3> REdirecting to home page in 5 seconds <h3>';
+			header("Refresh: 5, url = 'roomrHome.html'");
 		}
     }
 }else{
@@ -33,10 +35,10 @@ function checkActivation($email, $email_code, $database){
         $sql = "SELECT email FROM users WHERE email = '$email' AND email_code = '$email_code'";
 		$result = $database->query($sql);
         if($result && $result->num_rows == 1){
-			echo " checkActivation success";
+			
            return true;  
         }
-		echo " chekACtivation failed!";
+		
         return false;
     }
 }
