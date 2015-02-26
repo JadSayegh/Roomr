@@ -10,10 +10,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>-->
+
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet" href="css/style.css" />
 	<!--Google fonts-->
-	<link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
+	<!--<link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">-->
     <style type="text/css">
       /* Special class on .container surrounding .navbar, used for positioning it into place. */
       .navbar-wrapper {
@@ -56,6 +61,10 @@
       .navbar-nav.navbar-right:last-child {
       margin-right: 15px !important;
       }
+	.buttonRight{
+position: absolute;
+	left:80%;
+	}
       .navbar-footer 
       {
           background-color:#FFFFFF;
@@ -67,76 +76,17 @@
       overflow: hidden;
       }
 
-      .modal-dialog {
-          width: 300px;
-      }
-      .modal-footer {
-          height: 70px;
-          margin: 0;
-      }
-      .modal-footer .btn {
-          font-weight: bold;
-      }
-      .modal-footer .progress {
-          display: none;
-          height: 32px;
-          margin: 0;
-      }
-      .input-group-addon {
-          color: #fff;
-          background: #3276B1;
-      }
-		
-	html {
-			
-			height : 100%;
-			
-			
-	}
-		
-	.module {
-	  			
-		   position: absolute; 
-		   top: 10%; 
-		   left: 7%;
-		   width: 400px
-		   			  
-	}
 
-	.module2{
-		position: absolute; 
-		   top: 10%; 
-		   left: 50%;
-		   width: 400px
+	.requests { 
+position: absolute;	
+left : 8%;
 	}
 	
-	.module3{
-		position: absolute; 
-		   top: 500px; 
-		   left: 5%;
-		   width: 1100px
-	}
 	.bs-example{
 		margin: 20px;
 	}
-	
-	input[type=checkbox] {
-		width: 30px;
-	}
+		
 
-		.top h2 {
-		  color: white;
-		  margin: 0;
-		  padding: 20px;
-		}
-
-		.lr h2, .lr h4 {
-		  text-algin = center;
-		  font-family: 'Helvetica', sans-serif;
-			
-		  color: white;
-		  text-shadow: -1px 0 light grey, 0 1px light grey, 1px 0 light grey, 0 -1px light grey;
-		}
 	
     </style>
 
@@ -162,9 +112,9 @@
         </div>
 <div class="bs-example">
     <ul class="nav nav-tabs">
-        <li class="active">
-        <a href="#">Profile</a></li>
-        <li><a href="requests.html">Requests</a></li>
+        
+        <li><a href="#">Profile</a></li>
+        <li class="active"><a href="requests.html">Requests</a></li>
  <div id="navbar" class="navbar-collapse collapse">
          		  
 		  <ul class="nav navbar-nav navbar-right">
@@ -178,23 +128,22 @@
       </div>
     </ul>
 </div>
-       
-
-
     </nav>
 
+<div class ="requests"> No Requests At The Moment </div>
+<div class="container">
+	<a id="modal_trigger" href="#modal" class="btnR">Add A Request</a>
 
-	
-	
-	<!--LIVING PREFERENCES: First Column -->
-     
-	<div class = "module">
+	<div id="modal" class="popupContainer" style="display:none;">
+		<header class="popupHeader">
+			<span class="header_title">Choose Preferences</span>
+			<span class="modal_close"><i class="fa fa-times"></i></span>
+		</header>
+		<section class="popupBody">
 	<form name = "living preferences" class="form-horizontal" >
-		
 		<div id="legend">
-		  <legend class=""><br>Neighbourhood</legend>
+		  <b>Neighbourhood</b>
 		</div>	  
-
 		<select class="form-control" name="neighbourhood" id="neighbourhood">
 		  <option value="0">Select location</option>
 		  <option value="1">Ahuntsic-Cartierville</option>
@@ -240,7 +189,7 @@
 		<br />
 
 		<div id="legend">
-		  <legend class="">Rent Price Range</legend>
+		  <b>Rent Price Range</b>
 		</div>
 
 		<select class="form-control" name="rentPriceRange" id="rentPriceRange">
@@ -256,7 +205,7 @@
 		<br />
 
 		<div id="legend">
-		  <legend class="">Total Number of Desired Roommates</legend>
+		  <b>Total Number of Desired Roommates</b>
 		</div>
 
 		<select class="form-control" name="roommates" id="roommates">
@@ -270,17 +219,13 @@
 		</select>
 
 	 </form>
+<br>
 
-	</div>
-	</div>
-	  
-
-  <!--LIVING PREFERENCES: Second Column -->
-  <div class = "module2">
+<div class = "module2">
 	<form name = "living preferences" class="form-horizontal" >
 
 	 	<div id="legend">
-		  <legend class=""><br>Looking for a House or an Apartment</legend>
+		  <b>Looking for a House or an Apartment</b>
 		</div>
 		<div>
 		<label class="radio-inline">
@@ -290,10 +235,10 @@
  		 <input type="radio" name="ha" id="ha" 			value="2"> Apartment
 		</label>
 		</div>
-		<br />
+		
 
 		<div id="legend">
-		  <legend class="">Pet Friendly</legend>
+		 <b>Pet Friendly</b>
 		</div>
 		
 		<div>
@@ -310,11 +255,11 @@
  		 <input type="radio" name="pf1" id="pf1" 			value="4"> Cats Only
 		</label>
 		</div>
-		<br />
+		
 		
 	  
 		<div id="legend">
-		  <legend class="">Party</legend>
+		  <b>Party</b>
 		</div>
 
 		<div>
@@ -325,10 +270,10 @@
  		 <input type="radio" name="p2" id="p2" 			value="2"> No
 		</label>
 		</div>
-		<br />
+	
 
 	 	<div id="legend">
-		  <legend class="">Smoking Friendly</legend>
+		  <b>Smoking Friendly</b>
 		</div>
 
 		<div>
@@ -342,63 +287,35 @@
 
 	  
 	 </form>
-		<div class="control-group">
-		  <!-- Button -->
-		  <div class="controls">
-		  <br>
-                <!--<input id="testbutton" type="button" value="Test" />   -->
-		<input type="button" id="saveButton" class="btn btn-primary" onclick="saveLP()" value="Save"/>		  </div>
-		</div>
-	 
-  </div>
-  
-	<div class = "module3">
-		<div id="legend">
-		  <legend class="">Interests</legend>
-		</div>
-
-		<div>
-		<input type="checkbox" name="intr" value="1"> Animals
-		<input type="checkbox" name="intr" value="2"> Bird Watching
-		<input type="checkbox" name="intr" value="3"> Birds
-	 	<input type="checkbox" name="intr" value="4"> Cats
-		<input type="checkbox" name="intr" value="5"> Dogs
-		<input type="checkbox" name="intr" value="6"> Exotic Pets
-		<input type="checkbox" name="intr" value="7"> Fish
-		<input type="checkbox" name="intr" value="8"> Pets
-		<input type="checkbox" name="intr" value="9"> Agriculture
-		<input type="checkbox" name="intr" value="10"> Camping
-		<input type="checkbox" name="intr" value="11"> Climbing
-		<input type="checkbox" name="intr" value="12"> Environment
-		<input type="checkbox" name="intr" value="13"> Forestry
-		<input type="checkbox" name="intr" value="14"> Hiking
-		<input type="checkbox" name="intr" value="15"> Nature
-		<input type="checkbox" name="intr" value="16"> Outdoors
-		<input type="checkbox" name="intr" value="17"> Scouting
-		<input type="checkbox" name="intr" value="18"> Survivalist
-		<input type="checkbox" name="intr" value="19"> Advertising
-		<input type="checkbox" name="intr" value="20"> Architecture
-		</div>
-		<br />
-
-		<div class="control-group">
-		  <!-- Button -->
-		  <div class="controls">
-		  <br>
-                <!--<input id="testbutton" type="button" value="Test" />   -->
-		<input type="button" id="saveInterestButton" class="btn btn-primary" onclick="saveIn()" value="Save"/>		  </div>
-		</div>
+	<br>
+			<span class="modal_close"><input type="button" id="requestButton" class="btn btn-primary" onclick="addRequest()" value="Request"/></span>
+		</section>
 	</div>
+		  
+		
+</div>
+
+
+<!--<button type="button" class="btn btn-warning navbar-btn" onclick = "editProfile()"><span class="glyphicon glyphicon-edit"></span>Add a Request</button></div>-->
+
+
+
+  
   
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
+
     <script type="text/javascript">
+	$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
+
+</script>
+
+<script type="text/javascript">
 	function signOut(){
 		
 		$.ajax({
@@ -422,7 +339,8 @@
 	
 	
 	}
-	function saveLP(){
+//Add a div where there is nothing and requests will be added to it
+	function addRequest(){
 			var rentPriceRange = document.getElementById("rentPriceRange").options[document.getElementById("rentPriceRange").selectedIndex].value;
 			var neighbourhood = document.getElementById("neighbourhood").options[document.getElementById("neighbourhood").selectedIndex].value;
 			var roommates = document.getElementById("roommates").options[document.getElementById("roommates").selectedIndex].value;
@@ -531,7 +449,6 @@
 			xmlhttp_finish_signup.open("GET","saveinterests.php?interests="+jsonString, true);
 			xmlhttp_finish_signup.send();
 		}
-	
 
     </script>
   </body>
