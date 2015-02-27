@@ -207,7 +207,7 @@ body {
 </div>
     </nav>
 
-<div class ="requests" id="requestId"> No Requests At The Moment</div>
+<div class ="requests" id="requestId" onload ="loadRequests()"> No Requests At The Moment</div>
 <div class="container">
 <a id="modal_trigger" href="#modal" class="btnR">Add A Request</a>
 	<div id="modal" class="popupContainer" style="display:none;">
@@ -393,20 +393,25 @@ body {
 
 <script type="text/javascript">
 
+$(document).ready( function () {
+  loadRequests();
+});
+
 function loadRequests(){
+console.log("hey");
 		$.ajax({
 		
-			type: "GET",
+			type: "POST",
                 url: 'displayRequests.php',
 				
 				success: function(data){
-						if(data.trim() == "success"){
-							window.location.replace("index.html");
+						//if(data.trim() == "yes"){
+							console.log(data);
 							
-						}
-						else{
-							window.alert("Logout failed, please try again");
-						}
+						//}
+						//else{
+							//console.log("boo");
+						//}
 				
 				}
 		
