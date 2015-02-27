@@ -65,6 +65,9 @@
 position: absolute;
 	left:80%;
 	}
+.container1{
+left: 20%;
+}
       .navbar-footer 
       {
           background-color:#FFFFFF;
@@ -85,6 +88,80 @@ left : 8%;
 	.bs-example{
 		margin: 20px;
 	}
+body {
+    padding-top: 15px;
+    background-color: #ffffff;
+}
+/*REQUIRED*/
+.carousel-row {
+    margin-bottom: 10px;
+}
+
+.slide-row {
+    padding: 0;
+    background-color: #ffffff;
+    min-height: 200px;
+    border: 1px solid #e7e7e7;
+    overflow: hidden;
+    height: auto;
+    position: relative;
+}
+
+
+.slide-carousel {
+    width: 20%;
+    float: left;
+    display: inline-block;
+}
+
+
+.slide-carousel .carousel-indicators .active {
+    margin: 1px;
+}
+
+.slide-content {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    display: block;
+    float: left;
+    width: 80%;
+    max-height: 85%;
+    padding: 1.5% 2% 2% 2%;
+    overflow-y: auto;
+}
+
+.slide-content h4 {
+    margin-bottom: 3px;
+    margin-top: 0;
+}
+
+.slide-footer {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 76%;
+    height: 20%;
+    margin: 1%;
+}
+
+/* Scrollbars */
+.slide-content::-webkit-scrollbar {
+  width: 5px;
+	height:10px;
+}
+ 
+.slide-content::-webkit-scrollbar-thumb:vertical {
+  margin: 5px;
+  background-color: #999;
+  -webkit-border-radius: 5px;
+}
+ 
+.slide-content::-webkit-scrollbar-button:start:decrement,
+.slide-content::-webkit-scrollbar-button:end:increment {
+  height: 5px;
+  display: block;
+}
 		
 
 	
@@ -130,10 +207,9 @@ left : 8%;
 </div>
     </nav>
 
-<div class ="requests"> No Requests At The Moment </div>
+<div class ="requests" id="requestId"> No Requests At The Moment</div>
 <div class="container">
-	<a id="modal_trigger" href="#modal" class="btnR">Add A Request</a>
-
+<a id="modal_trigger" href="#modal" class="btnR">Add A Request</a>
 	<div id="modal" class="popupContainer" style="display:none;">
 		<header class="popupHeader">
 			<span class="header_title">Choose Preferences</span>
@@ -316,6 +392,28 @@ left : 8%;
 </script>
 
 <script type="text/javascript">
+
+function loadRequests(){
+		$.ajax({
+		
+			type: "GET",
+                url: 'displayRequests.php',
+				
+				success: function(data){
+						if(data.trim() == "success"){
+							window.location.replace("index.html");
+							
+						}
+						else{
+							window.alert("Logout failed, please try again");
+						}
+				
+				}
+		
+		
+		});
+
+}
 	function signOut(){
 		
 		$.ajax({
@@ -339,18 +437,34 @@ left : 8%;
 	
 	
 	}
-//Add a div where there is nothing and requests will be added to it
+
 	function addRequest(){
-			var rentPriceRange = document.getElementById("rentPriceRange").options[document.getElementById("rentPriceRange").selectedIndex].value;
+$(".requests" ).remove();
+$("body").append('<div class="container1"><div class="col-xs-8 col-xs-offset-2"></div><hr><div class="row carousel-row">' +
+        '<div class="col-xs-4 col-xs-offset-1 slide-row"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+
+        '</div><div class="slide-content"><h4><b><u>Request 1 : January 15th 2015</u></b></h4><p><div id="addRequest"></div>' +
+        '</p></div><div class="slide-footer"><span class="pull-right buttons"><button class="btn btn-sm btn-default">'+
+'<i class="fa fa-fw fa-eye"></i> Show</button></span></div></div>' + 
+'</div></div>');
+
+var rentPriceRange = document.getElementById("rentPriceRange").options[document.getElementById("rentPriceRange").selectedIndex].value;
 			var neighbourhood = document.getElementById("neighbourhood").options[document.getElementById("neighbourhood").selectedIndex].value;
 			var roommates = document.getElementById("roommates").options[document.getElementById("roommates").selectedIndex].value;
+
+var rentPriceRangeText = document.getElementById("rentPriceRange").options[document.getElementById("rentPriceRange").selectedIndex].text;
+var neighbourhoodText = document.getElementById("neighbourhood").options[document.getElementById("neighbourhood").selectedIndex].text;
+var roommatesText = document.getElementById("roommates").options[document.getElementById("roommates").selectedIndex].text;	
+$("#addRequest").append("Neighbourhood:&nbsp;"+ neighbourhoodText);
+$("#addRequest").append("Rent Price Range: " + rentPriceRangeText+"<br>");
+$("#addRequest").append("Number of Roommates: " + roommatesText+"<br>");
 	
 			var radios1 = document.getElementsByName("ha");
 			for (var i = 0, length = radios1.length; i < length; i++) {
 				if (radios1[i].checked) {
 					// do whatever you want with the checked radio
 					var houseApartment = radios1[i].value;
-
+					var houseApartmentText = radios1[i].nextSibling.data;
+					$("#addRequest").append("<u>House Or Apartment: </u>" + houseApartmentText+"<br>");
 					// only one radio can be logically checked, don't check the rest
 					break;
 				}
@@ -361,7 +475,8 @@ left : 8%;
 				if (radios2[i].checked) {
 					// do whatever you want with the checked radio
 					var petFriendly = radios2[i].value;
-
+					var petFriendlyText = radios2[i].nextSibling.data;
+					$("#addRequest").append("Pet Friendly" + petFriendlyText+"<br>");
 					// only one radio can be logically checked, don't check the rest
 					break;
 				}
@@ -372,7 +487,8 @@ left : 8%;
 				if (radios3[i].checked) {
 					// do whatever you want with the checked radio
 					var party = radios3[i].value;
-
+					var partyText = radios3[i].nextSibling.data;
+					$("#addRequest").append("<u>Party: </u>" + partyText+"<br>");
 					// only one radio can be logically checked, don't check the rest
 					break;
 				}
@@ -383,13 +499,13 @@ left : 8%;
 				if (radios4[i].checked) {
 					// do whatever you want with the checked radio
 					var smokingFriendly = radios4[i].value;
-
+					var smokingFriendlyText = radios4[i].nextSibling.data;
+					$("#addRequest").append("<u>Smoker Friendly: </u>" + smokingFriendlyText);
 					// only one radio can be logically checked, don't check the rest
 					break;
 				}
 			}
-			
-			if (window.XMLHttpRequest)
+if (window.XMLHttpRequest)
 			  {// code for IE7+, Firefox, Chrome, Opera, Safari
 			  xmlhttp_finish_signup=new XMLHttpRequest();
 			  }
@@ -402,54 +518,20 @@ left : 8%;
 			  if (xmlhttp_finish_signup.readyState==4 && xmlhttp_finish_signup.status==200)
 				{
 				if (xmlhttp_finish_signup.responseText=="ok"){
-				document.getElementById("saveButton").value = "Saved";
+				document.getElementById("requestButton").value = "Saved";
 				}
 				else {
-				document.getElementById("saveButton").value = "Not Saved";
+				document.getElementById("requestButton").value = "Not Saved";
 				}
 				}
 			  }
 			xmlhttp_finish_signup.open("GET","savelivingpreference.php?houseApartment="+houseApartment+"&petFriendly="+petFriendly+"&party="+party+"&smokingFriendly="+smokingFriendly+"&rentPriceRange="+rentPriceRange+"&neighbourhood="+neighbourhood+"&roommates="+roommates,true);
 			xmlhttp_finish_signup.send();
-		}
-		
-		function saveIn(){
-			var interests = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,];
-		
-			var checkbox = document.getElementsByName("intr");
-			for (var i = 0, length = checkbox.length; i < length; i++) {
-				if (checkbox[i].checked) {
-					// do whatever you want with the checked radio
-					interests[i] = checkbox[i].value;
-				}
-			}
-
-			if (window.XMLHttpRequest)
-			  {// code for IE7+, Firefox, Chrome, Opera, Safari
-			  xmlhttp_finish_signup=new XMLHttpRequest();
-			  }
-			else
-			  {// code for IE6, IE5
-			  xmlhttp_finish_signup=new ActiveXObject("Microsoft.XMLHTTP");
-			  }
-			xmlhttp_finish_signup.onreadystatechange=function()
-			  {
-			  if (xmlhttp_finish_signup.readyState==4 && xmlhttp_finish_signup.status==200)
-				{
-				if (xmlhttp_finish_signup.responseText=="ok"){
-				document.getElementById("saveInterestButton").value = "Saved";
-				}
-				else {
-				document.getElementById("saveInterestButton").value = "Not Saved";
-				}
-				}
-			  }
-			  
-			var jsonString = JSON.stringify(interests);
-			xmlhttp_finish_signup.open("GET","saveinterests.php?interests="+jsonString, true);
-			xmlhttp_finish_signup.send();
+			
 		}
 
+
+		
     </script>
   </body>
 </html>
