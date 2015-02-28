@@ -10,52 +10,44 @@ require("dbConnect.php");
 		
 		$activateValue = $result->fetch_row();
 		$user_id = $activateValue[0];
-		echo $user_id;
-	checkExistance($user_id);
-
-	/*if(checkIfRequests($db, $username, $password)){
-			$sql = "UPDATE users SET login = 1 WHERE username = '$username'";
-			if(!$result = $db->query($sql)){
-				die('There was an error running the query [' . $db->error . ']');
-			}
-			else{
-				session_start();
-				$sql = "SELECT email FROM users WHERE username = '$username'";
-				$result = $db->query($sql);
-                $result_array = mysql_fetch_assoc($result)
-                $email = $result_array['email'];
-                
-				$_SESSION['username'] = $username;
-				$_SESSION['email'] = $email;
-				$_SESSION['login'] = "1";
-				echo "pass";
-			}
-			
-	}
-	else{
-			echo "USER DOES NOT EXISTS";
-	}
-	
-	$db->close();*/
-
-
-function checkExistance($user_id){
-	  
-		$sql = "SELECT * FROM requests WHERE userid = '$user_id'";
-		$result = $db->query($sql); //or die('There was an error running the query [' . $db->error . ']');
-		#TODO: check for null results
-        /*if ($result->num_rows == 0){
+		//echo $user_id;
+	  $sql = "SELECT * FROM requests WHERE userid = '$user_id'";
+	 $result = $db->query($sql);
+	if ($result->num_rows == 0){
 			echo "no";
 			//return false;
 			
 		}
 		else{	
-			echo "yes";	
-			//return true;
-		}
+$data_array = array();
+$counter = 0;
 
-	}*/
+while ($result_array = $result->fetch_assoc()){
+	$neighbourhood = $result_array['neighborhoods'];
+	$roommates = $result_array['roommates'];
+	$fees = $result_array['fees'];
+	$party = $result_array['interests'];
+	$housed = $result_array['housed'];
+	$smoke = $result_array['smoke'];
+	$pet_friendly = $result_array['pet_friendly'];
+	$rid = $result_array['id'];
+	$data_row = array(
+	'rid' => $rid,
+          'neighbourhood' => $neighbourhood,
+          'roommates' => $roommates,
+	'fees' => $fees,
+	'party' => $party,
+	'housed' => $housed,
+	'smoke' => $smoke,
+	'pet_friendly' => $pet_friendly);
+	
+	$data_array[$counter] = $data_row;
+$counter = $counter + 1;
+	
 }
+}		
+		
+echo json_encode($data_array);
 
 
 ?>

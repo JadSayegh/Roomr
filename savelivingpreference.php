@@ -11,6 +11,7 @@ include 'dbConnect.php';
 		$user_id = $activateValue[0];
 		
 		
+		
        //get form data
        $houseApartment = $_GET['houseApartment'];
        $petFriendly = $_GET['petFriendly'];
