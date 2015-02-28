@@ -100,7 +100,7 @@ body {
 .slide-row {
     padding: 0;
     background-color: #ffffff;
-    min-height: 200px;
+    min-height: 210px;
     border: 1px solid #e7e7e7;
     overflow: hidden;
     height: auto;
@@ -126,7 +126,7 @@ body {
     display: block;
     float: left;
     width: 80%;
-    max-height: 85%;
+    max-height: 100%;
     padding: 1.5% 2% 2% 2%;
     overflow-y: auto;
 }
@@ -207,7 +207,7 @@ body {
 </div>
     </nav>
 
-<div class ="requests" id="requestId"> No Requests At The Moment</div>
+<div class ="requests" id="requestId" onload ="loadRequests()"> No Requests At The Moment</div>
 <div class="container">
 <a id="modal_trigger" href="#modal" class="btnR">Add A Request</a>
 	<div id="modal" class="popupContainer" style="display:none;">
@@ -395,6 +395,7 @@ body {
 numberOfRequests = 0;
 //requestArray;
 
+
 	$.ajax({
 		
 			type: "POST",
@@ -410,26 +411,279 @@ numberOfRequests = 0;
 		
 		});
 		
+
+$(document).ready( function () {
+  loadRequests();
+});
+
 function loadRequests(){
+console.log("hey");
 		$.ajax({
 		
-			type: "GET",
+		type: "POST",
                 url: 'displayRequests.php',
 				
 				success: function(data){
-						if(data.trim() == "success"){
-							window.location.replace("index.html");
-							
-						}
-						else{
-							window.alert("Logout failed, please try again");
-						}
-				
+
+					$.getJSON('displayRequests.php', function(data_array) {
+	for (i = 0; i < data_array.length; i++){
+    var row = data_array[i]; 
+	printRequest(row,i);
+	}
+});
+
 				}
 		
 		
 		});
 
+}
+
+function printRequest(row,i){
+var rid = row['rid'];
+var neighbourhoodIndex = row['neighbourhood'];
+var neighbourhood;
+var roommates = row['roommates'];
+var feesIndex = row['fees'];
+var fees;
+var partyIndex = row['party'];
+var party;
+var housedIndex = row['housed'];
+var housed;
+var smokeIndex = row['smoke'];
+var smoke;
+var pet_friendlyIndex = row['pet_friendly'];
+var pet_friendly;
+
+if (partyIndex == 1){ 
+	party = "Yes";
+} else {
+	party = "No";
+}
+
+if (housedIndex == 1){
+	housed = "House";
+}else {
+	housed = "Apartment";
+}
+
+if (smokeIndex == 1){
+	smoke = "Yes";
+}else {
+	smoke = "No";
+}
+
+if (pet_friendly == 1){
+	pet_friendly = "Yes";
+} else {
+	pet_friendly = "No";
+}
+
+
+if (roommates == 6) {
+	roommates = "6+";
+}
+	if (neighbourhoodIndex == 0){
+		neighbourhood = "Select Location";
+	}
+	if (neighbourhoodIndex == 1){
+		neighbourhood = "Ahuntsic-Cartierville";
+	}
+	if(neighbourhoodIndex == 2) {		
+		neighbourhood = "Anjou";
+	}
+	if (neighbourhoodIndex == 3){ 
+		neighbourhood = "Bois-Franc";
+	}
+	if (neighbourhoodIndex == 4){
+		neighbourhood = "Chinatown";
+	}/*
+		if  5:	
+			console.log("blabla");
+			neighbourhood = "Côte-des-Neiges";
+			break;
+switch(neighbourhoodIndex == 
+		case 6: 
+			neighbourhood = "Gay Village";
+			break;
+		case 7:
+		neighbourhood = "Goose Village";
+		break;
+
+		case 8:
+		neighbourhood = "Griffintown";
+		break;
+
+		case 9: 
+		neighbourhood = "Hochelaga-Maisonneuve";
+		break;
+
+		case 10: 
+		neighbourhood = "Jacques-Bizard";
+		break;
+
+		case 11:
+		neighbourhood = "La Petite-Patrie";
+		break;
+
+		case 12: 
+		neighbourhood = "Lachine";
+		break;
+
+		case 13: 
+		neighbourhood = "LaSalle";
+		break;
+
+		case 14: 
+		neighbourdhood = "Le Plateau-Mont-Royal";
+		break;
+
+		case 15:
+		neighbourhood = "Le Sud-Ouest";
+		break;
+
+		case 16: 
+		neighbourhood = "Little Burgundy";
+		break;
+
+		case 17:
+		neighbourhood = "Little Portugal";
+		break;
+
+		case 18:
+		neighbourhood = "Mercier";
+		break;
+
+		case 19:
+		neighbourhood = "Mile End";
+		break;
+
+		case 20:
+		neighbourhood = "Milton-Parc";
+		break;
+
+		case 21: 
+		neighbourhood = "Montréal-Nord";
+		break;
+
+		case 22:
+		neighbourhood = "Notre-Dame-de-Grâce";
+		break;
+
+		case 23:
+		neighbourhood = "Old Montreal";
+		break;
+
+		case 24: 
+		neighbourhood = "Outremont";
+		break; 
+
+		case 25: 
+		neighbourdhood = "Pierrefonds";
+		break;
+
+		case 26: 
+		neighbourhood = "Pointe-aux-Trembles";
+		break;
+
+		case 27:
+		neighbourhood = "Pointe-Saint-Charles";
+		break;
+
+		case 28:
+		neighbourhood = "Rivière-des-Prairies";
+		break;
+
+		case 29:
+		neighbourhood = "Rosemont";
+		break;
+
+		case 30:
+		neighbourhood = "Roxboro";
+		break;
+
+		case 31:
+		neighbourhood = "Saint-Henri";
+		break;
+
+		case 32: 
+		neighbourhood = "Saint-Laurent";
+		break;
+
+		case 33: 
+		neighbourhood = "Saint-Léonard";
+		break;
+
+		case 34: 
+		neighbourhood = "Sainte-Geneviève";
+		break;
+
+		case 35: 
+		neighbourhood = "Verdun";
+		break;
+
+		case 36:
+		neighbourhood = "Ville-Émard";
+		break;
+
+		case 37:
+		neighbourhood = "Ville-Marie/Downtown"
+		break;
+
+		case 38:
+		neighbourhood = "Ville-Saint-Paul";
+		break;
+
+		case 39:
+		neighbourhood = "Villeray-Saint-Michel-Parc-Extension";
+		break;
+}*/
+
+switch(feesIndex){
+	case 0:
+	fees = "Select price range";
+	break;
+	case 1:
+	fees = "Less than 400";
+	break;
+	case 2: 
+	fees = "400 - 549";
+	break;
+	case 3:
+	fees = "550 - 699";
+	break;
+	case 4:
+	fees = "700 - 849";
+	break;
+	case 5:
+	fees = "850-999";
+	break;
+	case 6:
+	fees = "1000 - 1149";
+	break;
+	case 7:
+	fees = "more than 1150";
+	break;
+} 
+
+$(".requests" ).remove();
+$("body").append('<div class="container1"><div class="col-xs-8 col-xs-offset-2"></div><hr><div class="row carousel-row">' +
+        '<div class="col-xs-4 col-xs-offset-1 slide-row"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+
+        '</div><div class="slide-content"><h4><div id="titleRequest'+i+'"></div></h4><p><div id="addRequest' + i +'"></div>' +
+        '</p></div><div class="slide-footer"><span class="pull-right buttons"><button class="btn btn-sm btn-default">'+
+'<i class="fa fa-fw fa-eye"></i> Show</button></span></div></div>' + 
+'</div></div>');
+var requestName = "#addRequest"+ i;
+var requestTitle = "#titleRequest" + i;
+console.log(requestName);
+$(requestName).append("<u>Neighbourhood: </u>"+ neighbourhood + "<br>");
+$(requestName).append("<u>Rent Price Range: </u>" + fees+"<br>");
+$(requestName).append("<u>Number of Roommates: </u>" + roommates+"<br>");
+$(requestName).append("<u>House or Apartment: </u>" + housed +"<br>");
+$(requestName).append("<u>Pet Friendly: </u>" + pet_friendly+"<br>");
+$(requestName).append("<u>Party: </u>" + party+"<br>");
+$(requestName).append("<u>Smoker Friendly: </u>" + smoke+"<br>");
+$(requestTitle).append("Request:" + rid);
 }
 	function signOut(){
 		
@@ -471,9 +725,9 @@ var rentPriceRange = document.getElementById("rentPriceRange").options[document.
 var rentPriceRangeText = document.getElementById("rentPriceRange").options[document.getElementById("rentPriceRange").selectedIndex].text;
 var neighbourhoodText = document.getElementById("neighbourhood").options[document.getElementById("neighbourhood").selectedIndex].text;
 var roommatesText = document.getElementById("roommates").options[document.getElementById("roommates").selectedIndex].text;	
-$("#addRequest").append("Neighbourhood:&nbsp;"+ neighbourhoodText);
-$("#addRequest").append("Rent Price Range: " + rentPriceRangeText+"<br>");
-$("#addRequest").append("Number of Roommates: " + roommatesText+"<br>");
+$("#addRequest").append("<u>Neighbourhood: </u>"+ neighbourhoodText + "<br>");
+$("#addRequest").append("<u>Rent Price Range: </u>" + rentPriceRangeText+"<br>");
+$("#addRequest").append("<u>Number of Roommates: </u>" + roommatesText+"<br>");
 	
 			var radios1 = document.getElementsByName("ha");
 			for (var i = 0, length = radios1.length; i < length; i++) {
@@ -493,7 +747,7 @@ $("#addRequest").append("Number of Roommates: " + roommatesText+"<br>");
 					// do whatever you want with the checked radio
 					var petFriendly = radios2[i].value;
 					var petFriendlyText = radios2[i].nextSibling.data;
-					$("#addRequest").append("Pet Friendly" + petFriendlyText+"<br>");
+					$("#addRequest").append("<u>Pet Friendly</u>" + petFriendlyText+"<br>");
 					// only one radio can be logically checked, don't check the rest
 					break;
 				}
@@ -534,13 +788,13 @@ if (window.XMLHttpRequest)
 			  {
 			  if (xmlhttp_finish_signup.readyState==4 && xmlhttp_finish_signup.status==200)
 				{
-				if (xmlhttp_finish_signup.responseText){
-					requestArray.push(xmlhttp_finish_signup.responseText);
-					document.getElementById("requestButton").value = "Saved";
-					
+
+				if (xmlhttp_finish_signup.responseText=="ok"){
+				document.getElementById("requestButton").value = "Request";
+
 				}
 				else {
-				document.getElementById("requestButton").value = "Not Saved";
+				document.getElementById("requestButton").value = "Not Requested";
 				}
 				}
 			  }

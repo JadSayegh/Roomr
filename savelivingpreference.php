@@ -11,6 +11,7 @@ include 'dbConnect.php';
 		$user_id = $activateValue[0];
 		
 		
+		
        //get form data
        $houseApartment = $_GET['houseApartment'];
        $petFriendly = $_GET['petFriendly'];
@@ -23,6 +24,7 @@ include 'dbConnect.php';
 	    $update =  mysqli_query($db, "UPDATE users SET houseApartment = '$houseApartment', petFriendly = '$petFriendly', party = '$party', smokingFriendly = '$smokingFriendly', rentPriceRange = '$rentPriceRange', neighbourhood = '$neighbourhood', roommates = '$roommates' WHERE id = '$user_id'") or die(mysqli_error());
         
 		$request = mysqli_query($db, "INSERT INTO requests (userid, neighborhoods, roommates, fees, interests, housed, smoke, pet_friendly) VALUES ('$user_id', '$neighbourhood', '$roommates', '$rentPriceRange', '$party','$houseApartment', '$smokingFriendly','$petFriendly')" ) or die('There was an error running the query [' . $db->error . ']');  
+
 		
 		$sql = "SELECT id FROM requests WHERE userid = '$user_id'";
 		$result = mysqli_query($db, $sql);
