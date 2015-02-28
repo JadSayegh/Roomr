@@ -8,16 +8,18 @@ session_start();
 $json = array(array( 'id' =>'',
 					 'username' =>'',
 					 'email' =>'',
-					 'matchPercentage' =>''				
+					 'matchPercentage' =>''	,
+					 'requestID' => ''
 					));
 $username = $_SESSION['username'];
+
 $requestID = $_POST['requestID'];
 $sql = "SELECT id FROM users where username = '$username'";
 $userIDResult = $db->query($sql) or die('Unable to connect to database [' . $db->connect_error . ']');;
 $userIDValue  = $userIDResult->fetch_row();
 $userID = $userIDValue[0];
  
-$getRequest = "SELECT * FROM requests where id = '$$requestID'";
+$getRequest = "SELECT * FROM requests where id = '$requestID'";
 $requestResult = $db->query($getRequest) or die('Unable to connect to database [' . $db->connect_error . ']');   
 $requestRow = $requestResult->fetch_assoc();
 
@@ -25,25 +27,32 @@ $sql = "SELECT * FROM requests WHERE userid <> '$userID'";
 $possibleMatch = $db->query($sql) or die('Unable to connect to database [' . $db->connect_error . ']');
 
 
-unset($sql);
-unset($requestResult);
+function parseOptions($requestValue, $comparedValue, $importance, $matchPercentage){
+		
+		//value for which each increasingly different degree of number of roommates affects the overall match value
+	$roommateSimilarity = $requestValue - $comparedValue;
+	return abs($roommateSimilarity)*$importance;
+	
+}
 
 $rowNumber = 0;
 	while($row = $possibleMatch->fetch_assoc()){
 		
 			$matchPercentage = 100;  
-			parseOptions($requestRow['roommates'],$row['roommates'], 5, $matchPercentage);
-			parseOptions($requestRow['fees'], $row['fees'], 3, $matchPercentage);
-			parseOptions($requestRow['neighborhoods'], $row['neighborhoods'], 2, $matchPercentage);
-			parseOptions($requestRow['housed'], $row['housed'], 6,$matchPercentage);
-			parseOptions($requestRow['smoke'], $row['smoke'], 6, $matchPercentage);
-			parseOptions($requestRow['pet_friendly'], $row['pet_friendly'], 2, $matchPercentage);
+			$matchPercentage -= parseOptions($requestRow['roommates'],$row['roommates'], 5, $matchPercentage);
+			$matchPercentage -= parseOptions($requestRow['fees'], $row['fees'], 3, $matchPercentage);
+			$matchPercentage -= parseOptions($requestRow['neighborhoods'], $row['neighborhoods'], 2, $matchPercentage);
+			$matchPercentage -= parseOptions($requestRow['housed'], $row['housed'], 6,$matchPercentage);
+			$matchPercentage -= parseOptions($requestRow['smoke'], $row['smoke'], 6, $matchPercentage);
+			$matchPercentage -= parseOptions($requestRow['pet_friendly'], $row['pet_friendly'], 3, $matchPercentage);
+			
 			$userInterests = array();
 			$matchInterests = array();
 			$matchID = $row['userid'];
+			
 			$interestsSql= "SELECT user_id, interest_id FROM user_interests WHERE user_id = '$userID' OR user_id = '$matchID'";
 			$interestResult = $db->query($interestsSql);
-			
+			/**
 			while($interestRow = $interestResult->fetch_assoc()){
 					if($interestRow['user_id'] = $userID){
 						array_push($userInterests, $interestRow['interest_id']);
@@ -81,36 +90,35 @@ $rowNumber = 0;
 				$matchPercentage = $matchPercentage -3;
 			}
 			
-			if($matchPercentage> 50){
+			**/
+			if($matchPercentage> 0){
 				
-			$possibleMatchID= $row['userid'];
-			$replySql = "SELECT id, username, email FROM users WHERE id = '$possibleMatchID'";
+			
+			$replySql = "SELECT id, username, email FROM users WHERE id = '$matchID'";
 			$replyResult = $db->query($replySql) or die('Unable to connect to database [' . $db->connect_error . ']');
 			$replyValues = $replyResult->fetch_assoc();
 			$json[$rowNumber]['id'] = $replyValues['id'];
 			$json[$rowNumber]['username'] = $replyValues['username'];
 			$json[$rowNumber]['email'] = $replyValues['email'];
-			$json[$rowNumber]['matchPercentage'] =$matchPercentage;
+			$json[$rowNumber]['matchPercentage'] = $matchPercentage;
+			$json[$rowNumber]['requestID'] = $matchID;
 			$rowNumber++;
 			}
 				
-			unset($userInterests);
-			unset($matchInterests);
+			//unset($userInterests);
+			//unset($matchInterests);
 			
 			
 	}
 	
 echo json_encode($json);
+unset($userInterests);
+unset($matchInterests);
+unset($possibleMatch);
+unset($requestRow);
 
 
 
-function parseOptions($requestValue, $comparedValue, $importance, $matchPercentage){
-		
-		//value for which each increasingly different degree of number of roommates affects the overall match value
-	$roommateSimilarity = $requestValue - $comparedValue;
-	$matchPercentage = $matchPercentage - abs($roommateSimilarity)*$importance;
-	
-}
 
 
 

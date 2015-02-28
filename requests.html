@@ -17,6 +17,7 @@
 <script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 <link type="text/css" rel="stylesheet" href="css/style.css" />
+<link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
 	<!--Google fonts-->
 	<!--<link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">-->
     <style type="text/css">
@@ -654,7 +655,7 @@ switch(feesIndex){
 } 
 
 $(".requests" ).remove();
-$("body").append('<div class="container1"><div class="col-xs-8 col-xs-offset-2"></div><hr><div class="row carousel-row">' +
+$("body").append('<div class="container1"><div class="col-xs-8 col-xs-offset-2"></div><br><div class="row carousel-row">' +
         '<div class="col-xs-4 col-xs-offset-1 slide-row"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+
         '</div><div class="slide-content"><h4><div id="titleRequest'+i+'"></div></h4><p><div id="addRequest' + i +'"></div>' +
         '</p></div><div class="slide-footer"><span class="pull-right buttons"><button class="btn btn-sm btn-default" onclick = "showMatches('+rid+')" >'+
@@ -699,21 +700,22 @@ $(requestTitle).append("Request:" + rid);
 	}
 
 function addRequest(){
-$(".requests" ).remove();
-$("body").append('<div class="container1" id = ' + "\" numberOfRequests \"" + '><div class="col-xs-8 col-xs-offset-2"></div><hr><div class="row carousel-row">' +
+$(".requests" ).remove();/**
+$("body").append('<div class="container1" id = ' + "\" numberOfRequests \"" + '><div class="col-xs-8 col-xs-offset-2"></div><div class="row carousel-row">' +
         '<div class="col-xs-4 col-xs-offset-1 slide-row"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+
         '</div><div class="slide-content"><h4><b><u>Request 1 : January 15th 2015</u></b></h4><p><div id="addRequest"></div>' +
         '</p></div><div class="slide-footer"><span class="pull-right buttons"><button class="btn btn-sm btn-default" onClick = "showMatches()">'+
 '<i class="fa fa-fw fa-eye"></i> Show</button></span></div></div>' + 
-'</div></div>');
+'</div></div>');**/
 
 var rentPriceRange = document.getElementById("rentPriceRange").options[document.getElementById("rentPriceRange").selectedIndex].value;
-			var neighbourhood = document.getElementById("neighbourhood").options[document.getElementById("neighbourhood").selectedIndex].value;
-			var roommates = document.getElementById("roommates").options[document.getElementById("roommates").selectedIndex].value;
+var neighbourhood = document.getElementById("neighbourhood").options[document.getElementById("neighbourhood").selectedIndex].value;
+var roommates = document.getElementById("roommates").options[document.getElementById("roommates").selectedIndex].value;
 
 var rentPriceRangeText = document.getElementById("rentPriceRange").options[document.getElementById("rentPriceRange").selectedIndex].text;
 var neighbourhoodText = document.getElementById("neighbourhood").options[document.getElementById("neighbourhood").selectedIndex].text;
 var roommatesText = document.getElementById("roommates").options[document.getElementById("roommates").selectedIndex].text;	
+
 $("#addRequest").append("<u>Neighbourhood: </u>"+ neighbourhoodText + "<br>");
 $("#addRequest").append("<u>Rent Price Range: </u>" + rentPriceRangeText+"<br>");
 $("#addRequest").append("<u>Number of Roommates: </u>" + roommatesText+"<br>");
@@ -779,8 +781,11 @@ if (window.XMLHttpRequest)
 			  if (xmlhttp_finish_signup.readyState==4 && xmlhttp_finish_signup.status==200)
 				{
 
-				if (xmlhttp_finish_signup.responseText=="ok"){
+				if (xmlhttp_finish_signup.responseText){
 				document.getElementById("requestButton").value = "Request";
+				$(".container1" ).remove();
+				loadRequests();
+				
 
 				}
 				else {
@@ -813,6 +818,12 @@ function showMatches(requestID){
 
 function displayMatches(requestID, jsonData){
 
+$("#matchDisplay").append('<div class="container1"><div class="col-xs-8 col-xs-offset-2"></div><br><div class="row carousel-row">' +
+        '<div class="col-xs-4 col-xs-offset-1 slide-row"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+
+        '</div><div class="slide-content"><h4><div id="titleRequest'+i+'"></div></h4><p><div id="addRequest' + i +'"></div>' +
+        '</p></div><div class="slide-footer"><span class="pull-right buttons"><button class="btn btn-sm btn-default" onclick = "showMatches('+rid+')" >'+
+'<i class="fa fa-fw fa-eye"></i> Show</button></span></div></div>' + 
+'</div></div>');
 
 }
 		
