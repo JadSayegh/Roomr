@@ -392,7 +392,24 @@ body {
 </script>
 
 <script type="text/javascript">
+numberOfRequests = 0;
+//requestArray;
 
+	$.ajax({
+		
+			type: "POST",
+                url: 'getMatches.php',
+				data:{
+					requestID: 1
+				},
+				success: function(data){
+						console.log(data);
+				
+				}
+		
+		
+		});
+		
 function loadRequests(){
 		$.ajax({
 		
@@ -440,10 +457,10 @@ function loadRequests(){
 
 	function addRequest(){
 $(".requests" ).remove();
-$("body").append('<div class="container1"><div class="col-xs-8 col-xs-offset-2"></div><hr><div class="row carousel-row">' +
+$("body").append('<div class="container1" id = ' + "\" numberOfRequests \"" + '><div class="col-xs-8 col-xs-offset-2"></div><hr><div class="row carousel-row">' +
         '<div class="col-xs-4 col-xs-offset-1 slide-row"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+
         '</div><div class="slide-content"><h4><b><u>Request 1 : January 15th 2015</u></b></h4><p><div id="addRequest"></div>' +
-        '</p></div><div class="slide-footer"><span class="pull-right buttons"><button class="btn btn-sm btn-default">'+
+        '</p></div><div class="slide-footer"><span class="pull-right buttons"><button class="btn btn-sm btn-default" onClick = "showMatches()">'+
 '<i class="fa fa-fw fa-eye"></i> Show</button></span></div></div>' + 
 '</div></div>');
 
@@ -517,8 +534,10 @@ if (window.XMLHttpRequest)
 			  {
 			  if (xmlhttp_finish_signup.readyState==4 && xmlhttp_finish_signup.status==200)
 				{
-				if (xmlhttp_finish_signup.responseText=="ok"){
-				document.getElementById("requestButton").value = "Saved";
+				if (xmlhttp_finish_signup.responseText){
+					requestArray.push(xmlhttp_finish_signup.responseText);
+					document.getElementById("requestButton").value = "Saved";
+					
 				}
 				else {
 				document.getElementById("requestButton").value = "Not Saved";
@@ -530,6 +549,23 @@ if (window.XMLHttpRequest)
 			
 		}
 
+function showMatches(){
+
+	requestID
+	$.ajax({		
+				type: "POST",
+					url: 'getMatches.php',
+					
+					success: function(data){
+							if(data.trim() == "success"){
+								window.location.replace("index.html");
+							}
+							else{
+								window.alert("Logout failed, please try again");
+							}				
+					}		
+		});
+}
 
 		
     </script>
