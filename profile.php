@@ -7,6 +7,7 @@
 
     #TODO: check whether the session variable has something in it from login. 
     $username = $_GET["username"];
+    if(!$username) $username = $_SESSION["username"];
     #$email = $_SESSION["email"];
 
     echo '<p>Username: '.$username.'</p>';
