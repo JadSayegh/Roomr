@@ -16,7 +16,7 @@ require("dbConnect.php");
 				session_start();
 				$sql = "SELECT email FROM users WHERE username = '$username'";
 				$result = $db->query($sql);
-                $result_array = mysql_fetch_assoc($result)
+                $result_array = $result->fetch_assoc();
                 $email = $result_array['email'];
                 
 				$_SESSION['username'] = $username;
