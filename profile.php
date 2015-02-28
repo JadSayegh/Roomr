@@ -18,7 +18,7 @@
         die('There was an error running the query [' . $db->error . ']');
 	}else if($result->num_rows == 0){
 		var_dump($result);
-        echo "\ERROR: This profile does not exist. \n";
+        echo "ERROR: This profile does not exist. \n";
     }
 
     
@@ -41,14 +41,14 @@
     if(!$result = $db->query($sql)){
         die('There was an error running the query [' . $db->error . ']');
 	}else if($result->num_rows == 0){
-		var_dump($result);
         echo "No interests have been specified for this profile yet.. \n";
-    }
+    }else{
 
-echo "Interests: ";
-for($row_no = $result->num_rows - 1; $row_no >= 0; $row_no--){
-    $result_array = $result->fetch_assoc();
-    echo $result_array["name"];
-    if($row_no > 0) echo ', '; 
-}
+        echo "Interests: ";
+        for($row_no = $result->num_rows - 1; $row_no >= 0; $row_no--){
+            $result_array = $result->fetch_assoc();
+            echo $result_array["name"];
+            if($row_no > 0) echo ', '; 
+        }
+    }
 ?>
