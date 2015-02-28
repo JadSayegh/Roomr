@@ -9,7 +9,7 @@ require 'dbConnect.php';
 		$result = $db->query($sql);
 		$resultValue = $result-> fetch_row();
 		
-		$user_id= resultValue[0]; 
+		$user_id= $resultValue[0]; 
 		//get form data
 		$interests = json_decode($_GET['interests']);
 		$length = count($interests);
