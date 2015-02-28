@@ -5,25 +5,30 @@ require("dbConnect.php");
 
 session_start();
 
-
+$json = array(array( 'id' =>'',
+					 'username' =>'',
+					 'email' =>'',
+					 'matchPercentage' =>''				
+					));
 $username = $_SESSION['username'];
 $requestID = $_POST['requestID'];
 $sql = "SELECT id FROM users where username = '$username'";
 $userIDResult = $db->query($sql) or die('Unable to connect to database [' . $db->connect_error . ']');;
 $userIDValue  = $userIDResult->fetch_row();
 $userID = $userIDValue[0];
- echo "USER ID IS: ".$userID.PHP_EOL; 
+ 
 $getRequest = "SELECT * FROM requests where id = '$$requestID'";
 $requestResult = $db->query($getRequest) or die('Unable to connect to database [' . $db->connect_error . ']');   
+$requestRow = $requestResult->fetch_assoc();
 
 $sql = "SELECT * FROM requests WHERE userid <> '$userID'";
 $possibleMatch = $db->query($sql) or die('Unable to connect to database [' . $db->connect_error . ']');
-$requestRow = $requestResult->fetch_assoc();
+
 
 unset($sql);
 unset($requestResult);
-echo $possibleMatch->num_rows.PHP_EOL;
 
+$rowNumber = 0;
 	while($row = $possibleMatch->fetch_assoc()){
 		
 			$matchPercentage = 100;  
@@ -50,7 +55,7 @@ echo $possibleMatch->num_rows.PHP_EOL;
 			}
 			
 			$sizeDifference = count($userInterests) - count($matchInterests) ;
-			echo $sizeDifference.PHP_EOL;
+			
 			if($sizeDifference>0){
 				$matchPercentage = $matchPercentage - $sizeDifference;
 				for($i = 0; $i < $sizeDifference; $i++) {
@@ -74,14 +79,28 @@ echo $possibleMatch->num_rows.PHP_EOL;
 					
 				}
 				$matchPercentage = $matchPercentage -3;
-			}	
+			}
 			
-			echo "match percentage is :".$matchPercentage.PHP_EOL;		
+			if($matchPercentage> 50){
+				
+			$possibleMatchID= $row['userid'];
+			$replySql = "SELECT id, username, email FROM users WHERE id = '$possibleMatchID'";
+			$replyResult = $db->query($replySql) or die('Unable to connect to database [' . $db->connect_error . ']');
+			$replyValues = $replyResult->fetch_assoc();
+			$json[$rowNumber]['id'] = $replyValues['id'];
+			$json[$rowNumber]['username'] = $replyValues['username'];
+			$json[$rowNumber]['email'] = $replyValues['email'];
+			$json[$rowNumber]['matchPercentage'] =$matchPercentage;
+			$rowNumber++;
+			}
+				
 			unset($userInterests);
 			unset($matchInterests);
 			
 			
 	}
+	
+echo json_encode($json);
 
 
 

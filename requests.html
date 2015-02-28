@@ -34,6 +34,8 @@
 				
 		
 	 }  
+	 
+	 
 	.navbar-inverse .navbar-inner {
 		background-color : red;
 	}   /* Flip around the padding for proper display in narrow viewports */
@@ -209,7 +211,7 @@ body {
 
 <div class ="requests" id="requestId" onload ="loadRequests()"> No Requests At The Moment</div>
 <div class="container">
-<a id="modal_trigger" href="#modal" class="btnR">Add A Request</a>
+<a id="modal_trigger" href="#modal" class="btnR" align = "left">Add A Request</a>
 	<div id="modal" class="popupContainer" style="display:none;">
 		<header class="popupHeader">
 			<span class="header_title">Choose Preferences</span>
@@ -374,7 +376,9 @@ body {
 
 <!--<button type="button" class="btn btn-warning navbar-btn" onclick = "editProfile()"><span class="glyphicon glyphicon-edit"></span>Add a Request</button></div>-->
 
+<div class ="container" id = "matchDisplay">
 
+</div>
 
   
   
@@ -395,23 +399,6 @@ body {
 numberOfRequests = 0;
 //requestArray;
 
-
-	$.ajax({
-		
-			type: "POST",
-                url: 'getMatches.php',
-				data:{
-					requestID: 1
-				},
-				success: function(data){
-						console.log(data);
-				
-				}
-		
-		
-		});
-		
-
 $(document).ready( function () {
   loadRequests();
 });
@@ -424,13 +411,13 @@ console.log("hey");
                 url: 'displayRequests.php',
 				
 				success: function(data){
-
+					console.log("FETCHED REQUESTS");
 					$.getJSON('displayRequests.php', function(data_array) {
-	for (i = 0; i < data_array.length; i++){
-    var row = data_array[i]; 
-	printRequest(row,i);
-	}
-});
+						for (i = 0; i < data_array.length; i++){
+						var row = data_array[i]; 
+						printRequest(row,i);
+						}
+					});
 
 				}
 		
@@ -670,7 +657,7 @@ $(".requests" ).remove();
 $("body").append('<div class="container1"><div class="col-xs-8 col-xs-offset-2"></div><hr><div class="row carousel-row">' +
         '<div class="col-xs-4 col-xs-offset-1 slide-row"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+
         '</div><div class="slide-content"><h4><div id="titleRequest'+i+'"></div></h4><p><div id="addRequest' + i +'"></div>' +
-        '</p></div><div class="slide-footer"><span class="pull-right buttons"><button class="btn btn-sm btn-default">'+
+        '</p></div><div class="slide-footer"><span class="pull-right buttons"><button class="btn btn-sm btn-default" onclick = "showMatches('+rid+')" >'+
 '<i class="fa fa-fw fa-eye"></i> Show</button></span></div></div>' + 
 '</div></div>');
 var requestName = "#addRequest"+ i;
@@ -684,7 +671,9 @@ $(requestName).append("<u>Pet Friendly: </u>" + pet_friendly+"<br>");
 $(requestName).append("<u>Party: </u>" + party+"<br>");
 $(requestName).append("<u>Smoker Friendly: </u>" + smoke+"<br>");
 $(requestTitle).append("Request:" + rid);
+
 }
+
 	function signOut(){
 		
 		$.ajax({
@@ -709,7 +698,7 @@ $(requestTitle).append("Request:" + rid);
 	
 	}
 
-	function addRequest(){
+function addRequest(){
 $(".requests" ).remove();
 $("body").append('<div class="container1" id = ' + "\" numberOfRequests \"" + '><div class="col-xs-8 col-xs-offset-2"></div><hr><div class="row carousel-row">' +
         '<div class="col-xs-4 col-xs-offset-1 slide-row"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+
@@ -776,6 +765,7 @@ $("#addRequest").append("<u>Number of Roommates: </u>" + roommatesText+"<br>");
 					break;
 				}
 			}
+			
 if (window.XMLHttpRequest)
 			  {// code for IE7+, Firefox, Chrome, Opera, Safari
 			  xmlhttp_finish_signup=new XMLHttpRequest();
@@ -803,24 +793,28 @@ if (window.XMLHttpRequest)
 			
 		}
 
-function showMatches(){
+function showMatches(requestID){
 
-	requestID
+	console.log(requestID);
 	$.ajax({		
 				type: "POST",
 					url: 'getMatches.php',
-					
+					data: {
+						requestID: requestID	
+					},
 					success: function(data){
-							if(data.trim() == "success"){
-								window.location.replace("index.html");
-							}
-							else{
-								window.alert("Logout failed, please try again");
-							}				
+						console.log(data);
+						var matches = JSON.parse(data);
+						//console.log(matches);
+						displayMatches(requestID, matches);
 					}		
 		});
 }
 
+function displayMatches(requestID, jsonData){
+
+
+}
 		
     </script>
   </body>

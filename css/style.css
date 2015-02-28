@@ -95,7 +95,7 @@ body {
   display: block;
 }
 
-#modal_trigger {position: absolute; left: 72%; width:250px; display:block; height:50px;}
+#modal_trigger {left: 72%; width:250px; display:block; height:50px;}
 
 .btnR {padding:10px 20px; background: #F4F4F2;}
 .btnR_red {background: #ED6347; color: #FFF;}

@@ -12,6 +12,7 @@ include 'dbConnect.php';
 		
 		
 		
+		
        //get form data
        $houseApartment = $_GET['houseApartment'];
        $petFriendly = $_GET['petFriendly'];
@@ -25,9 +26,9 @@ include 'dbConnect.php';
         
 		$request = mysqli_query($db, "INSERT INTO requests (userid, neighborhoods, roommates, fees, interests, housed, smoke, pet_friendly) VALUES ('$user_id', '$neighbourhood', '$roommates', '$rentPriceRange', '$party','$houseApartment', '$smokingFriendly','$petFriendly')" ) or die('There was an error running the query [' . $db->error . ']');  
 
-		
 		$sql = "SELECT id FROM requests WHERE userid = '$user_id'";
 		$result = mysqli_query($db, $sql);
 		$resultArray = $result->fetch_assoc();
 		echo $resultArray['id'];
+		
     ?>
