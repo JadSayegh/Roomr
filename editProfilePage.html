@@ -350,26 +350,32 @@ display:inline-block;
         if (newPassword === newPasswordCheck){
              console.log("new passwords match");
              <!-- Change password to newPassword and tell user this was done -->
-                    
-            $.ajax({
-                type: "POST",
-                url: 'changePassword.php',
-                data: { 
-                    password :  oldPasswordSubmitted, 
-                    newPassword: newPassword
-                },
-                success: function(data){
-				if(data.trim() == "success"){
-					alert("password changed successfully!");
-				}
-                 else{
-					alert("the password you have entered is incorrect");
-				 }
-                }
-            });                  
+             <!-- Need to check if password is long enough -->
+            
+            if(newPassword.length < 8){
+                alert("The password entered is not long enough. Please select a password with at least 8 characters");
+            } else {  
+                $.ajax({
+                    type: "POST",
+                    url: 'changePassword.php',
+                    data: { 
+                        password :  oldPasswordSubmitted, 
+                        newPassword: newPassword
+                    },
+                    success: function(data){
+                     console.log(data);
+                     if(data.trim() == "fail"){
+                         alert("The password entered does not match the password associated with your account. Please Try again!");
+                     } else {
+                         alert("Your password has been changed succesfully!");
+                    }
+                    }
+                });
+            }
         } else {
                alert("confirmation password does not match!");
                 <!-- Error message of incorrect passwords -->
+                alert("The new passwords entered do not match. Please try again!");
         }   
     }
         

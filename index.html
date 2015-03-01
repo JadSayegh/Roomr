@@ -234,16 +234,32 @@
 	  
 	 </form>
 		<div class="control-group">
-		  <!-- Button -->
+		  <!-- Login Button -->
 		  <div class="controls">
 		  <br>
 			<button class="btn btn-success" onclick = "roomrLogin()">Login</button>
 			<div id = "loginWarning"></div>
 		  </div>
 		</div>
-		
+      
+        <br>
+        <br>
+      
+    <p>Forgotten Password? <br> Enter Username:</p>
+      <form id="rpForm" action = >
+        <input type = "text" id="rpusername">
+    </form>
+      
+    <button type="button" class="btn btn-warning navbar-btn" onclick = "recoverPassword()"><span class="glyphicon glyphicon-edit"></span>Submit</button>
 		
   </div>
+    
+    <!-- MATTHEW BEIROUTI EDITS -->
+
+      
+
+    <!-- END MATTHEW BEIROUTI EDITS -->    
+      
 	<!--
 		  Below we include the Login Button social plugin. This button uses
 		  the JavaScript SDK to present a graphical Login button that triggers
@@ -383,7 +399,34 @@
 		loginCounter = 0;
 		loginFlag = true;
 		
-	
+	    <!-- MATTHEW CHANGES -->
+            
+        function recoverPassword(){
+            
+                var formInput = document.getElementById("rpForm");
+                
+                var username = formInput.elements[0].value;
+                
+                console.log(username);
+            
+            $.ajax({
+                type: "POST",
+                url: 'recoverPassword.php',
+                data: { 
+                    userEmail :  username
+                },
+                success: function(data){
+                 console.log(data);
+                if(data.trim() == "fail"){
+                     alert("The username entered is not associated with any account. Please Try again!");
+                 }
+                }
+            }); 
+                   
+        }
+
+        
+        <!-- END MATTHEW CHANGES -->
 		function formValidation(){
 		
 			var username = $('#registerUsername').val();
