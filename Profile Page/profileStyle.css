@@ -1,0 +1,85 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic);
+
+body {
+	font-family: 'Oxygen', sans-serif; font-size: 14px; color: #666;
+	padding-top: 15px;
+    background-color: #ffffff;
+}
+
+.bs-example{
+	margin: 20px;
+}
+
+
+.profile-picture{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.custom-container{
+	display: inline-block;
+	width: 100%;
+}
+
+.profile-picture{
+	float: left;
+}
+
+.about-me{
+	float: left;
+}
+
+}
+ul#interestlist{
+	padding: 20px;
+}
+
+ul#interestlist li {
+	display: inline;
+	background-color: #eeeff4;
+	color: black;
+	padding: 5px 10px;
+	text-decoration: none;
+	border-radius: 4px 4px 0 0;
+}
+
+ul#interestlist li:hover{
+	color: grey;
+}
+
+ul#favoritelist li{
+	display: inline;
+	text-decoration: none;
+	padding: 5px 10px;
+}
+
+
+
+/*Picture Style */
+
+img {
+	border-radius: 50%;
+}
+
+
+/* Table Style */
+
+th{
+	color: black;
+	text-align: left;
+	padding: 10px;
+	padding-left: 20px;
+}
+
+td{
+	color: #666;
+	padding: 10px;
+}
+
+
+h2{
+	color: black;
+	padding-left: 15px;
+}
+
+
