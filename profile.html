@@ -22,6 +22,8 @@
 	<!--Google Font-->
 		<link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
 		<link type="text/css" rel="stylesheet" href="profileStyle.css"/>
+		
+		
  
 	</head>
 
@@ -31,11 +33,12 @@
 		<div class="bs-example">
 			<ul class="nav nav-tabs">
 		    	<li class="active">
-		        	<a href="#">Profile</a>
-		        </li>
-		        	<li>
-		        		<a href="requests.html">Requests</a>
-		        	</li>
+		        	<li><a href="livingPreferences.html">Interests</a></li>
+				<li class="active"><a href = "Profile.html"> My Profile </a></li>
+				<li><a href="requests.html">Requests</a></li>
+				<li><a href="aboutPage.html">About</a></li>
+				<li><a href="search.html">Search</a></li>
+					
 			<div id="navbar" class="navbar-collapse collapse">
 		         <ul class="nav navbar-nav navbar-right">
 					<button type="button" class="btn btn-warning navbar-btn" onclick="editProfile()">
@@ -52,9 +55,29 @@
 <!--Profile Picture-->
 
 			<div class="profile-picture">
-				<img src="file://localhost/Users/FloMac/Documents/McGill/Winter%202015/ECSE%20428/Profile%20Page/sampleProfilePicture.jpeg" alt="" />
+				<img src="sampleFavoritePicture.jpeg" alt="" />
 			</div>
 
+			
+			<div class="living-preferences">
+				<h2>Living Preferences</h2>
+				<div>
+					<table>
+						<tr>
+							<th>Pet Friendly</th>
+							<td id = "petFriendly">Yes</td>
+						</tr>
+						<tr>
+							<th>Party</th>
+							<td id = "party">Yes</td>
+						</tr>
+						<tr>
+							<th>Smoking Friendly</th>
+							<td id = "smoking">No</td>
+						</tr>
+					</table>
+				</div>
+			</div>	
 <!--About Me section-->
 
 			<div class="about-me">
@@ -89,25 +112,6 @@
 
 <!--Living Preferences section-->
 
-			<div class="living-preferences">
-				<h2>Living Preferences</h2>
-				<div>
-					<table>
-						<tr>
-							<th>Pet Friendly</th>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<th>Party</th>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<th>Smoking Friendly</th>
-							<td>No</td>
-						</tr>
-					</table>
-				</div>
-			</div>	
 
 
 <!--Interests section-->
@@ -135,24 +139,40 @@
 				<div>
 					<ul id="favoritelist">
 						<li>
-							<img src="file://localhost/Users/FloMac/Documents/McGill/Winter%202015/ECSE%20428/Profile%20Page/sampleFavoritePicture.jpeg" alt="" />
+							<img src="sampleFavoritePicture.jpeg" alt="" />
 						</li>
 						<li>
-							<img src="file://localhost/Users/FloMac/Documents/McGill/Winter%202015/ECSE%20428/Profile%20Page/sampleFavoritePicture.jpeg" alt="" />
+							<img src="sampleFavoritePicture.jpeg" alt="" />
 						</li>
 						<li>
-							<img src="file://localhost/Users/FloMac/Documents/McGill/Winter%202015/ECSE%20428/Profile%20Page/sampleFavoritePicture.jpeg" alt="" />
+							<img src="sampleFavoritePicture.jpeg" alt="" />
 						</li>
 						<li>
-							<img src="file://localhost/Users/FloMac/Documents/McGill/Winter%202015/ECSE%20428/Profile%20Page/sampleFavoritePicture.jpeg" alt="" />
+							<img src="sampleFavoritePicture.jpeg" alt="" />
 						</li>
 						<li>
-							<img src="file://localhost/Users/FloMac/Documents/McGill/Winter%202015/ECSE%20428/Profile%20Page/sampleFavoritePicture.jpeg" alt="" />
+							<img src="sampleFavoritePicture.jpeg" alt="" />
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
+		
+		<script type = "text/javascript">
+		
+			$.ajax({
+		
+				type: "POST",
+				url: 'profile.php',
+						
+				success: function(data){
+						console.log(data);
+				}
+			
+			
+			});
+		
+		</script>
 	</body>
 </html>
 
