@@ -4,7 +4,7 @@
 
 <html>
 	<head>
-		<title>My Profile</title>
+		<title > Profile </title>
 
 
 	    <meta charset="utf-8">
@@ -31,11 +31,11 @@
 		<div class="bs-example">
 			<ul class="nav nav-tabs">
 		    	<li class="active">
-		        	<a href="#">Profile</a>
-		        </li>
-		        	<li>
-		        		<a href="requests.html">Requests</a>
-		        	</li>
+		        	<li><a href="livingPreferences.html">Interests</a></li>
+				<li><a href = "Profile.html"> My Profile </a></li>
+				<li><a href="requests.html">Requests</a></li>
+				<li><a href="aboutPage.html">About</a></li>
+				<li><a href="search.html">Search</a></li>
 			<div id="navbar" class="navbar-collapse collapse">
 		         <ul class="nav navbar-nav navbar-right">
 					<button type="button" class="btn btn-warning navbar-btn" onclick="editProfile()">
@@ -52,13 +52,13 @@
 <!--Profile Picture-->
 
 			<div class="profile-picture">
-				<img src="file://localhost/Users/FloMac/Documents/McGill/Winter%202015/ECSE%20428/Profile%20Page/sampleProfilePicture.jpeg" alt="" />
+				<img src="sampleProfilePicture.jpeg" alt="" />
 			</div>
 
 <!--About Me section-->
 
 			<div class="about-me">
-				<h2>About "Name of User"</h2>
+				<h2 id = "username"></h2>
 				<table>
 
 					<tbody>
@@ -117,17 +117,35 @@
 
 				<div>
 					<ul id="interestlist">
-						<li>Tennis</li>
-						<li>Football</li>
-						<li>Clubbing</li>
-						<li>McGill</li>
-						<li>Napoleon Dynamite</li>
-						<li>Star Wars</li>
-						<li>RIP spock</li>
+						
 					</ul>
 				</div>	
 			</div>
 		</div>
+		<script type = "text/javascript">
+		
+			$.ajax({
+		
+				type: "POST",
+				url: 'profile.php',
+				data: {
+					username: username
+				}
+				success: function(data){
+				
+						var matches = JSON.parse(data);	
+						$("#username").append(matches[1]);
+						for(i = 2 ; i<matches.length; i++){
+							$("#interestList").append('<li>'+ matches[i] +'</li>');				
+							
+						}
+						console.log(data);
+				}
+			
+			
+			});
+		
+		</script>
 	</body>
 </html>
 

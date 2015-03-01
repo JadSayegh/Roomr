@@ -120,14 +120,8 @@
 				<h2>Interests</h2>
 
 				<div>
-					<ul id="interestlist">
-						<li>Tennis</li>
-						<li>Football</li>
-						<li>Clubbing</li>
-						<li>McGill</li>
-						<li>Napoleon Dynamite</li>
-						<li>Star Wars</li>
-						<li>RIP spock</li>
+					<ul id="interestList">
+						
 					</ul>
 				</div>	
 			</div>
@@ -159,13 +153,20 @@
 		</div>
 		
 		<script type = "text/javascript">
-		
+			
+			username = localStorage.username;
 			$.ajax({
 		
 				type: "POST",
 				url: 'profile.php',
 						
 				success: function(data){
+				
+						var matches = JSON.parse(data);	
+						for(i = 2 ; i<matches.length; i++){
+							$("#interestList").append('<li>'+ matches[i] +'</li>');				
+							
+						}
 						console.log(data);
 				}
 			

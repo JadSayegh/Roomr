@@ -8,6 +8,10 @@
     #TODO: check whether the session variable has something in it from login. 
     $username = $_SESSION["username"];
     if(!$username) $username = $_SESSION["username"];
+	
+	if( isset($_POST['username']) ){
+		$username = $_POST['username'];
+	}
     #$email = $_SESSION["email"];
     
     $sql = "SELECT id, email FROM users WHERE username = '$username'";
