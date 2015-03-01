@@ -35,7 +35,12 @@
 				
 		
 	 }  
-	 
+	 .module {
+	  	margin-left: 10%;
+		float:left;  width: 100%;
+		display:inline-block;
+		   			  
+	}
 	 
 	.navbar-inverse .navbar-inner {
 		background-color : red;
@@ -65,12 +70,13 @@
       margin-right: 15px !important;
       }
 	.buttonRight{
-position: absolute;
+	position: absolute;
 	left:80%;
 	}
-.container1{
-left: 20%;
-}
+	.container1{
+	
+	margin-left: 10%;
+	}
       .navbar-footer 
       {
           background-color:#FFFFFF;
@@ -84,8 +90,8 @@ left: 20%;
 
 
 	.requests { 
-position: absolute;	
-left : 8%;
+
+	left : 8%;
 	}
 	
 	.bs-example{
@@ -96,7 +102,9 @@ body {
     background-color: #ffffff;
 }
 /*REQUIRED*/
+
 .carousel-row {
+	margin-left: 5%;
     margin-bottom: 10px;
 }
 
@@ -104,6 +112,20 @@ body {
     padding: 0;
     background-color: #ffffff;
     min-height: 210px;
+	min-width: 400px;
+	
+    border: 1px solid #e7e7e7;
+    overflow: hidden;
+    height: auto;
+    position: relative;
+}
+
+.slide-row2 {
+    padding: 0;
+    background-color: #ffffff;
+    min-height: 100px;
+	min-width: 400px;
+	
     border: 1px solid #e7e7e7;
     overflow: hidden;
     height: auto;
@@ -111,15 +133,33 @@ body {
 }
 
 
+.circle
+{
+width:100px;
+height:100px;
+border-radius:100%;
+font-size:40px;
+color:#fff;
+line-height:100px;
+text-align:center;
+background:#3385FF;
+float: left;
+margin-left:10px;
+margin-top: 10px;
+margin-bottom:10px;
+display:inline-block;
+}
+
 .slide-carousel {
     width: 20%;
-    float: left;
-    display: inline-block;
+	float:left;
+ 
 }
 
 
 .slide-carousel .carousel-indicators .active {
     margin: 1px;
+	
 }
 
 .slide-content {
@@ -127,7 +167,7 @@ body {
     top: 0;
     left: 0%;
     display: block;
-    float: left;
+	
     width: 80%;
     max-height: 100%;
     padding: 1.5% 2% 2% 2%;
@@ -165,7 +205,28 @@ body {
   height: 5px;
   display: block;
 }
+
+.customContainer{
+
+	witdh:1000px;
+	display: inline-block;
+	margin-left: 2%;
+	
+}	
 		
+.box{
+	float:left;
+	padding-left: 20px;
+	
+	
+}
+
+.box2{
+	float:right;
+	padding-left: 20px;
+	
+	
+}
 
 	
     </style>
@@ -211,7 +272,7 @@ body {
     </nav>
 
 <div class ="requests" id="requestId" onload ="loadRequests()"> No Requests At The Moment</div>
-<div class="container">
+<div class="container1">
 <a id="modal_trigger" href="#modal" class="btnR" align = "left">Add A Request</a>
 	<div id="modal" class="popupContainer" style="display:none;">
 		<header class="popupHeader">
@@ -300,6 +361,7 @@ body {
 	 </form>
 <br>
 
+
 <div class = "module2">
 	<form name = "living preferences" class="form-horizontal" >
 
@@ -376,10 +438,17 @@ body {
 
 
 <!--<button type="button" class="btn btn-warning navbar-btn" onclick = "editProfile()"><span class="glyphicon glyphicon-edit"></span>Add a Request</button></div>-->
+<div class = "customContainer">
+	<div class = "box" id = "requestDisplay">
+	</div>
+	
+	<div class ="box2" id = "matchDisplay" align ="right">
 
-<div class ="container" id = "matchDisplay">
-
+	</div>
+	
 </div>
+	
+	
 
   
   
@@ -655,12 +724,12 @@ switch(feesIndex){
 } 
 
 $(".requests" ).remove();
-$("body").append('<div class="container1"><div class="col-xs-8 col-xs-offset-2"></div><br><div class="row carousel-row">' +
-        '<div class="col-xs-4 col-xs-offset-1 slide-row"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+
+$("#requestDisplay").append('<div class = "container1"><div class="col-xs-8 col-xs-offset-2"></div><br><div class="row carousel-row " id = ' + rid +' >' +
+        '<div class="col-xs-4 col-xs-offset-1 slide-row" ><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel" >'+
         '</div><div class="slide-content"><h4><div id="titleRequest'+i+'"></div></h4><p><div id="addRequest' + i +'"></div>' +
         '</p></div><div class="slide-footer"><span class="pull-right buttons"><button class="btn btn-sm btn-default" onclick = "showMatches('+rid+')" >'+
-'<i class="fa fa-fw fa-eye"></i> Show</button></span></div></div>' + 
-'</div></div>');
+'<i class="fa fa-fw fa-eye"></i> Show Matches!</button></span></div></div></div>' + 
+'</div>');
 var requestName = "#addRequest"+ i;
 var requestTitle = "#titleRequest" + i;
 console.log(requestName);
@@ -700,13 +769,7 @@ $(requestTitle).append("Request:" + rid);
 	}
 
 function addRequest(){
-$(".requests" ).remove();/**
-$("body").append('<div class="container1" id = ' + "\" numberOfRequests \"" + '><div class="col-xs-8 col-xs-offset-2"></div><div class="row carousel-row">' +
-        '<div class="col-xs-4 col-xs-offset-1 slide-row"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+
-        '</div><div class="slide-content"><h4><b><u>Request 1 : January 15th 2015</u></b></h4><p><div id="addRequest"></div>' +
-        '</p></div><div class="slide-footer"><span class="pull-right buttons"><button class="btn btn-sm btn-default" onClick = "showMatches()">'+
-'<i class="fa fa-fw fa-eye"></i> Show</button></span></div></div>' + 
-'</div></div>');**/
+$(".requests" ).remove();
 
 var rentPriceRange = document.getElementById("rentPriceRange").options[document.getElementById("rentPriceRange").selectedIndex].value;
 var neighbourhood = document.getElementById("neighbourhood").options[document.getElementById("neighbourhood").selectedIndex].value;
@@ -817,15 +880,24 @@ function showMatches(requestID){
 }
 
 function displayMatches(requestID, jsonData){
-
-$("#matchDisplay").append('<div class="container1"><div class="col-xs-8 col-xs-offset-2"></div><br><div class="row carousel-row">' +
-        '<div class="col-xs-4 col-xs-offset-1 slide-row"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+
-        '</div><div class="slide-content"><h4><div id="titleRequest'+i+'"></div></h4><p><div id="addRequest' + i +'"></div>' +
-        '</p></div><div class="slide-footer"><span class="pull-right buttons"><button class="btn btn-sm btn-default" onclick = "showMatches('+rid+')" >'+
-'<i class="fa fa-fw fa-eye"></i> Show</button></span></div></div>' + 
-'</div></div>');
-
+	
+	$("#matchDisplay").empty();
+	var username;
+	var email;
+	var matchPercentage;
+	for (var i in jsonData){
+		username = jsonData[i]['username'];
+		email = jsonData[i]['email'];
+		matchPercentage = jsonData[i]['matchPercentage'];
+	
+	$("#matchDisplay").append('<div class="container1" id = ' + requestID +'><div class="col-xs-8 col-xs-offset-2"></div><br><div class="row carousel-row">' +
+        '<div class="col-xs-offset-2 col-xs-3 slide-row2"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+'<div class="circle" >'
+		+matchPercentage+ '%' +'</div>'+ username + '<br>'+ email+ '</div><div class="slide-content"><h4><div id="titleRequest'+username+
+		'"></div></h4><p><br><div id="addRequest' + email +'"></div>' +
+        '</p></div><div class="slide-footer"></div></div></div></div>');
+	}
 }
+
 		
     </script>
   </body>
