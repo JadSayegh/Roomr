@@ -1,0 +1,471 @@
+<!-- Matthew Beirouti created this document to create a separate page for profile modification -->
+<!-- made this by copying everything from living preferences page and pasting it in a new document -->
+<!-- with that being said there will be a lot of code that is not necessary. I tried to clean up as much as I could though. -->
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Roomr</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<!--Google fonts-->
+	<link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      /* Special class on .container surrounding .navbar, used for positioning it into place. */
+      .navbar-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        margin-top: 20px;
+      }
+	 .warning{
+				
+				
+		
+	 }  
+	.navbar-inverse .navbar-inner {
+		background-color : red;
+	}   /* Flip around the padding for proper display in narrow viewports */
+      .navbar-wrapper .container {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .navbar-wrapper .navbar {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .navbar-content
+      {
+          width:320px;
+          padding: 15px;
+          padding-bottom:0px;
+      }
+      .navbar-content:before, .navbar-content:after
+      {
+          display: table;
+          content: "";
+          line-height: 0;
+      }
+      .navbar-nav.navbar-right:last-child {
+      margin-right: 15px !important;
+      }
+      .navbar-footer 
+      {
+          background-color:#FFFFFF;
+      }
+      .navbar-footer-content { padding:15px 15px 15px 15px; }
+
+      .dropdown-menu {
+      padding: 0px;
+      overflow: hidden;
+      }
+
+      .modal-dialog {
+          width: 300px;
+      }
+      .modal-footer {
+          height: 70px;
+          margin: 0;
+      }
+      .modal-footer .btn {
+          font-weight: bold;
+      }
+      .modal-footer .progress {
+          display: none;
+          height: 32px;
+          margin: 0;
+      }
+      .input-group-addon {
+          color: #fff;
+          background: #3276B1;
+      }
+		
+	html {
+			
+			height : 100%;
+			
+			
+	}
+		
+	.module {
+	  			
+		   position: absolute; 
+		   top: 10%; 
+		   left: 7%;
+		   width: 400px
+		   			  
+	}
+
+	.module2{
+		position: absolute; 
+		   top: 10%; 
+		   left: 50%;
+		   width: 400px
+	}
+	
+	.module3{
+		position: absolute; 
+		   top: 500px; 
+		   left: 5%;
+		   width: 1100px
+	}
+	.bs-example{
+		margin: 20px;
+	}
+	
+	input[type=checkbox] {
+		width: 30px;
+	}
+
+		.top h2 {
+		  color: white;
+		  margin: 0;
+		  padding: 20px;
+		}
+
+		.lr h2, .lr h4 {
+		  text-algin = center;
+		  font-family: 'Helvetica', sans-serif;
+			
+		  color: white;
+		  text-shadow: -1px 0 light grey, 0 1px light grey, 1px 0 light grey, 0 -1px light grey;
+		}
+	
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!--<a class="navbar-brand">Roomr - Living Preferences</a>-->
+        </div>
+<div class="bs-example">
+    <ul class="nav nav-tabs">
+        <li class="active">
+        <a href="#">Profile</a></li>
+        
+ <div id="navbar" class="navbar-collapse collapse">
+         		  
+		  
+		 
+        </div><!--/.nav-collapse -->
+      </ul></div>
+    
+</div>
+       
+
+
+    </nav>
+
+
+	
+	
+	<!-- MATTHEW BEIROUTI ADDITIONS: -->
+     
+	// CHECK HERE
+	<form id="changePasswordForm" action = >
+        <p> Change Password Menu </p>
+        Old Password <br><br>
+        <input type = "password" id="oldPassword">
+        New Password <br><br>
+        <input type = "password" id="newPassword">
+        New Password Confirmation <br><br>
+        <input type = "password" id="newPasswordConfirmation">
+    </form>
+	  
+    <button type="button" class="btn btn-warning navbar-btn" onclick = "changePassword()"><span class="glyphicon glyphicon-edit"></span> Submit</button>
+    <!-- END MATTHEW BEIROUTI ADDITIONS -->
+  
+  
+	
+  
+  <div class="module2">
+	<form name="living preferences" class="form-horizontal">
+
+	 	<div id="legend">
+		  <legend class=""><br>Looking for a House or an Apartment</legend>
+		</div>
+		<div>
+		<label class="radio-inline">
+ 		 <input name="ha" id="ha" value="1" type="radio"> House
+		</label>
+		<label class="radio-inline">
+ 		 <input name="ha" id="ha" value="2" type="radio"> Apartment
+		</label>
+		</div>
+		<br>
+
+		<div id="legend">
+		  <legend class="">Pet Friendly</legend>
+		</div>
+		
+		<div>
+		<label class="radio-inline">
+ 		 <input name="pf1" id="pf1" value="1" type="radio"> Yes
+		</label>
+		<label class="radio-inline">
+  		<input name="pf1" id="pf1" value="2" type="radio"> No
+	 	</label>
+		<label class="radio-inline">
+  		<input name="pf1" id="pf1" value="3" type="radio"> Dogs Only
+	 	</label>
+		<label class="radio-inline">
+ 		 <input name="pf1" id="pf1" value="4" type="radio"> Cats Only
+		</label>
+		</div>
+		<br>
+		
+	  
+		<div id="legend">
+		  <legend class="">Party</legend>
+		</div>
+
+		<div>
+		<label class="radio-inline">
+ 		 <input name="p2" id="p2" value="1" type="radio"> Yes
+		</label>
+		<label class="radio-inline">
+ 		 <input name="p2" id="p2" value="2" type="radio"> No
+		</label>
+		</div>
+		<br>
+
+	 	<div id="legend">
+		  <legend class="">Smoking Friendly</legend>
+		</div>
+
+		<div>
+		<label class="radio-inline">
+ 		 <input name="sf" id="sf" value="1" type="radio"> Yes
+		</label>
+		<label class="radio-inline">
+ 		 <input name="sf" id="sf" value="2" type="radio"> No
+		</label>
+		</div>
+
+	  
+	 </form>
+		<div class="control-group">
+		  <!-- Button -->
+		  <div class="controls">
+		  <br>
+                <!--<input id="testbutton" type="button" value="Test" />   -->
+		<input id="saveButton" class="btn btn-primary" onclick="saveLP()" value="Save" type="button">		  </div>
+		</div>
+	 
+  </div><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        
+    <!-- MATTHEW BEIROUTI EDITS -->
+        
+    function changePassword(){
+        
+        var formInput = document.getElementById("changePasswordForm");
+        
+        var oldPasswordSubmitted = formInput.elements[0].value;
+        // Get current password from database and place in var
+        var oldPasswordDatabase  = " ";
+        var newPassword          = formInput.elements[1].value;
+        var newPasswordCheck     = formInput.elements[2].value;
+        
+        console.log(oldPasswordSubmitted, newPassword, newPasswordCheck);
+        
+        if (newPassword === newPasswordCheck){
+             console.log("new passwords match");
+             <!-- Change password to newPassword and tell user this was done -->
+                    
+            $.ajax({
+                type: "POST",
+                url: 'changePassword.php',
+                data: { 
+                    password :  oldPasswordSubmitted, 
+                    newPassword: newPassword
+                },
+                success: function(data){
+                 console.log(data);
+                }
+            });                  
+        } else {
+                console.log("New password and new password check dont match mo fo");
+                <!-- Error message of incorrect passwords -->
+        }   
+    }
+        
+        
+        
+        
+        
+    <!-- MATTHEW BEIROUTI EDIT ENDS-->
+        
+        
+        
+        
+	function signOut(){
+		
+		$.ajax({
+		
+			type: "POST",
+                url: 'roomrLogout.php',
+				
+				success: function(data){
+						if(data.trim() == "success"){
+							window.location.replace("index.html");
+							
+						}
+						else{
+							window.alert("Logout failed, please try again");
+						}
+				
+				}
+		
+		
+		});
+	
+	
+	}
+	function saveLP(){
+			var rentPriceRange = document.getElementById("rentPriceRange").options[document.getElementById("rentPriceRange").selectedIndex].value;
+			var neighbourhood = document.getElementById("neighbourhood").options[document.getElementById("neighbourhood").selectedIndex].value;
+			var roommates = document.getElementById("roommates").options[document.getElementById("roommates").selectedIndex].value;
+	
+			var radios1 = document.getElementsByName("ha");
+			for (var i = 0, length = radios1.length; i < length; i++) {
+				if (radios1[i].checked) {
+					// do whatever you want with the checked radio
+					var houseApartment = radios1[i].value;
+
+					// only one radio can be logically checked, don't check the rest
+					break;
+				}
+			}
+
+			var radios2 = document.getElementsByName("pf1");
+			for (var i = 0, length = radios2.length; i < length; i++) {
+				if (radios2[i].checked) {
+					// do whatever you want with the checked radio
+					var petFriendly = radios2[i].value;
+
+					// only one radio can be logically checked, don't check the rest
+					break;
+				}
+			}
+			
+			var radios3 = document.getElementsByName("p2");
+			for (var i = 0, length = radios3.length; i < length; i++) {
+				if (radios3[i].checked) {
+					// do whatever you want with the checked radio
+					var party = radios3[i].value;
+
+					// only one radio can be logically checked, don't check the rest
+					break;
+				}
+			}
+			
+			var radios4 = document.getElementsByName("sf");
+			for (var i = 0, length = radios4.length; i < length; i++) {
+				if (radios4[i].checked) {
+					// do whatever you want with the checked radio
+					var smokingFriendly = radios4[i].value;
+
+					// only one radio can be logically checked, don't check the rest
+					break;
+				}
+			}
+			
+			if (window.XMLHttpRequest)
+			  {// code for IE7+, Firefox, Chrome, Opera, Safari
+			  xmlhttp_finish_signup=new XMLHttpRequest();
+			  }
+			else
+			  {// code for IE6, IE5
+			  xmlhttp_finish_signup=new ActiveXObject("Microsoft.XMLHTTP");
+			  }
+			xmlhttp_finish_signup.onreadystatechange=function()
+			  {
+			  if (xmlhttp_finish_signup.readyState==4 && xmlhttp_finish_signup.status==200)
+				{
+				if (xmlhttp_finish_signup.responseText=="ok"){
+				document.getElementById("saveButton").value = "Saved";
+				}
+				else {
+				document.getElementById("saveButton").value = "Not Saved";
+				}
+				}
+			  }
+			xmlhttp_finish_signup.open("GET","savelivingpreference.php?houseApartment="+houseApartment+"&petFriendly="+petFriendly+"&party="+party+"&smokingFriendly="+smokingFriendly+"&rentPriceRange="+rentPriceRange+"&neighbourhood="+neighbourhood+"&roommates="+roommates,true);
+			xmlhttp_finish_signup.send();
+		}
+		
+		function saveIn(){
+			var interests = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,];
+		
+			var checkbox = document.getElementsByName("intr");
+			for (var i = 0, length = checkbox.length; i < length; i++) {
+				if (checkbox[i].checked) {
+					// do whatever you want with the checked radio
+					interests[i] = checkbox[i].value;
+				}
+			}
+
+			if (window.XMLHttpRequest)
+			  {// code for IE7+, Firefox, Chrome, Opera, Safari
+			  xmlhttp_finish_signup=new XMLHttpRequest();
+			  }
+			else
+			  {// code for IE6, IE5
+			  xmlhttp_finish_signup=new ActiveXObject("Microsoft.XMLHTTP");
+			  }
+			xmlhttp_finish_signup.onreadystatechange=function()
+			  {
+			  if (xmlhttp_finish_signup.readyState==4 && xmlhttp_finish_signup.status==200)
+				{
+				if (xmlhttp_finish_signup.responseText=="ok"){
+				document.getElementById("saveInterestButton").value = "Saved";
+				}
+				else {
+				document.getElementById("saveInterestButton").value = "Not Saved";
+				}
+				}
+			  }
+			  
+			var jsonString = JSON.stringify(interests);
+			xmlhttp_finish_signup.open("GET","saveinterests.php?interests="+jsonString, true);
+			xmlhttp_finish_signup.send();
+		}
+	
+
+    </script>
+  
+
+
+</body>
