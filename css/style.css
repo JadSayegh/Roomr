@@ -2,6 +2,164 @@
 
 body {font-family: 'Source Sans Pro', sans-serif; font-size: 14px; color: #666;}
 
+.event .panel-body {
+  background: #BBDEFB;
+  border: 1px solid #448AFF;
+  padding:0;
+  margin:0;
+  height:86px;
+}
+.event .panel-body > div {
+  padding: 0 10px;
+}
+.event .panel-body .rsvp {
+  border-left: none;
+  padding: 0;
+  text-align: center;
+  position: relative;
+  background: #64B5F6;
+  color: white;
+  height: 100%;
+}
+
+.event .rsvp > div {
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  background: #42A5F5;
+  width: 100%;
+}
+
+.event .rsvp i {
+  font-size: 2em;
+  display: block;
+  position:relative;
+  top:17%;
+  margin-bottom:5px;
+}
+.event .rsvp i:last-of-type{
+    font-size:1.5em;
+    margin-top:-23px;
+}
+
+.event .rsvp span {
+  cursor: pointer;
+  padding: 0 5px;
+  margin: 5px 0;
+  width:45%;
+}
+.event .rsvp span:first-of-type{
+  border-right: 1px solid white;
+}
+.event .rsvp span:hover{
+  color: #1565C0;
+}
+
+.event .info{
+  font-size: 28px;
+}
+
+.event .info > div, .event .info > ul{
+  font-size: 12px;
+}
+
+.event .author .profile-image {
+  position: absolute;
+  background: white;
+  padding: 3px;
+  width: 5em;
+  border-radius: 50%;
+  border: 1px solid #CCC;
+  box-sizing: content-box;
+  z-index: 1;
+  top:4px;
+}
+
+.event .author img {
+    width:100%;
+    border-radius:50%;
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .event .panel-body {
+        height:158px;
+    }
+    
+    .event .rsvp {
+        min-height:100%;
+    }
+    
+    .event .rsvp i {
+        font-size:4em;
+        top:5%;
+    }
+    
+    .event .panel-body .author {
+      position: relative;
+      color: #2196F3;
+      padding:10px;
+      height:100%;
+    }
+    .event .profile {
+      position: relative;
+      z-index: 0;
+      border-left: 2px solid white;
+      top: -5px;
+      padding-left: 55px;
+      height: 100%;
+      left: 10%;
+    }
+    .event .profile strong {
+      display: block;
+      color: white;
+      font:20px bold 'Fredoka One', serif;
+      -webkit-text-stroke-width: .6px;
+      -webkit-text-stroke-color: #448AFF;
+      margin-bottom: 5px;
+    }
+    .event .author .profile i {
+      color:  #448AFF;
+      padding-left: 0;
+    }
+    .event .profile .links {
+      position: absolute;
+      bottom: 0;
+    }
+    .event .profile article {
+        padding:0 41px 0 0;
+    }
+    .event .author .profile i:hover{
+      color:  #00BCD4;
+    }
+    .event .author .profile-image {
+      position: absolute;
+      background: white;
+      padding: 3px;
+      width: 30%;
+      border-radius: 50%;
+      border: 1px solid #CCC;
+      box-sizing: content-box;
+      z-index: 1;
+      top:13px;
+    }
+    .event .author img {
+      width: 100%;
+      border-radius: 50%;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .event .profile {
+      left: 17%;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }
+
 #lean_overlay {
     position: fixed;
     z-index:100;
@@ -20,8 +178,82 @@ body {font-family: 'Source Sans Pro', sans-serif; font-size: 14px; color: #666;}
 	margin:-10%;
 	background: #FFF;
 }
+body {
+    padding-top: 15px;
+    background-color: #ffffff;
+}
+/*REQUIRED*/
+.carousel-row {
+    margin-bottom: 10px;
+}
 
-#modal_trigger {position: absolute; left: 72%; width:250px; display:block; height:50px;}
+.slide-row {
+    padding: 0;
+    background-color: #ffffff;
+    min-height: 170px;
+    border: 1px solid #e7e7e7;
+    overflow: hidden;
+    height: auto;
+    position: relative;
+}
+
+
+.slide-carousel {
+    width: 20%;
+    float: left;
+    display: inline-block;
+}
+
+
+.slide-carousel .carousel-indicators .active {
+    margin: 1px;
+}
+
+.slide-content {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    display: block;
+    float: left;
+    width: 80%;
+    max-height: 85%;
+    padding: 1.5% 2% 2% 2%;
+    overflow-y: auto;
+}
+
+.slide-content h4 {
+    margin-bottom: 3px;
+    margin-top: 0;
+}
+
+.slide-footer {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 76%;
+    height: 20%;
+    margin: 1%;
+}
+
+/* Scrollbars */
+.slide-content::-webkit-scrollbar {
+  width: 5px;
+	height:10px;
+}
+ 
+.slide-content::-webkit-scrollbar-thumb:vertical {
+  margin: 5px;
+  background-color: #999;
+  -webkit-border-radius: 5px;
+}
+ 
+.slide-content::-webkit-scrollbar-button:start:decrement,
+.slide-content::-webkit-scrollbar-button:end:increment {
+  height: 5px;
+  display: block;
+}
+
+#modal_trigger {left: 72%; width:250px; display:block; height:50px;}
 
 .btnR {padding:10px 20px; background: #F4F4F2;}
 .btnR_red {background: #ED6347; color: #FFF;}
@@ -42,36 +274,3 @@ a.btnR_red {color: #FFF;}
 
 .popupBody {padding:15px;}
 
-
-/* Social Login Form */
-.social_login {}
-.social_login .social_box {display:block; clear:both; padding:10px; margin-bottom: 10px; background: #F4F4F2; overflow: hidden;}
-.social_login .icon {display:block; width:10px; padding:5px 10px; margin-right: 10px; float:left; color:#FFF; font-size:16px; text-align: center;} 
-.social_login .fb .icon {background:#3B5998;}
-.social_login .google .icon {background:#DD4B39;}
-.social_login .icon_title {display:block; padding:5px 0; float:left; font-weight: bold; font-size: 16px; color:#777;}
-.social_login .social_box:hover {background: #E4E4E2;}
-
-.centeredText {text-align: center; margin: 20px 0; clear: both; overflow: hidden; text-transform: uppercase;}
-
-.action_btns {clear:both; overflow: hidden;}
-.action_btns a {display: block;}
-
-/* User Login Form */
-.user_login {display: none;}
-.user_login label {display: block; margin-bottom:5px;}
-.user_login input[type="text"], .user_login input[type="email"], .user_login input[type="password"] {display: block; width:90%; padding: 10px; border:1px solid #DDD; color:#666;}
-.user_login input[type="checkbox"] {float:left; margin-right:5px;}
-.user_login input[type="checkbox"]+label {float:left;}
-
-.user_login .checkbox {margin-bottom: 10px; clear: both; overflow: hidden;}
-.forgot_password {display:block; margin: 20px 0 10px; clear: both; overflow: hidden; text-decoration: none; color:#ED6347;}
-
-/* User Register Form */
-.user_register {display: none;}
-.user_register label {display: block; margin-bottom:5px;}
-.user_register input[type="text"], .user_register input[type="email"], .user_register input[type="password"] {display: block; width:90%; padding: 10px; border:1px solid #DDD; color:#666;}
-.user_register input[type="checkbox"] {float:left; margin-right:5px;}
-.user_register input[type="checkbox"]+label {float:left;}
-
-.user_register .checkbox {margin-bottom: 10px; clear: both; overflow: hidden;}

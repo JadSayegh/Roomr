@@ -1,9 +1,15 @@
 <?php
 header('Content-type: text/html; charset=utf-8');
 require 'dbConnect.php';
-
-		$user_id = '3';
 		
+		session_start();
+		
+		$username = $_SESSION['username'];
+		$sql = "SELECT id FROM users WHERE username = '$username'";
+		$result = $db->query($sql);
+		$resultValue = $result-> fetch_row();
+		
+		$user_id= $resultValue[0]; 
 		//get form data
 		$interests = json_decode($_GET['interests']);
 		$length = count($interests);
