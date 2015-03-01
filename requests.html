@@ -770,7 +770,7 @@ $(requestTitle).append("Request:" + rid);
 	}
 
 function addRequest(){
-$(".requests" ).remove();
+
 
 var rentPriceRange = document.getElementById("rentPriceRange").options[document.getElementById("rentPriceRange").selectedIndex].value;
 var neighbourhood = document.getElementById("neighbourhood").options[document.getElementById("neighbourhood").selectedIndex].value;
@@ -832,34 +832,38 @@ $("#addRequest").append("<u>Number of Roommates: </u>" + roommatesText+"<br>");
 				}
 			}
 			
-if (window.XMLHttpRequest)
-			  {// code for IE7+, Firefox, Chrome, Opera, Safari
-			  xmlhttp_finish_signup=new XMLHttpRequest();
-			  }
-			else
-			  {// code for IE6, IE5
-			  xmlhttp_finish_signup=new ActiveXObject("Microsoft.XMLHTTP");
-			  }
-			xmlhttp_finish_signup.onreadystatechange=function()
-			  {
-			  if (xmlhttp_finish_signup.readyState==4 && xmlhttp_finish_signup.status==200)
-				{
+			if(houseApartment == 0  || petFriendly == 0 ||  party == 0 || smokingFriendly == 0 ||  rentPriceRange == 0 || neighbourhood == 0 || roommates == 0){
+				alert("please select a option for all fields");
+			} else{
+				if (window.XMLHttpRequest)
+							  {// code for IE7+, Firefox, Chrome, Opera, Safari
+							  xmlhttp_finish_signup=new XMLHttpRequest();
+							  }
+							else
+							  {// code for IE6, IE5
+							  xmlhttp_finish_signup=new ActiveXObject("Microsoft.XMLHTTP");
+							  }
+							xmlhttp_finish_signup.onreadystatechange=function()
+							  {
+							  if (xmlhttp_finish_signup.readyState==4 && xmlhttp_finish_signup.status==200)
+								{
 
-				if (xmlhttp_finish_signup.responseText){
-				document.getElementById("requestButton").value = "Request";
-				$(".container1" ).remove();
-				loadRequests();
-				
+								if (xmlhttp_finish_signup.responseText){
+								document.getElementById("requestButton").value = "Request";
+								$("#requestDisplay" ).empty();
+								loadRequests();
+								
 
-				}
-				else {
-				document.getElementById("requestButton").value = "Not Requested";
-				}
-				}
-			  }
-			xmlhttp_finish_signup.open("GET","savelivingpreference.php?houseApartment="+houseApartment+"&petFriendly="+petFriendly+"&party="+party+"&smokingFriendly="+smokingFriendly+"&rentPriceRange="+rentPriceRange+"&neighbourhood="+neighbourhood+"&roommates="+roommates,true);
-			xmlhttp_finish_signup.send();
-			
+								}
+								else {
+								document.getElementById("requestButton").value = "Not Requested";
+								}
+								}
+							  }
+							xmlhttp_finish_signup.open("GET","savelivingpreference.php?houseApartment="+houseApartment+"&petFriendly="+petFriendly+"&party="+party+"&smokingFriendly="+smokingFriendly+"&rentPriceRange="+rentPriceRange+"&neighbourhood="+neighbourhood+"&roommates="+roommates,true);
+							xmlhttp_finish_signup.send();
+							$("#requestDisplay" ).empty();
+						}
 		}
 
 function showMatches(requestID){

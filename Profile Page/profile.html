@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+
+
+<html>
+	<head>
+		<title>My Profile</title>
+
+
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+	<!--Google Font-->
+		<link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
+		<link type="text/css" rel="stylesheet" href="profileStyle.css"/>
+ 
+	</head>
+
+	<body>
+
+
+		<div class="bs-example">
+			<ul class="nav nav-tabs">
+		    	<li class="active">
+		        	<a href="#">Profile</a>
+		        </li>
+		        	<li>
+		        		<a href="requests.html">Requests</a>
+		        	</li>
+			<div id="navbar" class="navbar-collapse collapse">
+		         <ul class="nav navbar-nav navbar-right">
+					<button type="button" class="btn btn-warning navbar-btn" onclick="editProfile()">
+						<span class="glyphicon glyphicon-edit"></span> Edit Profile</button>
+					<button type="button" class="btn btn-danger navbar-btn" onclick="signOut()"><span class="glyphicon glyphicon-off"></span> Sign Out</button>											
+					</ul>
+		    </div><!--/.nav-collapse -->
+			</ul>
+		</div>
+
+		<div id="profile-page">
+
+			<div class="custom-container">
+<!--Profile Picture-->
+
+			<div class="profile-picture">
+				<img src="file://localhost/Users/FloMac/Documents/McGill/Winter%202015/ECSE%20428/Profile%20Page/sampleProfilePicture.jpeg" alt="" />
+			</div>
+
+<!--About Me section-->
+
+			<div class="about-me">
+				<h2>About Me</h2>
+				<table>
+
+					<tbody>
+					<tr>
+						<th>Gender</th>
+						<td>Male</td>
+					</tr>
+					<tr>
+						<th>Age</th>
+						<td>21</td>
+					</tr>
+					<tr>
+						<th>Languages</th>
+						<td>French and English</td>
+					</tr>
+					<tr>
+						<th>Occupation</th>
+						<td>Student</td>
+					</tr>
+					<tr>
+						<th>Short Description</th>
+						<td>Hello. I don't have much to say. But I think it would be good to have some holy santos brought to the high school to guard the hallway and to bring us good luck. El Santo Nino de Atocha is a good one. My Aunt Concha has seen him. And...we have a great F.F.A. schedule lined up-- and I'd like to see more of that. If you vote for me, all of your wildest dreams will come true. Thank you.</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+
+<!--Living Preferences section-->
+
+			<div class="living-preferences">
+				<h2>Living Preferences</h2>
+				<div>
+					<table>
+						<tr>
+							<th>Pet Friendly</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Party</th>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<th>Smoking Friendly</th>
+							<td>No</td>
+						</tr>
+					</table>
+				</div>
+			</div>	
+
+
+<!--Interests section-->
+
+			<div class="interests">
+				<h2>Interests</h2>
+
+				<div>
+					<ul id="interestlist">
+						<li>Tennis</li>
+						<li>Football</li>
+						<li>Clubbing</li>
+						<li>McGill</li>
+						<li>Napoleon Dynamite</li>
+						<li>Star Wars</li>
+						<li>RIP spock</li>
+					</ul>
+				</div>	
+			</div>
+
+<!--Favorites section-->
+
+			<div class="favorites">
+				<h2>Favorites</h2>
+				<div>
+					<ul id="favoritelist">
+						<li>
+							<img src="file://localhost/Users/FloMac/Documents/McGill/Winter%202015/ECSE%20428/Profile%20Page/sampleFavoritePicture.jpeg" alt="" />
+						</li>
+						<li>
+							<img src="file://localhost/Users/FloMac/Documents/McGill/Winter%202015/ECSE%20428/Profile%20Page/sampleFavoritePicture.jpeg" alt="" />
+						</li>
+						<li>
+							<img src="file://localhost/Users/FloMac/Documents/McGill/Winter%202015/ECSE%20428/Profile%20Page/sampleFavoritePicture.jpeg" alt="" />
+						</li>
+						<li>
+							<img src="file://localhost/Users/FloMac/Documents/McGill/Winter%202015/ECSE%20428/Profile%20Page/sampleFavoritePicture.jpeg" alt="" />
+						</li>
+						<li>
+							<img src="file://localhost/Users/FloMac/Documents/McGill/Winter%202015/ECSE%20428/Profile%20Page/sampleFavoritePicture.jpeg" alt="" />
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+
