@@ -55,6 +55,8 @@
 				<img src="sampleProfilePicture.jpeg" alt="" />
 			</div>
 
+			
+			
 <!--About Me section-->
 
 			<div class="about-me">
@@ -63,24 +65,18 @@
 
 					<tbody>
 					<tr>
-						<th>Gender</th>
-						<td>Male</td>
+						
 					</tr>
 					<tr>
-						<th>Age</th>
-						<td>21</td>
+						
 					</tr>
 					<tr>
-						<th>Languages</th>
-						<td>French and English</td>
+						
 					</tr>
 					<tr>
-						<th>Occupation</th>
-						<td>Student</td>
+						
 					</tr>
 					<tr>
-						<th>Short Description</th>
-						<td>Hello. I don't have much to say. But I think it would be good to have some holy santos brought to the high school to guard the hallway and to bring us good luck. El Santo Nino de Atocha is a good one. My Aunt Concha has seen him. And...we have a great F.F.A. schedule lined up-- and I'd like to see more of that. If you vote for me, all of your wildest dreams will come true. Thank you.</td>
 					</tr>
 					</tbody>
 				</table>
@@ -89,62 +85,72 @@
 
 <!--Living Preferences section-->
 
-			<div class="living-preferences">
-				<h2>Living Preferences</h2>
-				<div>
-					<table>
-						<tr>
-							<th>Pet Friendly</th>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<th>Party</th>
-							<td>Yes</td>
-						</tr>
-						<tr>
-							<th>Smoking Friendly</th>
-							<td>No</td>
-						</tr>
-					</table>
-				</div>
-			</div>	
+			
 
 
 <!--Interests section-->
-
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
 			<div class="interests">
 				<h2>Interests</h2>
 
 				<div>
-					<ul id="interestlist">
+					<ul id="interestList">
 						
 					</ul>
 				</div>	
 			</div>
 		</div>
-		<script type = "text/javascript">
 		
+		<script type = "text/javascript">
+		username = localStorage.username;
 			$.ajax({
 		
 				type: "POST",
 				url: 'profile.php',
 				data: {
 					username: username
-				}
+				},
 				success: function(data){
-				
+						console.log(data);
 						var matches = JSON.parse(data);	
 						$("#username").append(matches[1]);
-						for(i = 2 ; i<matches.length; i++){
+						for(i = 2 ; i < matches.length; i++){
 							$("#interestList").append('<li>'+ matches[i] +'</li>');				
 							
 						}
-						console.log(data);
+						
 				}
 			
 			
 			});
 		
+		function signOut(){
+		
+		$.ajax({
+		
+			type: "POST",
+                url: 'roomrLogout.php',
+				
+				success: function(data){
+						if(data.trim() == "success"){
+							window.location.replace("index.html");
+							
+						}
+						else{
+							window.alert("Logout failed, please try again");
+						}
+				
+				}
+		
+		
+		});
+	
+	
+	}
 		</script>
 	</body>
 </html>

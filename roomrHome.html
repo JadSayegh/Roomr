@@ -27,29 +27,16 @@
 	</style>
 
 	<script type = "text/javascript">
-		var username;
-		$.ajax({
-			url : "getSessionUsername.php",
-			
-			type : "GET",
-			success: function(data){
-						console.log(data);
-						username = data;
-						checkStatus();
-					}	
-		});
+		checkStatus();
 		
 		function checkStatus(){
+			
 		
-	
-		console.log(username);
 		$.ajax({
 		
 			type: "POST",
                 url: 'roomrCheckStatus.php',
-				data: { 
-						username :  username
-						},
+				
 				success: function(data){
 						if(data.trim() == "activated"){
 							displayProfilePage();

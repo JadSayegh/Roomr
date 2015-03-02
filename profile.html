@@ -55,7 +55,7 @@
 <!--Profile Picture-->
 
 			<div class="profile-picture">
-				<img src="sampleFavoritePicture.jpeg" alt="" />
+				<img src="sampleProfilePicture.jpeg" alt="" />
 			</div>
 
 			
@@ -154,7 +154,7 @@
 		
 		<script type = "text/javascript">
 			
-			username = localStorage.username;
+			
 			$.ajax({
 		
 				type: "POST",
@@ -173,6 +173,30 @@
 			
 			});
 		
+		function signOut(){
+		
+		$.ajax({
+		
+			type: "POST",
+                url: 'roomrLogout.php',
+				
+				success: function(data){
+						if(data.trim() == "success"){
+							window.location.replace("index.html");
+							
+						}
+						else{
+							window.alert("Logout failed, please try again");
+						}
+				
+				}
+		
+		
+		});
+	
+	
+	}
+	
 		</script>
 	</body>
 </html>

@@ -30,9 +30,15 @@ if(checkUnique($db,$email)){
 			if(!$result = $db->query($sql)){
 				die('There was an error running the query [' . $db->error . ']');
 			}
+			
 			else{
 				session_start();
-				$_SESSION['username'] = $email;
+				$sql = "SELECT username FROM users WHERE email = '$email'";
+				$result = $db->query($sql);
+				$resultValue = $result->fetch_row();
+				$username = $resultValue[0];
+				
+				$_SESSION['username'] = $username;
 				$_SESSION['email'] = $email;
 				$_SESSION['login'] = "1";
 				echo "success";

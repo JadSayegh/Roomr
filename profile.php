@@ -46,7 +46,7 @@
     if(!$result = $db->query($sql)){
         die('There was an error running the query [' . $db->error . ']');
 	}else if($result->num_rows == 0){
-        echo "No interests have been specified for this profile yet.. \n";
+        
     }else{
 
       
@@ -55,6 +55,7 @@
 			array_push($json, $result_array["name"]);
            
         }
-		echo json_encode($json);
+		
     }
+	echo json_encode($json);
 ?>

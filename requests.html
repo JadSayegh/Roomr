@@ -905,7 +905,7 @@ function displayMatches(requestID, jsonData){
         '<div class="col-xs-offset-2 col-xs-3 slide-row2"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+'<div class="circle" >'
 		+matchPercentage+ '%' +'</div>'+ username + '<br>'+ email+ '</div><div class="slide-content"><h4><div id="titleRequest'+username+
 		'"></div></h4><p><br><div id="addRequest' + email +'"></div>' +
-        '</p></div> <div class="slide-footer"> <button onclick = "displayProfile("'+ username+ '' +'")"> View Profile </button></div></div></div></div>');
+        '</p></div> <div class="slide-footer"> <button onclick = ' + '\''+ 'displayProfile(' + '\"' +username+ '\"' + ')' +'\''+ '> View Profile </button></div></div></div></div>');
 	}
 }
 

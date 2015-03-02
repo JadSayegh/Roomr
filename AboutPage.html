@@ -308,6 +308,29 @@ display:inline-block;
 
 		window.location.replace("editProfilePage.html");
 	}
+	function signOut(){
+		
+		$.ajax({
+		
+			type: "POST",
+                url: 'roomrLogout.php',
+				
+				success: function(data){
+						if(data.trim() == "success"){
+							window.location.replace("index.html");
+							
+						}
+						else{
+							window.alert("Logout failed, please try again");
+						}
+				
+				}
+		
+		
+		});
+	
+	
+	}
 	</script>
 	  
 

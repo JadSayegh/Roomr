@@ -3,8 +3,8 @@
 require("dbConnect.php");
 
 	
-
-	$username = ($_POST['username']);
+	session_start();
+	$username = ($_SESSION['username']);
 	
 function userExists($database, $user){
 		
