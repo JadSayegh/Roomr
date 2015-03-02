@@ -41,8 +41,8 @@ if (strlen($interestname) > 0)
 				$user_name[$j] = $row3['username'];
 				
 				$hint=$hint.'<div class="container1" id = '.$user_id[$j].'><div class="col-xs-8 col-xs-offset-2"></div><br><div class="row carousel-row">
-						<div class="col-xs-offset-2 col-xs-3 slide-row2"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'.$user_name[$j].'<br></div>
-						<div class="slide-content"><h4></h4><p><br></p></div><div class="slide-footer"><button onclick = '.'\''.'displayProfile('.'"'.$user_name[$j].'"'.')'.'\''.'> View Profile </button></div></div></div></div>';
+						<div class="col-xs-offset-2 col-xs-3 slide-row2"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel"> <a  onclick = '.'\''.'displayProfile('.'"'.$user_name[$j].'"'.')'.'\''.' href = "#">'.$user_name[$j].'</a><br></div>
+						<h4></h4><p><br></p><div class="slide-footer"><button onclick = '.'\''.'displayProfile('.'"'.$user_name[$j].'"'.')'.'\''.'><span class ="glyphicon glyphicon-user"></span> View Profile </button></div></div></div></div>';
 						
 				$j++;
 			}

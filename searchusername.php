@@ -41,8 +41,8 @@ if (strlen($username) > 0)
 		{
       
         $hint=$hint.'<div class="container1" id = '.$id[$i].'><div class="col-xs-8 col-xs-offset-2"></div><br><div class="row carousel-row">
-					<div class="col-xs-offset-2 col-xs-3 slide-row2"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'.$name[$i].'<br></div>
-					<div class="slide-content"><h4></h4><p><br></p></div> <div class="slide-footer"> <button onclick = '.'\''.'displayProfile('.'"'.$name[$i].'"'.')'.'\''.'> View Profile </button></div></div></div></div>';
+		<div class="col-xs-offset-2 col-xs-3 slide-row2"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel"> <a  onclick = '.'\''.'displayProfile('.'"'.$name[$i].'"'.')'.'\''.' href = "#">'.$name[$i].'</a></div>
+					<h4></h4><p><br></p> <div class="slide-footer"> <button onclick = '.'\''.'displayProfile('.'"'.$name[$i].'"'.')'.'\''.'><span class ="glyphicon glyphicon-user"></span> View Profile </button></div></div></div></div>';
 		}
     
     
