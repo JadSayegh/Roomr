@@ -22,7 +22,9 @@
 
 	<!--Google Font-->
 		<link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
+		<link type="text/css" rel="stylesheet" href="css/general.css"/>
 		<link type="text/css" rel="stylesheet" href="profileStyle.css"/>
+		
 		
 		
 		
@@ -32,24 +34,41 @@
 	<body>
 
 
-		<div class="bs-example">
-			<ul class="nav nav-tabs">
-		    	<li class="active">
-		        	<li><a href="livingPreferences.html">Interests</a></li>
-				<li class="active"><a href = "Profile.html"> My Profile </a></li>
-				<li><a href="requests.html">Requests</a></li>
-				<li><a href="aboutPage.html">About</a></li>
-				<li><a href="search.html">Search</a></li>
-					
-			<div id="navbar" class="navbar-collapse collapse">
-		         <ul class="nav navbar-nav navbar-right">
-					<button type="button" class="btn btn-warning navbar-btn" onclick="editProfile()">
-						<span class="glyphicon glyphicon-edit"></span> Edit Profile</button>
-					<button type="button" class="btn btn-danger navbar-btn" onclick="signOut()"><span class="glyphicon glyphicon-off"></span> Sign Out</button>											
-					</ul>
-		    </div><!--/.nav-collapse -->
-			</ul>
-		</div>
+		<div class = "navbar-outer">
+        <nav class="navbar navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!--<a class="navbar-brand">Roomr - Living Preferences</a>-->
+        </div>
+
+    <ul class="nav nav-tabs">
+        
+        <li><a href="livingPreferences.html">Interests</a></li>
+		<li class = "active"><a href = "Profile.html"> My Profile </a></li>
+        <li><a href="requests.html">Requests</a></li>
+		<li><a href="aboutPage.html">About</a></li>
+		<li><a href="search.html">Search</a></li>
+ <div id="navbar" class="navbar-collapse collapse">
+         		  
+		  <ul class="nav navbar-nav navbar-right">
+									
+									  <button type="button" class="btn btn-warning navbar-btn" onclick = "editProfile()"><span class="glyphicon glyphicon-edit"></span> Edit Profile</button>
+									  <button type="button" class="btn btn-danger navbar-btn" onclick = "signOut()"><span class="glyphicon glyphicon-off"></span> Sign Out</button>
+															
+				</ul>
+		 
+        </div><!--/.nav-collapse -->
+      
+    </ul>
+</div>
+    </nav>
+	</div>
 
 		<div id="profile-page">
 

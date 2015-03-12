@@ -14,10 +14,16 @@ if(checkUnique($db,$email)){
 					die('There was an error running the query [' . $db->error . ']');
 				}
 				else{
+					$sql = "SELECT id FROM users WHERE email = '$email'";
+					$result = $db->query($sql) or die('There was an error running the query [' . $db->error . ']');
+					$resultValue = $result->fetch_row();
+					$user_id = $resultValue[0];
+					
 					session_start();
 					$_SESSION['username'] = $email;
 					$_SESSION['email'] = $email;
 					$_SESSION['login'] = "1";
+					$_SESSION['userid'] = $user_id;
 					
 					echo "success";
 				
@@ -33,14 +39,16 @@ if(checkUnique($db,$email)){
 			
 			else{
 				session_start();
-				$sql = "SELECT username FROM users WHERE email = '$email'";
+				$sql = "SELECT username, id FROM users WHERE email = '$email'";
 				$result = $db->query($sql);
 				$resultValue = $result->fetch_row();
 				$username = $resultValue[0];
+				$user_id = $resultValue[1];
 				
 				$_SESSION['username'] = $username;
 				$_SESSION['email'] = $email;
 				$_SESSION['login'] = "1";
+				$_SESSION['userid'] = $user_id;
 				echo "success";
 			}
 		}
