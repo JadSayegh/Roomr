@@ -246,8 +246,8 @@
 		  <!-- Username -->
 		  <label class="control-label"> Username</label>
 		  <div class="controls">
-			<input type="text" id="loginUsername" name="loginUsername" placeholder="" class="input-xlarge">
-			
+			<input type="text" id="loginUsername" name="loginUsername" value="<?php
+echo $_COOKIE['remember_me_username']; ?>" class="input-xlarge">
 		  </div>
 		</div>
 	  
@@ -255,19 +255,21 @@
 		  <!-- Password-->
 		  <label class="control-label" >Password</label>
 		  <div class="controls">
-			<input type="password" id="loginPassword" name="loginPassword" placeholder="" class="input-xlarge">
+			<input type="password" id="loginPassword" name="loginPassword" value="<?php
+echo $_COOKIE['remember_me_password']; ?>" class="input-xlarge">
 		   
 		  </div>
+		</div>
 
 	 
         <div class="control-group">
 		  <!-- Remember Me checkbox-->
 		  <div class="controls">
-			<input type="checkbox" name="remember" value="1">Remember Me
+			<input type="checkbox" id="loginRemember" name="loginRemember" value="1" <?php
+if(isset($_COOKIE['remember_me'])) echo 'checked'; ?>>Remember Me
             </div>
 		   
 		  </div>
-		</div>
 
 	  
 	 </form>
@@ -441,8 +443,14 @@
 				if(loginCounter<5 ){
 					var username = $('#loginUsername').val();
 					var password = $('#loginPassword').val();
+					var checkbox = document.getElementById("loginRemember");
+                    if(checkbox.checked){
+                        var remember = checkbox.value;
+                    }else{
+                        var remember = 0;   
+                    }    
 					loginFlag = true;
-					console.log(username, password);
+					console.log(username, password, remember);
 					
 					$.ajax({
 						
@@ -451,7 +459,8 @@
 					dataType : 'text',
 					data: { 
 						username : username,
-						password : password						
+						password : password,
+                        remember : remember
 						},
 					success: function(datum){	
 									
