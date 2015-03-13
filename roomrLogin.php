@@ -14,14 +14,17 @@ require("dbConnect.php");
 			}
 			else{
 				session_start();
-				$sql = "SELECT email FROM users WHERE username = '$username'";
-				$result = $db->query($sql);
+				$sql = "SELECT email, id FROM users WHERE username = '$username'";
+				$result = $db->query($sql) or die('There was an error running the query [' . $db->error . ']');
                 $result_array = $result->fetch_assoc();
                 $email = $result_array['email'];
-                
+                $user_id = $result_array['id'];
+				
 				$_SESSION['username'] = $username;
 				$_SESSION['email'] = $email;
 				$_SESSION['login'] = "1";
+				$_SESSION['userid'] = $user_id;
+				
 				echo "pass";
 			}
 			
