@@ -328,14 +328,14 @@ display:inline-block;
 <div class = "module3">
 	
 	<form id="addSecurityQuestion" action = >
-        <p> Add Security Question: </p>
+        <p> Set New Security Question (this will replace previous question): </p>
        
-        <select name="securityQuestionList" form="addSecurityQuestion">
-  <option value="pet">Name of your first pet?</option>
-  <option value="teacher">Name of your favorite childhood teacher</option>
-  <option value="school">Name of your father's highschool?</option>
-  <option value="car">Make of your first car?</option>
-            <input type="text" name="answer">
+        <select name="securityQuestionList" form="addSecurityQuestion" id="securityQuestion">
+  <option value="1">Name of your first pet?</option>
+  <option value="2">Name of your favorite childhood teacher?</option>
+  <option value="3">Name of your father's highschool?</option>
+  <option value="4">Make of your first car?</option>
+        <input type="text" id="securityAnswer" >
         
        
        
@@ -344,6 +344,7 @@ display:inline-block;
 </select>
 	  
     <button type="button" class="btn btn-warning navbar-btn" onclick = "setSecurityQuestion()"><span class="glyphicon glyphicon-edit"></span> Submit</button>
+    <button type="button" class="btn btn-warning navbar-btn" onclick = "removeSecurityQuestion()"><span class="glyphicon glyphicon-edit"></span> Remove Question</button>
     <!-- END MATTHEW BEIROUTI ADDITIONS -->
   
   </div>
@@ -402,8 +403,73 @@ display:inline-block;
         }   
     }
         
+        function setSecurityQuestion(){
+        
+        var formSelectInput = document.getElementById("securityQuestion");
+        var formAnswerInput = document.getElementById("securityAnswer");
+            
+        var question = formSelectInput.value;
+        var answer = formAnswerInput.value;
+            
+        console.log("new security question is '" + question + "' and new answer is '" + answer + "'");
+         if(answer.length < 1){
+                alert("Please enter an answer to the question.");
+            }else{
+        
+             $.ajax({
+                type: "POST",
+                url: 'setSecurityQuestion.php',
+                 dataType : 'text',
+                data: { 
+                    question : question, 
+                    answer: answer
+                },
+                success: function(data){
+				console.log(data)
+                if(data.trim() == "success"){
+                    
+					alert("Security question has been set successfully!");
+				}
+                 else if (data.trim() == "exists"){
+				 alert("Security question has been changed successfully!");
+				 
+				 }else{
+					alert("Something went wrong! the security question has not been set..");
+				 }
+                }
+            });           
+            }
+    }
 	
-	
+    function removeSecurityQuestion(){
+        
+            
+        console.log("Removing security question...");
+         
+        
+             $.ajax({
+                type: "POST",
+                url: 'removeSecurityQuestion.php',
+                 dataType : 'text',
+                
+                success: function(data){
+				console.log(data)
+                if(data.trim() == "deleted"){
+                    
+					alert("Security question has been removed successfully!");
+				}
+                 else if (data.trim() == "not found"){
+				 alert("No security question existed to begin with..");
+				 
+				 }else{
+					alert("Something went wrong! the security question has not been set..");
+				 }
+                }
+            });           
+            
+    }    
+        
+        
 	 function changeUsername(){
         
         var formInput = document.getElementById("changeUsernameForm");
