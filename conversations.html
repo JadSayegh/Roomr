@@ -57,23 +57,20 @@
 </div>
     </nav>
 	</div>
-		<div class = "module">
+		<div class = "customContainer">
+		<div class = "living1">
 	  <button type="button" class="btn btn-danger navbar-btn" onclick = "sendMessage()"><span class="glyphicon glyphicon-send"></span> Send Message</button>
 	  <button type="button" class="btn btn-danger navbar-btn" onclick = "getMessages()"><span class="glyphicon glyphicon-send"></span> Get Message</button>
 	  </div>
-	  <div class="container1">
-		<div class="row carousel-row">
-			<div class="col-xs-offset-2 col-xs-3 slide-row2">
-				<div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">
-					
-					<div class="slide-content">
-					</div>
-					<div style="padding-left:100px;padding-bottom:10px;" class="slide-footer">
-					</div>
+			<div id = "conversationUsers" class = "col-xs-offset-2 col-xs-3 slide-row-container">
+			
+			</div>
+			<div class="col-xs-3 slide-row3">
+				<div id = "allMessages" class = "slide-content" style = "width:100%;">
+				
 				</div>
 			</div>
 		</div>
-		</div>	
 	<script type = "text/javascript">
 	
 	
@@ -85,15 +82,27 @@
 					url: 'getConversations.php',	
 					success: function(data){
 								console.log(data);
+								showConversations(JSON.parse(data));
 						
 					}
 				});
 			
 			}
 			
-			function getMessages(){
+			function showConversations(listOfUsers){
+				for(var i =0; i< listOfUsers.length; i++){
+					$("#conversationUsers").append('<div class="slide-row4" onclick = getMessages('+
+					listOfUsers[i].id +') ><div class="slide-content">'+ listOfUsers[i].username+ '</div> </div>');
+				
+				}	
 			
-			var receiverID = 9;
+			}
+			getConversations();
+			
+			
+			function getMessages(recipiant){
+			
+			var receiverID = recipiant;
 			$.ajax({
 					type: "POST",
 					url: 'getMessages.php',	
@@ -102,10 +111,38 @@
 					},
 					success: function(data){
 								console.log(data);
+								showMessages(JSON.parse(data, recipiant));
 						
 					}
 				});			
 			}
+			
+			function showMessages(listOfMessages, username){
+					
+					var previousSender = "nobody";
+					for(var i = 0; i<listOfMessages.length; i++){
+							var messageID = listOfMessages[i][0];
+							var messageBody = listOfMessages[i][1];
+							var senderID = listOfMessages[i][2];
+							var receiverID = listOfMessages[i][3];
+							var timeStamp = listOfMessages[i][4];
+							
+							console.log(messageBody);
+							
+							if( previousSender == receiverID){
+									$("#messageID").append('<div>'+ messageBody + '</div>');	
+							
+									
+							}
+							else{
+								$("#allMessages").append('<div id = "'+ messageID + '"class="slide-row4" style = "cursor:auto;" ><div class="slide-content">'+ messageBody +'</div><br></div>');	
+							}
+							previousSender = receiverID;
+							
+					}
+							
+			}
+			
 			function sendMessage(){
 			
 			var messageBody = "This is my first message!";
@@ -131,7 +168,7 @@
 					}
 				});
 				
-				getConversations();
+			
 			}
 			
 			

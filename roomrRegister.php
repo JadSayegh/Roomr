@@ -18,11 +18,18 @@ include("emailActivation.php");
 					die('There was an error running the query [' . $db->error . ']');
 				}
 				else{
+					
+					$sql = "SELECT id FROM users WHERE email = '$email'";
+					$result = $db->query($sql) or die('There was an error running the query [' . $db->error . ']');
+					$resultValue = $result->fetch_row();
+					$user_id = $resultValue[0];
+					
 					session_start();
 					$_SESSION['username'] = $username;
 					$_SESSION['email'] = $email;
 					$_SESSION['login'] = "1";
 					$_SESSION['activated'] = "0";
+					$_SESSION['userid'] = $userid;
 					echo "success";
 					
 					sendActivationEmail($username, $email, $email_code);

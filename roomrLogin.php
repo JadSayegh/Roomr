@@ -22,13 +22,13 @@ require("dbConnect.php");
                     setcookie('remember_me_password', $password, $year);
                     setcookie('remember_me', true, $year);
                 }elseif(!$remember) {
-                   if(isset($_COOKIE['remember_me_username']) &&                 isset($_COOKIE['remember_me_password'])) {
+                   if(isset($_COOKIE['remember_me_username']) &&  isset($_COOKIE['remember_me_password'])) {
                       $past = time() - 100;
-                    setcookie('remember_me', gone, $past);
-                    setcookie('remember_me_username', gone, $past);
+                    setcookie('remember_me', "gone", $past);
+                    setcookie('remember_me_username', "gone", $past);
     
                     setcookie('remember_me_password', "", $year);
-                    setcookie('remember_me_password', gone, $past);
+                    setcookie('remember_me_password', "gone", $past);
 	               }
                 }      
 
