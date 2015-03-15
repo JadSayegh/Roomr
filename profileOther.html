@@ -100,8 +100,8 @@
 					</tr>
 					</tbody>
 				</table>
-			</div>
-
+			</div><br><br><br><br>
+<div class = "favouriteButton"><button type="button" class="btn btn-warning navbar-btn" onclick = "addToFavourite()"><span class="glyphicon glyphicon-edit"></span>Add To Favourite</button></div>
 
 <!--Living Preferences section-->
 
@@ -109,11 +109,6 @@
 
 
 <!--Interests section-->
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
 			<div class="interests">
 				<h2>Interests</h2>
 
@@ -175,6 +170,21 @@
 	function editProfile(){
 
 		window.location.replace("editProfilePage.html");
+	}
+	
+	function addToFavourite(){
+		username = localStorage.username;
+			$.ajax({
+		
+				type: "POST",
+				url: 'addFavourite.php',
+				data: {
+					usernameFavourited:username
+				},
+				success: function(data){
+						console.log(data);				
+						}	
+			});
 	}
 		</script>
 	</body>
