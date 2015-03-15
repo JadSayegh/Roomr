@@ -34,7 +34,7 @@
     
     
     
-    $user_id = $email = $result_array["id"];
+    $user_id = $result_array["id"];
     
 	
     $sql = "SELECT name FROM interests INNER JOIN user_interests ON interests.id = user_interests.interest_id WHERE user_interests.user_id = '$user_id'";
@@ -42,7 +42,7 @@
 	$json = array();
 	array_push($json, $email);
 	array_push($json, $username);
-
+	array_push($json, $result_array["id"]);
     if(!$result = $db->query($sql)){
         die('There was an error running the query [' . $db->error . ']');
 	}else if($result->num_rows == 0){
@@ -53,7 +53,7 @@
         for($row_no = $result->num_rows - 1; $row_no >= 0; $row_no--){
             $result_array = $result->fetch_assoc();
 			array_push($json, $result_array["name"]);
-           
+			
         }
 		
     }

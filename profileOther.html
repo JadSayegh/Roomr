@@ -133,7 +133,8 @@
 						console.log(data);
 						var matches = JSON.parse(data);	
 						$("#username").append(matches[1]);
-						for(i = 2 ; i < matches.length; i++){
+						localStorage.userID = matches[2];
+						for(i = 3 ; i < matches.length; i++){
 							$("#interestList").append('<li>'+ matches[i] +'</li>');				
 							
 						}

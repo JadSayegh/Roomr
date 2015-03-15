@@ -65,8 +65,8 @@
 				success: function(data){
 						if(data.trim() != ""){
 				        //ask the question	
-				        $question = data.trim();
-						$(document.body).append("<br> <br> <p> please answer the following security question: </p>'"+$question+"'<form name = 'securityQuestion' class='form-horizontal' >"+"<input type='text' id='answer' name='answer' placeholder='' class='input-xlarge'>"+"<button type='button' class='btn btn-warning navbar-btn' onclick = 'checkSecurityQuestion()'>"+"<span class='glyphicon glyphicon-edit'></span> Submit</button>"+ "</form>");
+				        var question = data.trim();
+						$(document.body).append("<br> <br> <p> please answer the following security question: </p>'"+ question +"'<form name = 'securityQuestion' class='form-horizontal' >"+"<input type='text' id='answer' name='answer' placeholder='' class='input-xlarge'>"+"<button type='button' class='btn btn-warning navbar-btn' onclick = 'checkSecurityQuestion()'>"+"<span class='glyphicon glyphicon-edit'></span> Submit</button>"+ "</form>");
                         
 	                   }else{
                             displayProfilePage();   
