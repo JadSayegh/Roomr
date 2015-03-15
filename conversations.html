@@ -121,7 +121,7 @@
 					
 					var previousSender = "nobody";
 					for(var i = 0; i<listOfMessages.length; i++){
-							var messageID = listOfMessages[i][0];
+							
 							var messageBody = listOfMessages[i][1];
 							var senderID = listOfMessages[i][2];
 							var receiverID = listOfMessages[i][3];
@@ -130,6 +130,7 @@
 							console.log(messageBody);
 							
 							if( previousSender == receiverID){
+									var messageID = listOfMessages[i][0];
 									$("#messageID").append('<div>'+ messageBody + '</div>');	
 							
 									
@@ -181,7 +182,7 @@
 						
 						success: function(data){
 								if(data.trim() == "success"){
-									window.location.replace("index.html");
+									window.location.replace("index.php");
 									
 								}
 								else{
