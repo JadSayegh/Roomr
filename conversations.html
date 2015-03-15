@@ -14,7 +14,6 @@
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/general.css">
 	<link type="text/css" rel="stylesheet" href="profileStyle.css"/>
-	
 	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     
@@ -39,9 +38,9 @@
         <li><a href="livingPreferences.html">Interests</a></li>
 		<li><a href = "Profile.html"> My Profile </a></li>
         <li><a href="requests.html">Requests</a></li>
-		<li class = "active"><a href="aboutPage.html">About</a></li>
+		<li><a href="aboutPage.html">About</a></li>
 		<li><a href="search.html">Search</a></li>
-		<li><a href="conversations.html">Conversations</a></li>
+		<li class = "active"><a href="conversations.html">Conversations</a></li>
 		
  <div id="navbar" class="navbar-collapse collapse">
          		  
@@ -58,80 +57,115 @@
 </div>
     </nav>
 	</div>
-	
-     
-	<div class = "fullPage">
-	
-		
-		<div id="legend">
-		  <legend class="legend">Goal</legend>
-		</div>	 
-                <div class = "textBox">
-                To create a platform for people to easily find apartments in neighbourhoods of their interest based on their budget and personal 
-                interests. After creating an account, a registered user can proceed to fill out a living preferences and an interests page which
-                is then populated into the website's database. The user can at any time change his earlier requirements and perform another search. 
-                An algorithm is used to match the user's requirements against the information provided by other users which then returns search results 
-                for the request.
-                </div>
-                <br>
-                <br>
-
-
-		<div id="legend">
-		  <legend class="">About Us</legend>
-		</div>
-		<div class = "textBox">
-		We are a team of McGill Engineering students who aim to make a website which can assist people with their apartment hunting process. 
-                We decided on a simple and clean look for the website to keep the focus on the website's purpose.
-		<div>
-		<br>
-                <br>
-
-		<div id="legend">
-		  <legend class="legend">Contact</legend>
-		</div>
-                <div class = "textBox">
-                For any queries or concerns, please direct your questions to information@roomr.com
+		<div class = "module">
+	  <button type="button" class="btn btn-danger navbar-btn" onclick = "sendMessage()"><span class="glyphicon glyphicon-send"></span> Send Message</button>
+	  <button type="button" class="btn btn-danger navbar-btn" onclick = "getMessages()"><span class="glyphicon glyphicon-send"></span> Get Message</button>
+	  </div>
+	  <div class="container1">
+		<div class="row carousel-row">
+			<div class="col-xs-offset-2 col-xs-3 slide-row2">
+				<div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">
+					
+					<div class="slide-content">
+					</div>
+					<div style="padding-left:100px;padding-bottom:10px;" class="slide-footer">
+					</div>
 				</div>
-                <br>
-                <br>
-		
-
-    
-
-	</div>
+			</div>
+		</div>
+		</div>	
 	<script type = "text/javascript">
-	function editProfile(){
-
-		window.location.replace("editProfilePage.html");
-	}
-	function signOut(){
-		
-		$.ajax({
-		
-			type: "POST",
-                url: 'roomrLogout.php',
-				
-				success: function(data){
-						if(data.trim() == "success"){
-							window.location.replace("index.php");
-							
-						}
-						else{
-							window.alert("Logout failed, please try again");
-						}
-				
-				}
-		
-		
-		});
 	
 	
+		
+			function getConversations(){
+			
+				$.ajax({
+					type: "POST",
+					url: 'getConversations.php',	
+					success: function(data){
+								console.log(data);
+						
+					}
+				});
+			
+			}
+			
+			function getMessages(){
+			
+			var receiverID = 9;
+			$.ajax({
+					type: "POST",
+					url: 'getMessages.php',	
+					data:{
+						receiverID: receiverID
+					},
+					success: function(data){
+								console.log(data);
+						
+					}
+				});			
+			}
+			function sendMessage(){
+			
+			var messageBody = "This is my first message!";
+			var receiverID = 9;
+			
+			$.ajax({
+					type: "POST",
+					url: 'sendMessage.php',	
+					data:{
+						messageBody : messageBody,
+						receiverID: receiverID
+					},
+					success: function(data){
+								if(data.trim() == "conversation createdsuccess" ||
+								data.trim() == "conversation existssuccess"){
+									console.log("message sent");									
+								}
+								else{
+									console.log(data);
+									window.alert("Message did not send");
+								}
+						
+					}
+				});
+				
+				getConversations();
+			}
+			
+			
+			function signOut(){
+		
+				$.ajax({
+				
+					type: "POST",
+						url: 'roomrLogout.php',
+						
+						success: function(data){
+								if(data.trim() == "success"){
+									window.location.replace("index.html");
+									
+								}
+								else{
+									window.alert("Logout failed, please try again");
+								}
+						
+						}
+				
+				
+				});
+			
+			
 	}
-	</script>
-	  
+	
+			function editProfile(){
 
-
-  </body>
-</html>
-
+				window.location.replace("editProfilePage.html");
+		}
+			
+		</script>
+		
+	</body>
+	
+	</html>
