@@ -445,15 +445,18 @@
 	
 		function roomrLogin(){
 			loginCounter++;
+			var remember = 0;
 			if($.cookie("blocked") == null){
+				
 				if(loginCounter<5 ){
 					var username = $('#loginUsername').val();
 					var password = $('#loginPassword').val();
 					var checkbox = document.getElementById("loginRemember");
+					
                     if(checkbox.checked){
-                        var remember = checkbox.value;
+                        remember = checkbox.value;
                     }else{
-                        var remember = 0;   
+                        remember = 0;   
                     }    
 					loginFlag = true;
 					console.log(username, password, remember);

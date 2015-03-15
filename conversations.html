@@ -65,8 +65,10 @@
 			<div id = "conversationUsers" class = "col-xs-offset-2 col-xs-3 slide-row-container">
 			
 			</div>
-			<div id = "allMessages" class="col-xs-3 slide-row3">
+			<div class="col-xs-3 slide-row3">
+				<div id = "allMessages" class = "slide-content" style = "width:100%;">
 				
+				</div>
 			</div>
 		</div>
 	<script type = "text/javascript">
@@ -109,23 +111,38 @@
 					},
 					success: function(data){
 								console.log(data);
-								showMessages(JSON.parse(data));
+								showMessages(JSON.parse(data, recipiant));
 						
 					}
 				});			
 			}
 			
-			function showMessages(listOfMessages){
+			function showMessages(listOfMessages, username){
 					
+					var previousSender = "nobody";
 					for(var i = 0; i<listOfMessages.length; i++){
+							var messageID = listOfMessages[i][0];
 							var messageBody = listOfMessages[i][1];
+							var senderID = listOfMessages[i][2];
+							var receiverID = listOfMessages[i][3];
+							var timeStamp = listOfMessages[i][4];
+							
 							console.log(messageBody);
-							$("#allMessages").append('<div class="slide-row4" ><div class="slide-content">'+ messageBody +'</div><br></div>');					
+							
+							if( previousSender == receiverID){
+									$("#messageID").append('<div>'+ messageBody + '</div>');	
+							
+									
+							}
+							else{
+								$("#allMessages").append('<div id = "'+ messageID + '"class="slide-row4" style = "cursor:auto;" ><div class="slide-content">'+ messageBody +'</div><br></div>');	
+							}
+							previousSender = receiverID;
+							
 					}
-					
-					
-			
+							
 			}
+			
 			function sendMessage(){
 			
 			var messageBody = "This is my first message!";
