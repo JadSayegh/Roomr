@@ -26,6 +26,10 @@
 	}
 	</style>
 
+     
+      
+      
+      
 	<script type = "text/javascript">
 		checkStatus();
 		
@@ -39,10 +43,8 @@
 				
 				success: function(data){
 						if(data.trim() == "activated"){
-							displayProfilePage();
-							
-						}
-						else{
+                            displaySecurityQuestion();   
+                        }else{
 							displayActivationPage();
 						}
 				
@@ -53,6 +55,51 @@
 	
 	}
 	
+    function displaySecurityQuestion(){
+					
+		$.ajax({
+		
+			type: "POST",
+                url: 'fetchSecurityQuestion.php',
+				
+				success: function(data){
+						if(data.trim() != ""){
+				        //ask the question	
+				        $question = data.trim();
+						$(document.body).append("<br> <br> <p> please answer the following security question: </p>'"+$question+"'<form name = 'securityQuestion' class='form-horizontal' >"+"<input type='text' id='answer' name='answer' placeholder='' class='input-xlarge'>"+"<button type='button' class='btn btn-warning navbar-btn' onclick = 'checkSecurityQuestion()'>"+"<span class='glyphicon glyphicon-edit'></span> Submit</button>"+ "</form>");
+                        
+	                   }else{
+                            displayProfilePage();   
+                       }
+           			}
+		});
+	
+	}
+        
+    function checkSecurityQuestion(){
+
+        var answer = document.getElementById("answer").value;
+        $.ajax({
+		
+			type: "POST",
+                url: 'checkSecurityAnswer.php',
+				dataType : 'text',
+                data: {  
+                    answer: answer
+                },
+				success: function(data){
+						if(data.trim() == "success"){
+				             displayProfilePage();
+                        }else{
+                            alert("Incorrect answer!");
+                        }
+                }
+                });
+        
+    }
+	    
+        
+        
 	function displayActivationPage(){
 	
 		$(document.body).append("<br> <br> <legend class = 'module'> please activate your account through the link sent to you by email </legend>");
