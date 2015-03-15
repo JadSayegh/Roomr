@@ -247,7 +247,10 @@
 		  <label class="control-label"> Username</label>
 		  <div class="controls">
 			<input type="text" id="loginUsername" name="loginUsername" value="<?php
-echo $_COOKIE['remember_me_username']; ?>" class="input-xlarge">
+				if(isset($_COOKIE['remember_me_username'])){
+					echo $_COOKIE['remember_me_username']; 
+				}
+				?>" class="input-xlarge">
 		  </div>
 		</div>
 	  
@@ -256,7 +259,10 @@ echo $_COOKIE['remember_me_username']; ?>" class="input-xlarge">
 		  <label class="control-label" >Password</label>
 		  <div class="controls">
 			<input type="password" id="loginPassword" name="loginPassword" value="<?php
-echo $_COOKIE['remember_me_password']; ?>" class="input-xlarge">
+					if(isset($_COOKIE['remember_me_password'])){
+						echo $_COOKIE['remember_me_password'];
+					}					
+						?>" class="input-xlarge">
 		   
 		  </div>
 		</div>
@@ -266,7 +272,7 @@ echo $_COOKIE['remember_me_password']; ?>" class="input-xlarge">
 		  <!-- Remember Me checkbox-->
 		  <div class="controls">
 			<input type="checkbox" id="loginRemember" name="loginRemember" value="1" <?php
-if(isset($_COOKIE['remember_me'])) echo 'checked'; ?>>Remember Me
+				if(isset($_COOKIE['remember_me'])) echo 'checked'; ?>>Remember Me
             </div>
 		   
 		  </div>
