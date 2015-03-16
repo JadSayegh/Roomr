@@ -3,8 +3,8 @@ header('Content-type: text/html; charset=utf-8');
 include 'dbConnect.php';
 		
 		session_start();
-		$username = $_SESSION['username'];
-		$favouritedUsername = ($_POST['usernameFavourited']);
+		$username = $_SESSION['userid'];
+		$favouritedUsername = ($_POST['favouritedID']);
 		echo $favouritedUsername;
 		echo $username;
 		$sql = "SELECT * from user_favourites WHERE favourite_id = '$favouritedUsername' AND user_id = '$username'";

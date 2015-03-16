@@ -174,13 +174,13 @@
 	}
 	
 	function addToFavourite(){
-		username = localStorage.username;
+		userID = localStorage.userID;
 			$.ajax({
 		
 				type: "POST",
 				url: 'addFavourite.php',
 				data: {
-					usernameFavourited:username
+					favouritedID:userID
 				},
 				success: function(data){
 						console.log(data);				
