@@ -194,7 +194,8 @@
 		  <!-- Username -->
 		  <label class="control-label"  >Username</label>
 		  <div class="controls" id = "warnUsername">
-			<input type="text" id="registerUsername" name="registerUsername" placeholder="" class="input-xlarge">
+			<input type="text" id="registerUsername" name="registerUsername" placeholder="" class="input-xlarge" oninput="searchUsernameExists()" onpropertychange="searchUsernameExists()">
+			<p id = "usernameExists"></p>
 			<p class="help-block">Username can contain only letters or numbers, and must be at least 8 characters</p>
 		  </div>
 		</div>
@@ -441,6 +442,27 @@
 				return false;
 			}
 			else return true;
+		}
+		
+		function searchUsernameExists(){
+			$("#usernameExists").empty();
+		var username = $('#registerUsername').val();
+		console.log(username);
+		$.ajax({
+						
+							type: "POST",
+							url: 'searchUsernameExists.php',
+					dataType : 'text',
+					data: { 
+						username : username,
+						},
+					success: function(datum){	
+							console.log(datum);
+							if(datum.trim() == "not unique"){	
+							$("#usernameExists").append("<b>Username Already Exists</b>");				
+							}
+					}
+					});
 		}
 	
 		function roomrLogin(){
