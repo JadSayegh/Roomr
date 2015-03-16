@@ -5,7 +5,7 @@ require("dbConnect.php");
 session_start();
 $senderID = $_SESSION['userid'];
 
-$sql = "SELECT firstParticipant FROM conversation WHERE secondParticipant = '$senderID' UNION SELECT SecondParticipant FROM conversation WHERE firstParticipant = '$senderID'";
+$sql = "SELECT firstParticipant FROM conversation WHERE secondParticipant = '$senderID' UNION SELECT SecondParticipant FROM conversation WHERE firstParticipant = '$senderID' ";
 $result = $db->query($sql) or die('There was an error running the query [' . $db->error . ']');
 
 $recipiants = array();
@@ -15,7 +15,10 @@ while($row = $result->fetch_row()){
 		$sql = "SELECT id, username, email FROM users WHERE id = '$recipiantID'";
 		$recipiantResult = $db->query($sql);
 		$recipiants[$i] = $recipiantResult->fetch_assoc();
+		$i++;
 }
+
+
 echo json_encode($recipiants);
 
 

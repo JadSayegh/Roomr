@@ -146,7 +146,9 @@
 			url : "roomrFBLogin.php",
 			data: {email : email_address},
 			success: function(data){
-					if(data = "success"){
+					if(data.indexOf("success") != -1){
+						localStorage.currentUser = email_address;
+						setID(data);
 						window.location.replace("roomrHome.html");
 					}
 					else{
@@ -472,9 +474,10 @@
                         remember : remember
 						},
 					success: function(datum){	
-									
+							localStorage.currentUser = username;
+							setID(datum);
 							console.log(datum);					
-							if(datum.trim() == "pass") {
+							if(datum.indexOf("pass") != -1) {
 								console.log("woo");
 								window.location.replace("roomrHome.html");
 								//$("#loginWarning").remove();
@@ -501,6 +504,12 @@
 			}
 		}
 		
+		function setID(answerData){
+			
+				var userID = parseInt(answerData.substr(answerData.indexOf('userid')+6));
+				localStorage.currentID = userID;
+				
+		}
 		function signUp(){			
 		
 			if( formValidation()){
@@ -527,7 +536,10 @@
 														
 									if(data.indexOf("success") != -1){
 										console.log("woo");
+										localStorage.currentUser = username;
+										setID(data);
 										$( document ).ready(function(){
+											
 											window.location.replace("roomrHome.html");
 										});
 									}

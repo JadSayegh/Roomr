@@ -59,18 +59,42 @@
 	</div>
 		<div class = "customContainer">
 		<div class = "living1">
-	  <button type="button" class="btn btn-danger navbar-btn" onclick = "sendMessage()"><span class="glyphicon glyphicon-send"></span> Send Message</button>
-	  <button type="button" class="btn btn-danger navbar-btn" onclick = "getMessages()"><span class="glyphicon glyphicon-send"></span> Get Message</button>
-	  </div>
-			<div id = "conversationUsers" class = "col-xs-offset-2 col-xs-3 slide-row-container">
+		 
+		</div>
 			
-			</div>
-			<div class="col-xs-3 slide-row3">
-				<div id = "allMessages" class = "slide-content" style = "width:100%;">
+				<div id = "conversationUsers" class = "slide-row-container" >
 				
 				</div>
+			
+			
+			
+			<div class="slide-row3">
+				<div id = "allMessages" class = "slide-content" style = "width:100%;">
+				
+				</div>				
+					
 			</div>
+			
+			<div class = "messageBox" >
+				
+							<input id="btn-input" type="text" placeholder="Type your message here..." style = "width:75%;"/>
+							<span id = "sendButton">
+								<button class="btn btn-warning btn-sm" id="btn-chat">
+									Send
+								</button>
+							</span>
+				
+			</div>
+			
+			
+			
+		
+		
+                    
+                
 		</div>
+		
+		 
 	<script type = "text/javascript">
 	
 	
@@ -92,7 +116,7 @@
 			function showConversations(listOfUsers){
 				for(var i =0; i< listOfUsers.length; i++){
 					$("#conversationUsers").append('<div class="slide-row4" onclick = getMessages('+
-					listOfUsers[i].id +') ><div class="slide-content">'+ listOfUsers[i].username+ '</div> </div>');
+					listOfUsers[i].id +','+  "'" + listOfUsers[i].username + "'" + ') ><div class="slide-content">'+ listOfUsers[i].username+ '</div> </div>');
 				
 				}	
 			
@@ -100,9 +124,11 @@
 			getConversations();
 			
 			
-			function getMessages(recipiant){
+			function getMessages(recipiant, recipiantName){
 			
 			var receiverID = recipiant;
+			$("#sendButton").empty();
+			$("#sendButton").append('<button class="btn btn-warning btn-sm" id="btn-chat" onclick = "sendMessage(' + recipiant +',' + "'" + recipiantName +"'"+ ')"> Send </button>');
 			$.ajax({
 					type: "POST",
 					url: 'getMessages.php',	
@@ -111,54 +137,70 @@
 					},
 					success: function(data){
 								console.log(data);
-								showMessages(JSON.parse(data, recipiant));
+								showMessages(JSON.parse(data), recipiantName);
 						
 					}
 				});			
 			}
 			
 			function showMessages(listOfMessages, username){
-					
+					$("#allMessages").empty();
+					console.log(localStorage.userID, "this is the username");
 					var previousSender = "nobody";
+					var blockID = 0;
+					var displayUser;
 					for(var i = 0; i<listOfMessages.length; i++){
 							
+							var messageID = listOfMessages[i][0];
 							var messageBody = listOfMessages[i][1];
 							var senderID = listOfMessages[i][2];
 							var receiverID = listOfMessages[i][3];
 							var timeStamp = listOfMessages[i][4];
 							
 							console.log(messageBody);
-							
+							console.log(senderID);
 							if( previousSender == receiverID){
-									var messageID = listOfMessages[i][0];
-									$("#messageID").append('<div>'+ messageBody + '</div>');	
+									
+									$("#"+blockID+"").append('<div style = "padding: 1.5% 2% 2% 2%; width:100%;">'+ messageBody + '</div>');	
 							
 									
 							}
 							else{
-								$("#allMessages").append('<div id = "'+ messageID + '"class="slide-row4" style = "cursor:auto;" ><div class="slide-content">'+ messageBody +'</div><br></div>');	
+								if(senderID == localStorage.currentID){
+									displayUser = localStorage.currentUser;
+								}else{
+									displayUser = username;
+								}
+								blockID = messageID;
+								$("#allMessages").append('<div id = "'+ blockID + '"class="slide-row4" style = "cursor:auto;" > '+ displayUser + ":" +'<div style= "padding: 1.5% 2% 2% 2%;position:relative; width:100%;">'+ messageBody +'</div></div>');	
+								
 							}
+							var objDiv = document.getElementById("allMessages");
+							objDiv.scrollTop = objDiv.scrollHeight;
 							previousSender = receiverID;
 							
 					}
 							
 			}
 			
-			function sendMessage(){
+			function sendMessage(recipiant, recipiantName){
 			
-			var messageBody = "This is my first message!";
-			var receiverID = 9;
+			var messageBody = $("#btn-input").val();
+			
+			if(messageBody != ""){
+			
+			
 			
 			$.ajax({
 					type: "POST",
 					url: 'sendMessage.php',	
 					data:{
 						messageBody : messageBody,
-						receiverID: receiverID
+						receiverID: recipiant
 					},
 					success: function(data){
 								if(data.trim() == "conversation createdsuccess" ||
-								data.trim() == "conversation existssuccess"){
+								data.trim() == "conversation existssuccess" || data.trim() == "success" ){
 									console.log("message sent");									
 								}
 								else{
@@ -169,6 +211,13 @@
 					}
 				});
 				
+				getMessages(recipiant, recipiantName);
+				$("#btn-input").val("");
+				}
+				
+				else{
+					alert("please send a non-empty message");
+				}
 			
 			}
 			

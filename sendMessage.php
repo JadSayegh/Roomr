@@ -16,15 +16,21 @@ $sql = "INSERT INTO messages (body, receiverID, senderID) VALUES ('$messageBody'
 
 
 $result = $db->query($sql) or die('There was an error running the query [' . $db->error . ']');
+$sql = "SELECT * FROM conversation WHERE firstParticipant = '$senderID' AND secondParticipant = '$receiverID' 
+		UNION SELECT * FROM conversation WHERE firstParticipant = '$receiverID' AND secondParticipant = '$senderID'";
 
-$sql = "INSERT INTO conversation (firstParticipant, secondParticipant) VALUES ('$senderID', '$receiverID') ";
+$result = $db->query($sql); 		
+if($result->num_rows == 0){
+	
+	$sql = "INSERT INTO conversation (firstParticipant, secondParticipant) VALUES ('$senderID', '$receiverID') ";
 
-if($db->query($sql)){
-	echo "conversation created";
-}else{
-	echo "conversation exists";
+	if($db->query($sql)){
+		echo "conversation created";
+	}else{
+		echo "conversation exists";
+	}
+
 }
-
 echo "success";
 
 ?>

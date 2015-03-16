@@ -31,7 +31,8 @@ include("emailActivation.php");
 					$_SESSION['activated'] = "0";
 					$_SESSION['userid'] = $userid;
 					echo "success";
-					
+					echo "userid";
+					echo $user_id;
 					sendActivationEmail($username, $email, $email_code);
 					
 				}

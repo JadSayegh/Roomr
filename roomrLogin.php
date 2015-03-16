@@ -46,6 +46,8 @@ require("dbConnect.php");
 				$_SESSION['userid'] = $user_id;
 				
 				echo "pass";
+				echo "userid";
+				echo $user_id;
 			}
 			
 	}
