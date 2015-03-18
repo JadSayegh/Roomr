@@ -244,9 +244,42 @@
 	
 }
 .slide-row-container::-webkit-scrollbar {
-  color: grey;
+  
   width: 5px;
   height: 10px;
+}
+
+.slide-row-container2{
+	margin-top: 0.4%;
+	
+    padding: 5px;
+    background-color: #ffffff;
+    max-height: 500px;
+	width: 40%;
+	
+	
+    
+    position: relative;
+	overflow-y:auto;
+	float:left;
+	
+}
+.slide-row-container2::-webkit-scrollbar {
+  
+  width: 5px;
+  height: 10px;
+}
+.slide-row-container2::-webkit-scrollbar-thumb {
+  background:#999;
+  border: thin solid gray;
+  border-radius:10px;
+
+}
+.slide-row-container::-webkit-scrollbar-thumb {
+  background:#999;
+  border: thin solid gray;
+  border-radius:10px;
+
 }
 
 a.fill-div {
