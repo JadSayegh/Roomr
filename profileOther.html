@@ -101,7 +101,8 @@
 					</tbody>
 				</table>
 			</div><br><br><br><br>
-<div class = "favouriteButton"><button type="button" class="btn btn-warning navbar-btn" onclick = "addToFavourite()"><span class="glyphicon glyphicon-edit"></span>Add To Favourite</button></div>
+<div class = "favouriteButton"><button type="button" class="btn btn-warning navbar-btn" onclick = "addToFavourite()"><span class="glyphicon glyphicon-edit"></span> Add To Favourite</button></div>
+<div class = "favouriteButton"><button type="button" class="btn btn-warning navbar-btn" onclick = "startConversation()"><span class="glyphicon glyphicon-send"></span> Message Me</button></div>
 
 <!--Living Preferences section-->
 
@@ -186,6 +187,31 @@
 						console.log(data);				
 						}	
 			});
+	}
+	
+	function startConversation(){
+		var recipiant = localStorage.userID;
+		$.ajax({
+					type: "POST",
+					url: 'createConversation.php',	
+					data:{
+						messageBody : "",
+						receiverID: recipiant
+					},
+					success: function(data){
+								if(data.trim() == "conversation createdsuccess" ||
+								data.trim() == "conversation existssuccess" || data.trim() == "success" ){
+									window.alert("conversation created!");	
+									location.replace("conversations.html");
+								}
+								else{
+									console.log(data);
+									window.alert("conversation creation failed!");
+								}
+						
+					}
+				});
+	
 	}
 		</script>
 	</body>
