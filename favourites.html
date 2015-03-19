@@ -46,7 +46,8 @@
         
         <li><a href="livingPreferences.html">Interests</a></li>
 		<li><a href = "Profile.html"> My Profile </a></li>
-        <li class="active"><a href="requests.html">Requests</a></li>
+        <li><a href="requests.html">Requests</a></li>
+        <li class="active"><a href="requests.html">Favourites</a></li>
 		<li><a href="aboutPage.html">About</a></li>
 		<li><a href="search.html">Search</a></li>
 		<li><a href="conversations.html">Conversations</a></li>
@@ -66,8 +67,6 @@
 </div>
     </nav>
 	</div>
-
-<div class ="requests" id="requestId" onload ="loadRequests()"> No Requests At The Moment</div>
 
 <!--<button type="button" class="btn btn-warning navbar-btn" onclick = "editProfile()"><span class="glyphicon glyphicon-edit"></span>Add a Request</button></div>-->
 <div class = "customContainer">
@@ -113,10 +112,11 @@ console.log("hey");
 				
 				success: function(data){
 					console.log("FETCHED REQUESTS");
-					$.getJSON('displayRequests.php', function(data_array) {
+					//console.log(data);
+					$.getJSON('displayFavourites.php', function(data_array) {
 						for (i = 0; i < data_array.length; i++){
-							var row = data_array[i]; 
-							printRequest(row,i);
+							var row = data_array[i];
+							printFavourite(row,i);
 						}
 					});
 
@@ -127,207 +127,12 @@ console.log("hey");
 
 }
 
-function printRequest(row,i){
-var rid = row['rid'];
-var neighbourhoodIndex = row['neighbourhood'];
-var neighbourhood;
-var roommates = row['roommates'];
-var feesIndex = row['fees'];
-var fees;
-var partyIndex = row['party'];
-var party;
-var housedIndex = row['housed'];
-var housed;
-var smokeIndex = row['smoke'];
-var smoke;
-var pet_friendlyIndex = row['pet_friendly'];
-var pet_friendly;
-
-if (partyIndex == 1){ 
-	party = "Yes";
-} else {
-	party = "No";
-}
-
-if (housedIndex == 1){
-	housed = "House";
-}else {
-	housed = "Apartment";
-}
-
-if (smokeIndex == 1){
-	smoke = "Yes";
-}else {
-	smoke = "No";
-}
-
-if (pet_friendly == 1){
-	pet_friendly = "Yes";
-} else {
-	pet_friendly = "No";
-}
-
-
-if (roommates == 6) {
-	roommates = "6+";
-}
-	if (neighbourhoodIndex == 0){
-		neighbourhood = "Select Location";
-	} else
-	if (neighbourhoodIndex == 1){
-		neighbourhood = "Ahuntsic-Cartierville";
-	} else 
-	if(neighbourhoodIndex == 2) {		
-		neighbourhood = "Anjou";
-	} else 
-	if (neighbourhoodIndex == 3){ 
-		neighbourhood = "Bois-Franc";
-	} else 
-	if (neighbourhoodIndex == 4){
-		neighbourhood = "Chinatown";
-	} else 
-	if  (neighbourhoodIndex == 5){
-		neighbourhood = "Côte-des-Neiges";
-	} else 
-	if (neighbourhoodIndex == 6){ 
-			neighbourhood = "Gay Village";
-	} else 
-	if (neighbourhoodIndex == 7){
-		neighbourhood = "Goose Village";
-	} else 
-
-	if (neighbourhoodIndex == 8){
-		neighbourhood = "Griffintown";
-	}else 
-
-	if (neighbourhoodIndex == 9){ 
-		neighbourhood = "Hochelaga-Maisonneuve";
-	} else 
-
-	if (neighbourhoodIndex == 10){ 
-		neighbourhood = "Jacques-Bizard";
-	} else 
-
-	if (neighbourhoodIndex == 11){
-		neighbourhood = "La Petite-Patrie";
-	} else 
-
-	if (neighbourhoodIndex == 12){ 
-		neighbourhood = "Lachine";
-	} else 
-
-	if (neighbourhoodIndex == 13){ 
-		neighbourhood = "LaSalle";
-	} else 
-	if (neighbourhoodIndex == 14){
-		neighbourdhood = "Le Plateau-Mont-Royal";
-	} else 
-
-	if (neighbourhoodIndex == 15){
-		neighbourhood = "Le Sud-Ouest";
-	} else 
-	if (neighbourhoodIndex == 16){ 
-		neighbourhood = "Little Burgundy";
-	} else 
-	if (neighbourhoodIndex == 17){
-		neighbourhood = "Little Portugal";
-	} else 
-	if (neighbourhoodIndex == 18){
-		neighbourhood = "Mercier";
-	} else 
-
-	if (neighbourhoodIndex == 19){
-		neighbourhood = "Mile End";
-	} else 
-
-	if (neighbourhoodIndex == 20){
-		neighbourhood = "Milton-Parc";
-	} else 
-
-	if (neighbourhoodIndex == 21){ 
-		neighbourhood = "Montréal-Nord";
-	} else 
-	if (neighbourhoodIndex == 22){
-		neighbourhood = "Notre-Dame-de-Grâce";
-	} else 
-	if (neighbourhoodIndex == 23){
-		neighbourhood = "Old Montreal";
-	} else 
-	if (neighbourhoodIndex == 24){
-		neighbourhood = "Outremont";
-	} else 
-	if (neighbourhoodIndex == 25){ 
-		neighbourdhood = "Pierrefonds";
-	} else 
-	if (neighbourhoodIndex == 26){   
-		neighbourhood = "Pointe-aux-Trembles";
-	} else 
-	if (neighbourhoodIndex == 27){ 
-		neighbourhood = "Pointe-Saint-Charles";
-	} else 
-	if (neighbourhoodIndex == 28){ 
-		neighbourhood = "Rivière-des-Prairies";
-	} else 
-	if (neighbourhoodIndex == 29){ 
-		neighbourhood = "Rosemont";
-	} else 
-	 if (neighbourhoodIndex == 30){ 
-		neighbourhood = "Roxboro";
-	} else 
-	if (neighbourhoodIndex == 31){ 
-		neighbourhood = "Saint-Henri";
-	} else 
-	  if (neighbourhoodIndex == 32){  
-		neighbourhood = "Saint-Laurent";
-	} else 
- 	if (neighbourhoodIndex == 33){  
-		neighbourhood = "Saint-Léonard";
-	} else 
-	 if (neighbourhoodIndex == 34){ 
-		neighbourhood = "Sainte-Geneviève";
-	} else 
-	if (neighbourhoodIndex == 35){
-		neighbourhood = "Verdun";
-	} else 
-	 if (neighbourhoodIndex == 36){ 
-		neighbourhood = "Ville-Émard";
-	} else 
- 	if (neighbourhoodIndex == 37){ 
-		neighbourhood = "Ville-Marie/Downtown"
-	} else 
-	if (neighbourhoodIndex == 38){ 
-		neighbourhood = "Ville-Saint-Paul";
-	} else 
-	 if (neighbourhoodIndex == 39){ 
-		neighbourhood = "Villeray-Saint-Michel-Parc-Extension";
-	}
-
-
-if (feesIndex == 0){
-	fees = "Select price range";
-} else 
-if (feesIndex == 1){
-	fees = "Less than 400";
-} else 
-if (feesIndex == 2){
-	fees = "400 - 549";
-} else 
-if (feesIndex == 3){
-	fees = "550 - 699";
-} else 
-if (feesIndex == 4){
-	fees = "700 - 849";
-} else 
-if (feesIndex == 5){
-	fees = "850-999";
-}
-if (feesIndex == 6){
-	fees = "1000 - 1149";
-} else 
-if (feesIndex == 7){
-	fees = "more than 1150";
-}
-
+function printFavourite(row,i){
+var favouritedId = row['favourite_id'];
+var favouriteUsername = row['favourite_username'];
+console.log(favouritedId);
+console.log(favouriteUsername);
+/*
 $(".requests" ).remove();
 $("#requestDisplay").append('<div class = "container1"><div class="col-xs-8 col-xs-offset-2"></div><br><div class="row carousel-row " id = ' + rid +' >' +
         '<div class="col-xs-4 col-xs-offset-1 slide-row" ><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel" >'+
@@ -345,7 +150,7 @@ $(requestName).append("<u>House or Apartment: </u>" + housed +"<br>");
 $(requestName).append("<u>Pet Friendly: </u>" + pet_friendly+"<br>");
 $(requestName).append("<u>Party: </u>" + party+"<br>");
 $(requestName).append("<u>Smoker Friendly: </u>" + smoke+"<br>");
-$(requestTitle).append("Request:" + rid);
+$(requestTitle).append("Request:" + rid); */
 
 }
 
@@ -372,121 +177,6 @@ $(requestTitle).append("Request:" + rid);
 	
 	
 	}
-
-function addRequest(){
-
-
-var rentPriceRange = document.getElementById("rentPriceRange").options[document.getElementById("rentPriceRange").selectedIndex].value;
-var neighbourhood = document.getElementById("neighbourhood").options[document.getElementById("neighbourhood").selectedIndex].value;
-var roommates = document.getElementById("roommates").options[document.getElementById("roommates").selectedIndex].value;
-
-var rentPriceRangeText = document.getElementById("rentPriceRange").options[document.getElementById("rentPriceRange").selectedIndex].text;
-var neighbourhoodText = document.getElementById("neighbourhood").options[document.getElementById("neighbourhood").selectedIndex].text;
-var roommatesText = document.getElementById("roommates").options[document.getElementById("roommates").selectedIndex].text;	
-
-$("#addRequest").append("<u>Neighbourhood: </u>"+ neighbourhoodText + "<br>");
-$("#addRequest").append("<u>Rent Price Range: </u>" + rentPriceRangeText+"<br>");
-$("#addRequest").append("<u>Number of Roommates: </u>" + roommatesText+"<br>");
-	
-			var radios1 = document.getElementsByName("ha");
-			for (var i = 0, length = radios1.length; i < length; i++) {
-				if (radios1[i].checked) {
-					// do whatever you want with the checked radio
-					var houseApartment = radios1[i].value;
-					var houseApartmentText = radios1[i].nextSibling.data;
-					$("#addRequest").append("<u>House Or Apartment: </u>" + houseApartmentText+"<br>");
-					// only one radio can be logically checked, don't check the rest
-					break;
-				}
-			}
-
-			var radios2 = document.getElementsByName("pf1");
-			for (var i = 0, length = radios2.length; i < length; i++) {
-				if (radios2[i].checked) {
-					// do whatever you want with the checked radio
-					var petFriendly = radios2[i].value;
-					var petFriendlyText = radios2[i].nextSibling.data;
-					$("#addRequest").append("<u>Pet Friendly</u>" + petFriendlyText+"<br>");
-					// only one radio can be logically checked, don't check the rest
-					break;
-				}
-			}
-			
-			var radios3 = document.getElementsByName("p2");
-			for (var i = 0, length = radios3.length; i < length; i++) {
-				if (radios3[i].checked) {
-					// do whatever you want with the checked radio
-					var party = radios3[i].value;
-					var partyText = radios3[i].nextSibling.data;
-					$("#addRequest").append("<u>Party: </u>" + partyText+"<br>");
-					// only one radio can be logically checked, don't check the rest
-					break;
-				}
-			}
-			
-			var radios4 = document.getElementsByName("sf");
-			for (var i = 0, length = radios4.length; i < length; i++) {
-				if (radios4[i].checked) {
-					// do whatever you want with the checked radio
-					var smokingFriendly = radios4[i].value;
-					var smokingFriendlyText = radios4[i].nextSibling.data;
-					$("#addRequest").append("<u>Smoker Friendly: </u>" + smokingFriendlyText);
-					// only one radio can be logically checked, don't check the rest
-					break;
-				}
-			}
-			
-			if(houseApartment == 0  || petFriendly == 0 ||  party == 0 || smokingFriendly == 0 ||  rentPriceRange == 0 || neighbourhood == 0 || roommates == 0){
-				alert("please select a option for all fields");
-			} else{
-				if (window.XMLHttpRequest)
-							  {// code for IE7+, Firefox, Chrome, Opera, Safari
-							  xmlhttp_finish_signup=new XMLHttpRequest();
-							  }
-							else
-							  {// code for IE6, IE5
-							  xmlhttp_finish_signup=new ActiveXObject("Microsoft.XMLHTTP");
-							  }
-							xmlhttp_finish_signup.onreadystatechange=function()
-							  {
-							  if (xmlhttp_finish_signup.readyState==4 && xmlhttp_finish_signup.status==200)
-								{
-
-								if (xmlhttp_finish_signup.responseText){
-								document.getElementById("requestButton").value = "Request";
-								$("#requestDisplay" ).empty();
-								loadRequests();
-								
-
-								}
-								else {
-								document.getElementById("requestButton").value = "Not Requested";
-								}
-								}
-							  }
-							xmlhttp_finish_signup.open("GET","savelivingpreference.php?houseApartment="+houseApartment+"&petFriendly="+petFriendly+"&party="+party+"&smokingFriendly="+smokingFriendly+"&rentPriceRange="+rentPriceRange+"&neighbourhood="+neighbourhood+"&roommates="+roommates,true);
-							xmlhttp_finish_signup.send();
-							$("#requestDisplay" ).empty();
-						}
-		}
-
-function showMatches(requestID){
-
-	console.log(requestID);
-	$.ajax({		
-				type: "POST",
-					url: 'getMatches.php',
-					data: {
-						requestID: requestID	
-					},
-					success: function(data){
-						console.log(data);
-						var matches = JSON.parse(data);
-						//console.log(matches);
-						displayMatches(requestID, matches);
-					}		
-		});
-}
 
 function editProfile(){
 
