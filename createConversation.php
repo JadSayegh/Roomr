@@ -1,25 +1,19 @@
 <?php
 
-require("dbConnect.php");
+require ("dbConnect.php");
 
 session_start();
+
 $senderID = $_SESSION['userid'];
-if (isset($_POST["messageBody"]) && !empty($_POST["messageBody"])) {
-    $messageBody = $_POST['messageBody'];
-}
-else{
-		exit("empty");
-}
+
 $receiverID = $_POST['receiverID'];
 
-$sql = "INSERT INTO messages (body, receiverID, senderID) VALUES ('$messageBody', '$receiverID', '$senderID')";
 
 
-$result = $db->query($sql) or die('There was an error running the query [' . $db->error . ']');
 $sql = "SELECT * FROM conversation WHERE firstParticipant = '$senderID' AND secondParticipant = '$receiverID' 
 		UNION SELECT * FROM conversation WHERE firstParticipant = '$receiverID' AND secondParticipant = '$senderID'";
 
-$result = $db->query($sql); 		
+$result = $db->query($sql) or die('There was an error running the query [' . $db->error . ']'); 		
 if($result->num_rows == 0){
 	
 	$sql = "INSERT INTO conversation (firstParticipant, secondParticipant) VALUES ('$senderID', '$receiverID') ";
@@ -32,5 +26,6 @@ if($result->num_rows == 0){
 
 }
 echo "success";
+
 
 ?>

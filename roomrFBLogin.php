@@ -26,6 +26,8 @@ if(checkUnique($db,$email)){
 					$_SESSION['userid'] = $user_id;
 					
 					echo "success";
+					echo "userid";
+					echo $user_id;
 				
 					
 				}

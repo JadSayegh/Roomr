@@ -237,12 +237,10 @@
 
 <!--<button type="button" class="btn btn-warning navbar-btn" onclick = "editProfile()"><span class="glyphicon glyphicon-edit"></span>Add a Request</button></div>-->
 <div class = "customContainer">
-	<div class = "box" id = "requestDisplay">
+	<div class = "slide-row-container2" id = "requestDisplay">
 	</div>
 	
-	<div class ="box2" id = "matchDisplay" >
-
-	</div>
+	<div class ="slide-row-container2" id = "matchDisplay" ></div>
 	
 </div>
 	
@@ -496,12 +494,12 @@ if (feesIndex == 7){
 }
 
 $(".requests" ).remove();
-$("#requestDisplay").append('<div class = "container1"><div class="col-xs-8 col-xs-offset-2"></div><br><div class="row carousel-row " id = ' + rid +' >' +
+$("#requestDisplay").append('<div class="col-xs-8 col-xs-offset-2"></div><br><div id = ' + rid +' >' +
         '<div class="col-xs-4 col-xs-offset-1 slide-row" ><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel" >'+
         '</div><div class="slide-content"><h4><div id="titleRequest'+i+'"></div></h4><p><div id="addRequest' + i +'"></div>' +
         '</p></div><div class="slide-footer"><span class="pull-right buttons"><button class="btn btn-sm btn-default" onclick = "showMatches('+rid+')" >'+
 '<i class="fa fa-fw fa-eye"></i> Show Matches!</button></span></div></div></div>' + 
-'</div>');
+'');
 var requestName = "#addRequest"+ i;
 var requestTitle = "#titleRequest" + i;
 console.log(requestName);
@@ -670,11 +668,11 @@ function displayMatches(requestID, jsonData){
 		email = jsonData[i]['email'];
 		matchPercentage = jsonData[i]['matchPercentage'];
 	
-	$("#matchDisplay").append('<div class="container1" id = ' + requestID +'><div class="col-xs-8 col-xs-offset-2"></div><br><div class="row carousel-row">' +
-        '<div class="col-xs-offset-2 col-xs-3 slide-row2"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+'<div class="circle" style = "padding-left:20px;" >'
+	$("#matchDisplay").append('<div id = ' + requestID +'><br>' +
+        '<div class="slide-row2"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+'<div class="circle" style = "padding-left:20px;" >'
 		+ matchPercentage + '%' +'<a class = "usernameLink" onclick = ' + '\''+ 'displayProfile(' + '\"' +username+ '\"' + ')' +'\''+ ' href = "#">'+ username + '</a><br>'+ email+ '</div><div class="slide-content"><h4><div id="titleRequest'+username+
 		'"></div></h4><p><br><div id="addRequest' + email +'"></div>' +
-        '</p></div> <div style="padding-left:100px;padding-bottom:10px;" class="slide-footer"> <button  onclick = ' + '\''+ 'displayProfile(' + '\"' +username+ '\"' + ')' +'\''+ '><span class ="glyphicon glyphicon-user"></span> View Profile </button></div></div></div></div>');
+        '</p></div> <div style="padding-left:100px;padding-bottom:10px;" class="slide-footer"> <button  onclick = ' + '\''+ 'displayProfile(' + '\"' +username+ '\"' + ')' +'\''+ '><span class ="glyphicon glyphicon-user"></span> View Profile </button></div></div></div>');
 	}
 }
 
