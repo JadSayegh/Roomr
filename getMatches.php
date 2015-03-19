@@ -52,7 +52,7 @@ $rowNumber = 0;
 			
 			$interestsSql= "SELECT user_id, interest_id FROM user_interests WHERE user_id = '$userID' OR user_id = '$matchID'";
 			$interestResult = $db->query($interestsSql);
-			/**
+			
 			while($interestRow = $interestResult->fetch_assoc()){
 					if($interestRow['user_id'] = $userID){
 						array_push($userInterests, $interestRow['interest_id']);
@@ -90,7 +90,7 @@ $rowNumber = 0;
 				$matchPercentage = $matchPercentage -3;
 			}
 			
-			**/
+			
 			if($matchPercentage> 0){
 				
 			
@@ -108,9 +108,9 @@ $rowNumber = 0;
 			//unset($userInterests);
 			//unset($matchInterests);
 			
-			
+		rsort($json);		
 	}
-	
+
 echo json_encode($json);
 unset($userInterests);
 unset($matchInterests);

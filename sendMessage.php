@@ -5,7 +5,7 @@ require("dbConnect.php");
 session_start();
 $senderID = $_SESSION['userid'];
 if (isset($_POST["messageBody"]) && !empty($_POST["messageBody"])) {
-    $messageBody = $_POST['messageBody'];
+    $messageBody = $db->real_escape_string($_POST['messageBody']);
 }
 else{
 		exit("empty");

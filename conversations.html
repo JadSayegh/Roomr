@@ -36,7 +36,7 @@
     <ul class="nav nav-tabs">
         
         <li><a href="livingPreferences.html">Interests</a></li>
-		<li><a href = "Profile.html"> My Profile </a></li>
+		<li><a href = "Profile.php"> My Profile </a></li>
         <li><a href="requests.html">Requests</a></li>
 		<li><a href="aboutPage.html">About</a></li>
 		<li><a href="search.html">Search</a></li>
@@ -97,7 +97,7 @@
 		 
 	<script type = "text/javascript">
 	
-	
+			
 		
 			function getConversations(){
 			
@@ -129,6 +129,11 @@
 			var receiverID = recipiant;
 			$("#sendButton").empty();
 			$("#sendButton").append('<button class="btn btn-warning btn-sm" id="btn-chat" onclick = "sendMessage(' + recipiant +',' + "'" + recipiantName +"'"+ ')"> Send </button>');
+			$('#btn-submit').on('keydown', function(e) {
+				if (e.which == 13) {
+					sendMessage(recipiant, recipiantName);
+				}
+			});
 			$.ajax({
 					type: "POST",
 					url: 'getMessages.php',	
@@ -221,7 +226,7 @@
 			
 			}
 			
-			
+		
 			function signOut(){
 		
 				$.ajax({
