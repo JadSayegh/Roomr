@@ -87,10 +87,10 @@
 			$userimage = $row_users_image['imagelocation'];
 			
 			echo "<div class='profile-picture'>
-					<img src='$userimage' width='100' height='100' />
+					<img src='$userimage' width='175' height='175' />
 					</div>";
 			
-			echo "<form method='post' action='profileOther.php' enctype='multipart/form-data' class='profile_picture_upload' onmouseover=this.className='profile_picture_upload_onmouseover' onmouseout=this.className='profile_picture_upload'>
+			echo "<form method='post' action='profile.php' enctype='multipart/form-data' class='profile_picture_upload' onmouseover=this.className='profile_picture_upload_onmouseover' onmouseout=this.className='profile_picture_upload'>
 				<span>Upload picture</span>
 				<input type='file' name='myfile' class='upload' onchange='submit()'/>
 				<input type='submit' id='upload_photo' value='Upload' style='display:none'>
@@ -126,9 +126,9 @@
 					$location = "photos/users/".$picture_name;
 					move_uploaded_file($tmp_name,$location);
 				   
-					$sql_update =  mysql_query("UPDATE users SET imagelocation = '$location' WHERE id = $userid");
+					$sql_update =  mysqli_query($db, "UPDATE users SET imagelocation = '$location' WHERE id = $userid");
 					echo "<div class='profile_picture_upload_message'>(Upload successfully. <a href='profile.php?userid=$userid'>Refresh</a>)</div>";
-					header('Location: profileOther.php');
+					header('Location: profile.php');
 				}
 			}
 		} 
