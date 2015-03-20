@@ -72,7 +72,7 @@
     </nav>
 	</div>
 
-		<div id="profile-page">
+		<div id="profile-page" style = "margin-left:7%">
 
 			<div class="custom-container">
 <!--Profile Picture-->
