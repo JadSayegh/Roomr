@@ -498,7 +498,8 @@ $("#requestDisplay").append('<div class="col-xs-8 col-xs-offset-2"></div><br><di
         '<div class="col-xs-4 col-xs-offset-1 slide-row" ><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel" >'+
         '</div><div class="slide-content"><h4><div id="titleRequest'+i+'"></div></h4><p><div id="addRequest' + i +'"></div>' +
         '</p></div><div class="slide-footer"><span class="pull-right buttons"><button class="btn btn-sm btn-default" onclick = "showMatches('+rid+')" >'+
-'<i class="fa fa-fw fa-eye"></i> Show Matches!</button></span></div></div></div>' + 
+'<i class="fa fa-fw fa-eye"></i> Show Matches!</button>' + 
+'<button class="btn btn-sm btn-default" onclick = "deleteRequest('+rid+')" ><i class="fa fa-fw fa-eye"></i> Delete Request</button></span></div></div></div>' + 
 '');
 var requestName = "#addRequest"+ i;
 var requestTitle = "#titleRequest" + i;
@@ -634,6 +635,20 @@ $("#addRequest").append("<u>Number of Roommates: </u>" + roommatesText+"<br>");
 							$("#requestDisplay" ).empty();
 						}
 		}
+
+function deleteRequest(requestID){
+    if(confirm("Are you sure you want to delete this request?")) {
+        console.log(requestID);
+	    $.ajax({		
+			type: "POST",
+				url: 'deleteRequest.php',
+				data: {
+					requestID: requestID	
+				}	
+		    });
+		location.reload(false);
+    }
+}
 
 function showMatches(requestID){
 
