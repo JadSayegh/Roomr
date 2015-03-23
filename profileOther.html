@@ -44,7 +44,7 @@
     <ul class="nav nav-tabs">
         
         <li><a href="livingPreferences.html">Interests</a></li>
-		<li><a href = "Profile.html"> My Profile </a></li>
+		<li><a href = "profile.php"> My Profile </a></li>
         <li><a href="requests.html">Requests</a></li>
 		<li><a href="aboutPage.html">About</a></li>
 		<li><a href="search.html">Search</a></li>
@@ -102,6 +102,7 @@
 				</table>
 			</div><br><br><br><br>
 <div class = "favouriteButton"><button type="button" class="btn btn-warning navbar-btn" onclick = "addToFavourite()"><span class="glyphicon glyphicon-edit"></span> Add To Favourite</button></div>
+<div class = "favouriteButton"><button type="button" class="btn btn-warning navbar-btn" onclick = "removeFromFavourite()"><span class="glyphicon glyphicon-edit"></span> Remove From Favorites</button></div>
 <div class = "favouriteButton"><button type="button" class="btn btn-warning navbar-btn" onclick = "startConversation()"><span class="glyphicon glyphicon-send"></span> Message Me</button></div>
 
 <!--Living Preferences section-->
@@ -188,6 +189,20 @@
 						}	
 			});
 	}
+    function removeFromFavourite(){
+		userID = localStorage.userID;
+			$.ajax({
+		
+				type: "POST",
+				url: 'removeFavorite.php',
+				data: {
+					favouritedID:userID
+				},
+				success: function(data){
+						console.log(data);				
+						}	
+			});
+	}       
 	
 	function startConversation(){
 		var recipiant = localStorage.userID;
