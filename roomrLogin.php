@@ -34,6 +34,7 @@ require("dbConnect.php");
 
                 
 				session_start();
+				
 				$sql = "SELECT email, id FROM users WHERE username = '$username'";
 				$result = $db->query($sql) or die('There was an error running the query [' . $db->error . ']');
                 $result_array = $result->fetch_assoc();
@@ -44,6 +45,7 @@ require("dbConnect.php");
 				$_SESSION['email'] = $email;
 				$_SESSION['login'] = "1";
 				$_SESSION['userid'] = $user_id;
+				$_SESSION['most_recent_activity'] = time();
 				
 				echo "pass";
 				echo "userid";

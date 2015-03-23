@@ -1,4 +1,7 @@
 <?php  
+if(isset($_SESSION['most_recent_activity'])){
+	$_SESSION['most_recent_activity'] = time(); // the start of the session.
+}
 // Connects to Our Database  
 $db = new mysqli('localhost', 'root', '', 'roomr');
 

@@ -30,6 +30,7 @@ include("emailActivation.php");
 					$_SESSION['login'] = "1";
 					$_SESSION['activated'] = "0";
 					$_SESSION['userid'] = $userid;
+					$_SESSION['most_recent_activity'] = time();
 					echo "success";
 					echo "userid";
 					echo $user_id;

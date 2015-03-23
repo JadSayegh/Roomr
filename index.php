@@ -1,4 +1,20 @@
+<?php
 
+
+// Is the user already logged in? Redirect him/her to the private page
+session_start();
+if(isset($_SESSION) && isset($_SESSION['username']) && isset($_SESSION['userid']) && isset($_SESSION['email']))
+{
+	
+	header("Location: roomrHome.html");
+	die();
+	
+}
+session_unset();
+session_destroy();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en" class="full">
   <head>

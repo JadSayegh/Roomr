@@ -24,6 +24,7 @@ if(checkUnique($db,$email)){
 					$_SESSION['email'] = $email;
 					$_SESSION['login'] = "1";
 					$_SESSION['userid'] = $user_id;
+					$_SESSION['most_recent_activity'] = time();
 					
 					echo "success";
 					echo "userid";
@@ -51,6 +52,7 @@ if(checkUnique($db,$email)){
 				$_SESSION['email'] = $email;
 				$_SESSION['login'] = "1";
 				$_SESSION['userid'] = $user_id;
+				$_SESSION['most_recent_activity'] = time();
 				echo "success";
 			}
 		}
