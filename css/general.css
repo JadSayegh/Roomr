@@ -233,7 +233,7 @@
 	border: 1px solid #e7e7e7;
     padding: 0;
     background-color: #ffffff;
-    max-height: 400px;
+    min-height: 400px;
 	
 	width: 17%;
 	margin-left:15%;

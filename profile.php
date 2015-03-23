@@ -50,7 +50,7 @@
     <ul class="nav nav-tabs">
         
         <li><a href="livingPreferences.html">Interests</a></li>
-		<li class = "active"><a href = "Profile.html"> My Profile </a></li>
+		<li class = "active"><a href = "#"> My Profile </a></li>
         <li><a href="requests.html">Requests</a></li>
 		<li><a href="aboutPage.html">About</a></li>
 		<li><a href="search.html">Search</a></li>
@@ -227,7 +227,7 @@
 				success: function(data){
 				
 						var matches = JSON.parse(data);	
-						for(i = 2 ; i<matches.length; i++){
+						for(i = 3 ; i<matches.length; i++){
 							$("#interestList").append('<li>'+ matches[i] +'</li>');				
 							
 						}
