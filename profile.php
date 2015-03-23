@@ -188,24 +188,24 @@
 
 <!--Favorites section-->
 
-			<div class="favorites">
+            <div class="favorites">
 				<h2>Favorites</h2>
 				<div>
 					<ul id="favoritelist">
 						<li>
-							<img src="sampleFavoritePicture.jpeg" alt="" />
+							<!--<img src="sampleFavoritePicture.jpeg" alt="" />-->
 						</li>
 						<li>
-							<img src="sampleFavoritePicture.jpeg" alt="" />
+							<!--<img src="sampleFavoritePicture.jpeg" alt="" />-->
 						</li>
 						<li>
-							<img src="sampleFavoritePicture.jpeg" alt="" />
+							<!--<img src="sampleFavoritePicture.jpeg" alt="" />-->
 						</li>
 						<li>
-							<img src="sampleFavoritePicture.jpeg" alt="" />
+							<!--<img src="sampleFavoritePicture.jpeg" alt="" />-->
 						</li>
 						<li>
-							<img src="sampleFavoritePicture.jpeg" alt="" />
+							<!--<img src="sampleFavoritePicture.jpeg" alt="" />-->
 						</li>
 					</ul>
 				</div>
@@ -263,6 +263,45 @@
 }
 	
 		</script>
+            
+            
+        <!-- Matthew Additions: Favorite Functions and Script -->
+            
+        <script type = "text/javascript">
+            
+            $.ajax({
+		
+				type: "POST",
+                // WHat url should this be?
+				url: 'getFavorites.php',		
+				success: function(data){
+				    
+					   var matches = JSON.parse(data);
+                        //console.log(matches);
+						for(i = 0 ; i<matches.length; i++){
+							//$("#favoritelist").append('<li>'+ '<a class = "usernameLink" onclick = ' + '\''+ 'displayProfile(' + '\"' +matches[i].username+ '\"' + ')' +'\''+ ' href = "#">'+matches[i].username + '</a>' + '</li>');                          
+                             $("#favoritelist").append('<div id = \"requestID\"><br>' + '<div class="slide-row2"><div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">'+'<div class="" style = "padding-left:20px;" >' + '<a class = "usernameLink" onclick = ' + '\''+ 'displayProfile(' + '\"' +matches[i].username+ '\"' + ')' +'\''+ ' href = "#">'+ '<h3>' + matches[i].username +'</h3>' + '</a><br>'+ '</div><div class="slide-content"><h4><div id="titleRequest'+matches[i].username+'"></div></h4><p><br><div id="addRequest' + '"></div>' + '</p></div> <div style="padding-left:100px;padding-bottom:10px;" class="slide-footer"> <button  onclick = ' + '\''+ 'displayProfile(' + '\"' +matches[i].username+ '\"' + ')' +'\''+ '><span class ="glyphicon glyphicon-user"></span> View Profile </button></div></div></div>');
+						}
+						console.log(data);
+				}
+			
+			
+			});
+            
+            
+            function displayProfile(username) {
+		      console.log("displaying");
+		      localStorage.setItem("username", username);
+		      location.replace('profileOther.html');
+
+            }   
+            
+            
+        </script>
+            
+        <!-- END OF MATTHEW ADDITIONS -->
+            
+            
 	</body>
 </html>
 
