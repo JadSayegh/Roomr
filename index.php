@@ -5,11 +5,19 @@
 session_start();
 if(isset($_SESSION) && isset($_SESSION['username']) && isset($_SESSION['userid']) && isset($_SESSION['email']))
 {
+	if (isset($_SESSION['most_recent_activity']) && 
+    (time() -   $_SESSION['most_recent_activity'] > 60)) {
+		
+ //600 seconds = 10 minutes
 	
-	header("Location: roomrHome.html");
-	die();
+     
+	}else{
+		header("Location: roomrHome.html");
+		die();
+	}
 	
 }
+
 session_unset();
 session_destroy();
 
