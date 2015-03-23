@@ -50,7 +50,7 @@
     <ul class="nav nav-tabs">
         
         <li><a href="livingPreferences.html">Interests</a></li>
-		<li class = "active"><a href = "Profile.html"> My Profile </a></li>
+		<li class = "active"><a href = "#"> My Profile </a></li>
         <li><a href="requests.html">Requests</a></li>
 		<li><a href="aboutPage.html">About</a></li>
 		<li><a href="search.html">Search</a></li>
@@ -81,13 +81,14 @@
 
 			<?php 
 			require ("dbConnect.php");
-			$userid = 3;
+			session_start();
+			$userid = $_SESSION['userid'];
 			$users_image = mysqli_query($db, "SELECT * FROM users WHERE id='$userid' ORDER BY id ASC;") OR die(mysql_query());      
 			$row_users_image = mysqli_fetch_assoc($users_image);
 			$userimage = $row_users_image['imagelocation'];
 			
 			echo "<div class='profile-picture'>
-					<img src='$userimage' width='175' height='175' />
+					<img src='$userimage' width='250' height='250' />
 					</div>";
 			
 			echo "<form method='post' action='profile.php' enctype='multipart/form-data' class='profile_picture_upload' onmouseover=this.className='profile_picture_upload_onmouseover' onmouseout=this.className='profile_picture_upload'>
@@ -174,7 +175,10 @@
 
 
 <!--Interests section-->
-
+			<br>
+			<br>
+			<br>
+			<br>
 			<div class="interests">
 				<h2>Interests</h2>
 
@@ -223,7 +227,7 @@
 				success: function(data){
 				
 						var matches = JSON.parse(data);	
-						for(i = 2 ; i<matches.length; i++){
+						for(i = 3 ; i<matches.length; i++){
 							$("#interestList").append('<li>'+ matches[i] +'</li>');				
 							
 						}

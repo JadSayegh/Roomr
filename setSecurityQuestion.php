@@ -35,7 +35,7 @@ require("dbConnect.php");
     }else{
   //      echo "data insert is : ".$answer." and ".$user_id;
         $requestPDB = "INSERT INTO user_question(user_id, question_id, answer) VALUES ('$user_id', '$question', '$answer')";
-        $result - $db->query($requestPDB) or die("failed to set question..");
+        $result = $db->query($requestPDB) or die("failed to set question..");
         
         
         echo "success"; 

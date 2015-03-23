@@ -23,7 +23,22 @@
 		<link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
 		<link type="text/css" rel="stylesheet" href="css/general.css"/>
 		<link type="text/css" rel="stylesheet" href="profileStyle.css"/>
- 
+		<script>
+			username = localStorage.username;
+		$.ajax({
+				type: "POST",
+				url: 'getImage.php',
+				data: {
+					username:username
+				},
+				success: function(data){
+						$(".profile-picture").empty();
+						$(".profile-picture").append(data);
+				}
+			
+		});
+		
+		</script>
 	</head>
 
 	<body>
@@ -123,7 +138,7 @@
 		</div>
 		
 		<script type = "text/javascript">
-		username = localStorage.username;
+		
 			$.ajax({
 		
 				type: "POST",
@@ -146,6 +161,7 @@
 			
 			});
 		
+			
 		function signOut(){
 		
 		$.ajax({
